@@ -19,7 +19,7 @@ export default plugin(({ matchUtilities }) => {
     fg: "gap",
     fr: "border-radius",
     ft: "font-size",
-    ftr: "letter-spacing",
+    fls: "letter-spacing",
     flh: "line-height",
   };
 
@@ -33,7 +33,7 @@ export default plugin(({ matchUtilities }) => {
               [prop[1]]: `calc(${v} * 100%)`,
             };
           }
-          if (key === "fr" || key === "ft" || key === "ftr" || key === "flh") {
+          if (key === "fr" || key === "ft" || key === "fls" || key === "flh") {
             return { [prop]: `calc(${v} * 100cqw)` };
           }
           return { [prop]: `calc(${v} * 100%)` };

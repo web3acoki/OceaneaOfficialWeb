@@ -36,10 +36,10 @@ export default function Header() {
   }, [authenticated, user]);
 
   return <>
-    <section className="fmx-[300/1920] fmt-[40/1920] aspect-1320/80 flex rounded-full shadow-md">
-      <img src="/logo.svg" alt="logo" className="fm-[25/1320]" />
+    <div className="fmx-[300/1920] fmt-[40/1920] aspect-1320/80 flex rounded-full shadow-md">
+      <img src="/logo.svg" className="fm-[25/1320]" />
       <Button text={buttonText} className="ml-auto fm-[15/1320] aspect-166/53" onClick={onButtonClick}/>
-    </section>
+    </div>
     <Menu open={open} displayName={displayName} onClose={() => setOpen(false)} />
   </>;
 }
