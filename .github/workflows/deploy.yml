@@ -31,7 +31,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: ".next,package.json,package-lock.json,next.config.ts,public"
+          source: ".next,package.json,package-lock.json,next.config.ts,public,ecosystem.config.js"
           target: "/var/www/oceanea.io"
           strip_components: 0
 
