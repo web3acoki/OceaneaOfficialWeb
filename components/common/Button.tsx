@@ -4,7 +4,7 @@ type CommonButtonProps = { text?: string; className?: string; onClick?: MouseEve
 
 export default function Button({ text, className, onClick }: CommonButtonProps) {
   const buttonClassName = [
-    "bg-0 rounded-full flex items-center justify-center transition-transform duration-200 hover:-translate-y-1 hover:bg-1 @container-[size]",
+    "bg-0 rounded-full flex items-center justify-center duration-200 cursor-pointer hover:-translate-y-1 hover:bg-1 @container-[size]",
     className,
   ]
     .join(" ")

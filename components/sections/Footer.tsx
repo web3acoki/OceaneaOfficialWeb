@@ -17,7 +17,7 @@ const exploreText = "The Decentralized Ecosystem for Ocean Exploration";
 
 export default function Footer() {
   return <>
-    <div className="relative fmt-[420/1920] fmx-[300/1920] aspect-1320/746 fr-[50/1920] bg-linear-to-b  @container-[size] from-[#0c0c0c] via-[#1e191f] to-[#222] shadow-md">
+    <div className="relative -translate-x-1/2 left-1/2 mt-[618px] w-[1320px] h-[746px] fr-[50/1320] bg-linear-to-b  @container-[size] from-[#0c0c0c] via-[#1e191f] to-[#222] shadow-md">
       
       <div className="fmx-[30/1320] fmt-[30/1320] aspect-1260/80 flex bg-white rounded-full relative">
         <img src="/logo.svg" className="fm-[25/1260]"/>
@@ -49,6 +49,6 @@ export default function Footer() {
       </div> 
     </div>
 
-    <div className="fmt-[300/1920]"/>
+    <div className="mt-[300px]"/>
   </>;
 }
