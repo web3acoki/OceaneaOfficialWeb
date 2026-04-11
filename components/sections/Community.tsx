@@ -5,7 +5,7 @@ export default function Community() {
   and advances the exploration of the ocean's unknown.`;
 
   return <>
-    <div className="relative -translate-x-1/2 left-1/2 mt-[458px] w-[1320px] h-[1209px] @container-[size]">
+    <div className="relative -translate-x-1/2 left-1/2 fmt-[458/1320] aspect-1320/1209">
       <div className="flex w-full flex-row items-center justify-center fg-[24/1320]">
         <img src="/community.svg" alt="" className="block w-63/1320 aspect-63/63 shrink-0" />
         <p className="ft-[96/1320] font-medium fls-[-2.88/1320] capitalize text-[#0c0c0c] text-center">Unlock the ocean together</p>

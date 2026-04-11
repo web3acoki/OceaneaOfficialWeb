@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "../plugins/f-utilities.plugin.mjs";
+@plugin "../plugins/p-utilities.plugin.mjs";
 
 @theme {
   --color-0: #0C0C0C;

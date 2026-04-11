@@ -17,9 +17,9 @@ const exploreText = "The Decentralized Ecosystem for Ocean Exploration";
 
 export default function Footer() {
   return <>
-    <div className="relative -translate-x-1/2 left-1/2 mt-[618px] w-[1320px] h-[746px] fr-[50/1320] bg-linear-to-b  @container-[size] from-[#0c0c0c] via-[#1e191f] to-[#222] shadow-md">
+    <div className="relative -translate-x-1/2 left-1/2 fmt-[618/1320] aspect-1320/746 fr-[64/1320] bg-linear-to-b from-[#0c0c0c] via-[#1e191f] to-[#222] shadow-md @container-[size]">
       
-      <div className="fmx-[30/1320] fmt-[30/1320] aspect-1260/80 flex bg-white rounded-full relative">
+      <div className="relative fmx-[30/1320] fmt-[30/1320] aspect-1260/80 flex bg-white rounded-full">
         <img src="/logo.svg" className="fm-[25/1260]"/>
         {topNavItems.map(({ label, fml }) => (
           <p key={label} className={["absolute fmy-[25/1260] ft-[24/1320] font-bold", fml].join(" ")}>{label}</p>
@@ -49,6 +49,6 @@ export default function Footer() {
       </div> 
     </div>
 
-    <div className="mt-[300px]"/>
+    <div className="aspect-1320/300"/>
   </>;
 }

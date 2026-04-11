@@ -19,23 +19,22 @@ immersive ocean gameplay, what once was vision is now becoming reality`;
   //"relative fmt-[78/650] aspect-650/900 fr-[50/1920] shadow-xl bg-[linear-gradient(180deg,rgba(173,166,177,0)_2.772%,rgba(251,251,251,0.5)_37.181%,#e3e3e3_71.59%)]";
   
   const innovationBackClassName ="absolute left-1/2 -translate-x-1/2 fmt-[-135/650]";
-  const adventureBackClassName = "absolute fmt-[117/650] fml-[-64/650] max-w-none";
+  const adventureBackClassName = "absolute fmt-[117/650] fml-[-41/650]";
 
   const descriptionClassName ="relative z-10 ft-[24/1320] fmt-[640/650] fmx-[80/650] fls-[-0.72/1320] text-center ";
 
   const innovationArturaDesc = `The World's First Exoskeleton-Based Underwater Propulsion Device, Redefining Human Movement Below the Surface`;
   const innovationDiverDesc = `An Evolving Ocean Game, Bringing Exploration, Play, and Progression Into an Emerging Digital Experience`;
 
-  const buttonClassName =
-    "absolute bottom-50/900 fmt-[52/650] fmx-[50/650] w-550/650 aspect-550/60";
+  const buttonClassName ="absolute bottom-50/900 fmt-[52/650] fmx-[50/650] w-550/650 aspect-550/60";
 
   return <>
-    <div className="relative -translate-x-1/2 left-1/2 mt-[435px] w-[1320px] h-[270px] @container-[size]">
+    <div className="relative -translate-x-1/2 left-1/2 fmt-[435/1320] aspect-1320/270">
       <p className={"flh-[120/1320] font-medium ft-[96/1320] fls-[-2.88/1320] text-center"}>Bringing The Vision Alive</p>
       <p className={"fmx-[200/1320] fmt-[31/1320] ft-[28/1320] fls-[-0.84/1320] text-center text-[#626262]"}>{bodyLine1}</p>
     </div>
 
-    <div className="relative -translate-x-1/2 left-1/2 mt-[230px] w-[1320px] h-[1047px] flex flex-row justify-center fg-[20/1320] @container-[size]">
+    <div className="relative -translate-x-1/2 left-1/2 fmt-[230/1320] aspect-1320/1047 flex flex-row justify-center fg-[20/1320]">
 
       <div className={partClassName}>
         <div className={titleClassName}>

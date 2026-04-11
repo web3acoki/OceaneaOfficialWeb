@@ -27,7 +27,7 @@ export default function Immersion() {
   ];
 
   return <>
-    <div className="relative -translate-x-1/2 left-1/2 mt-[430px] w-[1320px] h-[1174px] @container-[size]">
+    <div className="relative -translate-x-1/2 left-1/2 fmt-[430/1320] aspect-1320/1174">
       <div className="relative w-1120/1320 fmx-[100/1320] aspect-1120/150 flex flex-col items-center justify-center">
         <img src="/immersion-left.svg" className="absolute top-0 left-0 w-45/1120"/>
         <p className={"absolute ft-[96/1320] font-medium fls-[-2.88/1320] text-center"}>Enter The Oceanverse</p>

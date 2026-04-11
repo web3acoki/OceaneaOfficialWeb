@@ -15,14 +15,14 @@ export default function News() {
   
     <div className="relative -translate-x-1/2 left-1/2 mt-[446px] w-[1920px] h-[992px] @container-[size]">
       <p className="relative -translate-x-1/2 left-1/2 w-[1320px] ft-[96/1920] font-medium fls-[-2.88/1320] text-center">Oceanea News</p>
-      <NewsCardsStrip className="relative -translate-x-1/2 left-1/2 mt-[127px] flex flex-row flex-nowrap justify-start overflow-x-auto overscroll-x-contain scroll-smooth snap-x snap-mandatory fg-[20/1920]">
-        <div className="shrink-0 snap-start w-300/1920"/>
+      <NewsCardsStrip className="relative -translate-x-1/2 left-1/2 mt-[127px] flex flex-row flex-nowrap justify-start overflow-x-auto  fg-[20/1920]">
+        <div className="shrink-0  w-300/1920"/>
         {newsCards.map((card, i) => (
-          <div key={i} className="relative aspect-418/746 w-418/1920 shrink-0 snap-start overflow-hidden shadow-md fr-[50/1920]">
-            <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+          <div key={i} className="relative aspect-418/746 w-418/1920 shrink-0 overflow-hidden shadow-[0px_4px_8.5px_2px_rgba(0,0,0,0.05)] fr-[50/1920]">
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
               <img src={card.src} className={card.imageClassName} />
             </div>
-            <div className="pointer-events-none absolute inset-0 z-1 bg-[linear-gradient(180deg,transparent_0%,transparent_45.442%,rgba(255,255,255,0.5)_58%,rgba(255,255,255,0.88)_78%,#ffffff_100%)]"/>
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,transparent_45.442%,rgba(255,255,255,0.5)_58%,rgba(255,255,255,0.88)_78%,#ffffff_100%)]"/>
             <div className="relative z-10 flex flex-col fmt-[490/418] fmx-[16/418]">
               <p className="ft-[36/1920] text-center font-medium">X-ARTURA</p>
               <p className="fmt-[12/418] ft-[20/1920] text-[rgba(12,12,12,0.6)] flh-[25/1920] text-center">{descLine}</p>
@@ -35,7 +35,7 @@ export default function News() {
             </div>
           </div>
         ))}
-        <div className="shrink-0 snap-start w-300/1920"/>
+        <div className="shrink-0 w-300/1920"/>
       </NewsCardsStrip>
     </div>
   </>;
