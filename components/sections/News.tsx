@@ -3,7 +3,7 @@ import Button from "../common/Button";
 const newsCards = [
   {src: "/news-card-1.jpg",imageClassName:"absolute h-[104.61%] left-[-25.9%] max-w-none top-[-2.27%] w-[280%]"},
   {src: "/news-card-2.jpg",imageClassName:"absolute h-[126.07%] left-[-100%] max-w-none top-[-26.01%] w-[300%]"},
-  {src: "/news-card-3.jpg",imageClassName:"pointer-events-none absolute inset-0 h-full w-full max-w-none object-cover"},
+  {src: "/news-card-3.jpg",imageClassName:"absolute h-[100%] left-[-68.98%] max-w-none top-[0%] w-[238%]"},
   {src: "/news-card-4.jpg",imageClassName:"absolute h-[114.96%] left-[-93.71%] max-w-none top-[-7.48%] w-[307.71%]"},
 ];
 
@@ -13,10 +13,10 @@ const descLine =
 export default function News() {
   return <>
   
-    <div className="relative -translate-x-1/2 left-1/2 mt-[446px] w-[1920px] h-[992px] @container-[size]">
-      <p className="relative -translate-x-1/2 left-1/2 w-[1320px] ft-[96/1920] font-medium fls-[-2.88/1320] text-center">Oceanea News</p>
-      <NewsCardsStrip className="relative -translate-x-1/2 left-1/2 mt-[127px] flex flex-row flex-nowrap justify-start overflow-x-auto  fg-[20/1920]">
-        <div className="shrink-0  w-300/1920"/>
+    <div className="relative -translate-x-1/2 left-1/2 fmt-[446/1320] aspect-1320/992">
+      <p className="ft-[96/1320] font-medium fls-[-2.88/1320] text-center">Oceanea News</p>
+      <NewsCardsStrip className="relative fmt-[127/1320] left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen flex flex-row flex-nowrap justify-center overflow-x-auto fg-[20/1920]">
+        
         {newsCards.map((card, i) => (
           <div key={i} className="relative aspect-418/746 w-418/1920 shrink-0 overflow-hidden shadow-[0px_4px_8.5px_2px_rgba(0,0,0,0.05)] fr-[50/1920]">
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -35,7 +35,7 @@ export default function News() {
             </div>
           </div>
         ))}
-        <div className="shrink-0 w-300/1920"/>
+        
       </NewsCardsStrip>
     </div>
   </>;

@@ -11,16 +11,18 @@ import News from "../components/sections/News";
 import Footer from "../components/sections/Footer";
 
 export default function Home() {
+  const showPathDebug = false;
+
   return <>
+    <Header />
     <div className="relative -translate-x-1/2 left-1/2 w-[min(calc(100vw-80px),1320px)] @container-[size]">
-      <Header />
       <Welcome />
       <Bar />
-      <Frotier />
+      <Frotier showSwimPath={showPathDebug} />
       <Immersion />
       <Innovation />
       <Community />
-      <Real />
+      <Real showJellyPaths={showPathDebug} />
       <Partner />
       <News />
       <Footer />
