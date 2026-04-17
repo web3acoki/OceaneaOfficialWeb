@@ -1,6 +1,9 @@
+"use client";
+
 import Button from "../common/Button";
 
 export default function Innovation() {
+  const onDiscoverXDiverClick = () => window.open("https://game.oceanea.io/", "_blank");
 
   const bodyLine1 = `Oceanea is already coming to life in the real world. From next-generation underwater mobility to
 immersive ocean gameplay, what once was vision is now becoming reality`;
@@ -56,7 +59,7 @@ immersive ocean gameplay, what once was vision is now becoming reality`;
         <div className={cardStackClassName}>
           <img src="/adventure-back.png" className={adventureBackClassName} />
           <p className={descriptionClassName}>{innovationDiverDesc}</p>
-          <Button text="Discover X-DIVER" className={buttonClassName} />
+          <Button text="Discover X-DIVER" className={buttonClassName} onClick={onDiscoverXDiverClick} />
         </div>
 
       </div>
