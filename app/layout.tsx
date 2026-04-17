@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return <>
     <html lang="en" className={geologica.variable}>
-      <body className="font-sans antialiased overflow-x-hidden">
+      <body className="font-sans antialiased overflow-x-clip">
         <PrivyProvider appId="cmjksvwjy05n3l40c0s99jnse" config={{ loginMethods: ["email", "telegram", "wallet"] }}>
           {children}
         </PrivyProvider>
