@@ -33,7 +33,7 @@ export default function Immersion() {
         <p className={"absolute ft-[96/1320] font-medium fls-[-2.88/1320] text-center"}>Enter The Oceanverse</p>
         <img src="/immersion-right.svg" className="absolute bottom-0 right-0 w-45/1120"/>
       </div>
-      <p className={"fmt-[18/1320] ft-[28/1320] aspect-1320/119 fls-[-0.84/1320] text-[#626262] text-center"}>{subtitleText}</p>
+      <p className={"fmt-[18/1320] ft-[28/1320] aspect-1320/119 fls-[-0.96/1320] text-[#626262] text-center"}>{subtitleText}</p>
       <div className="fmt-[136/1320] flex w-full justify-between">
         {immersionCards.map((card) => (
           <div key={card.title} className="group relative aspect-314/741 w-314/1320 overflow-hidden rounded-[3.788cqw]">

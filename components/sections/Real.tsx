@@ -185,7 +185,7 @@ unknown and advance the ocean ecosystem.`;
         src={j.src}
         alt=""
         className="block w-full h-auto max-w-none"
-        style={{ animation: "jelly-pulse 1700ms ease-in-out infinite" }}
+        style={{ animation: `jelly-pulse 1700ms ease-in-out ${j.delayMs}ms infinite` }}
       />
     </div>
   ));

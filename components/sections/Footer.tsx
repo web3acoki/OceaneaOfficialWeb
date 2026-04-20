@@ -17,26 +17,25 @@ const exploreText = "The Decentralized Ecosystem for Ocean Exploration";
 
 export default function Footer() {
   return <>
-    <div className="relative -translate-x-1/2 left-1/2 fmt-[618/1320] aspect-1320/746 fr-[64/1320] bg-linear-to-b from-[#0c0c0c] via-[#1e191f] to-[#222] shadow-md @container-[size]">
+    <div className="relative -translate-x-1/2 left-1/2 fmt-[238/1320] aspect-1320/613 fr-[64/1320] bg-linear-to-b from-[#0c0c0c] via-[#1e191f] to-[#222] shadow-md @container-[size]">
       
-      <div className="relative fmx-[30/1320] fmt-[30/1320] aspect-1260/80 flex bg-white rounded-full">
+      <div className="relative fmx-[30/1320] fmt-[30/1320] aspect-1260/67 flex bg-white rounded-full">
         <img src="/logo.svg" className="fm-[25/1260]"/>
         {topNavItems.map(({ label, fml }) => (
-          <p key={label} className={["absolute fmy-[25/1260] ft-[24/1320] font-bold", fml].join(" ")}>{label}</p>
+          <p key={label} className={["absolute fmy-[20/1260] ft-[24/1320] font-bold", fml].join(" ")}>{label}</p>
         ))}
       </div>
 
-      <div className="fml-[68/1320] fmt-[64/1320] w-177/1320 flex flex-col absolute">
-        <p className=" ft-[24/1320] font-bold text-white">{exploreText}</p>
+      <div className="fml-[98/1320] fmt-[51/1320] w-177/1320 flex flex-col absolute">
         <div className="fmt-[21/177] fg-[16/177] flex flex-row items-center">
           <img src="/Telegram.svg" className="w-48/177"/>
           <img src="/X.svg" className="w-48/177"/>  
         </div> 
       </div>
 
-      <p className="absolute fml-[69/1320] fmt-[554/1320] ft-[24/1320] font-medium text-[#a9a9a9]">Copyright © 2026 Roam Networks</p>
-      <p className="absolute right-0 fmr-[314/1320] fmt-[554/1320] ft-[24/1320] font-medium text-[#a9a9a9]">Terms of Service</p>
-      <p className="absolute right-0 fmr-[113/1320] fmt-[554/1320] ft-[24/1320] font-medium text-[#a9a9a9]">Privacy Policy</p>
+      <p className="absolute fml-[69/1320] fmt-[456/1320] ft-[24/1320] font-thin text-[#a9a9a9]">Copyright © 2026 Roam Networks</p>
+      <p className="absolute right-0 fmr-[314/1320] fmt-[456/1320] ft-[24/1320] font-thin text-[#a9a9a9]">Terms of Service</p>
+      <p className="absolute right-0 fmr-[113/1320] fmt-[456/1320] ft-[24/1320] font-thin text-[#a9a9a9]">Privacy Policy</p>
       
       <div className="fmt-[20/1320] fmx-[30/1320] aspect-1260/529 flex relative">
         {linkColumns.map(({ links, fml }) => (
@@ -49,6 +48,6 @@ export default function Footer() {
       </div> 
     </div>
 
-    <div className="aspect-1320/300"/>
+    <div className="aspect-1320/56"/>
   </>;
 }

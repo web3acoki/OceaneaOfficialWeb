@@ -36,8 +36,8 @@ export default function Header() {
   }, [authenticated, user]);
 
   return <>
-    <div className="fixed top-0 inset-x-0 z-50 pt-[12px]">
-      <div className="relative -translate-x-1/2 left-1/2 w-[min(calc(100vw-80px),1320px)] aspect-1320/80 flex rounded-full bg-white shadow-[0px_0px_12px_3px_rgba(0,0,0,0.15)]">
+    <div className="fixed z-50 w-[min(calc(100vw-80px),1320px)] -translate-x-1/2 left-1/2">
+      <div className="relative fmt-[26/1320] aspect-1320/80 flex rounded-full bg-white shadow-[0px_0px_12px_3px_rgba(0,0,0,0.15)]">
         <img src="/logo.svg" className="fm-[25/1320]" />
         <Button text={buttonText} className="ml-auto fm-[15/1320] aspect-166/53" onClick={onButtonClick}/>
       </div>
