@@ -1,26 +1,25 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { DebugBg, useDebugMode } from "../features/DebugMode";
 
-type Props = {
-  showSwimPath?: boolean;
-};
-
-export default function Frotier({ showSwimPath = false }: Props) {
+export default function Frotier() {
+  const showSwimPath = useDebugMode();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [pathScale, setPathScale] = useState({ w: 1320, h: 1394 });
+  const [scrollProgress, setScrollProgress] = useState(0); // 0..100
   const scaleX = (x: number) => (x * pathScale.w) / 1320;
   // 与 fml/fmt 同一基准：纵向也按容器宽度比例缩放，避免小屏时路径与海豚偏移
   const scaleY = (y: number) => (y * pathScale.w) / 1320;
   const pathPts = {
     p0: [-280, 180] as [number, number],
     c1: [-120, 380] as [number, number],
-    c2: [120, 540] as [number, number],
-    p1: [320, 580] as [number, number],
-    c3: [560, 630] as [number, number],
-    c4: [760, 540] as [number, number],
-    p2: [940, 420] as [number, number],
-    c5: [1120, 300] as [number, number],
+    c2: [120, 500] as [number, number],
+    p1: [320, 500] as [number, number],
+    c3: [520, 500] as [number, number],
+    c4: [760, 440] as [number, number],
+    p2: [940, 360] as [number, number],
+    c5: [1120, 280] as [number, number],
     c6: [1320, 200] as [number, number],
     p3: [1600, 210] as [number, number],
   };
@@ -29,6 +28,8 @@ export default function Frotier({ showSwimPath = false }: Props) {
       `M ${scaleX(pathPts.p0[0])} ${scaleY(pathPts.p0[1])} C ${scaleX(pathPts.c1[0])} ${scaleY(pathPts.c1[1])}, ${scaleX(pathPts.c2[0])} ${scaleY(pathPts.c2[1])}, ${scaleX(pathPts.p1[0])} ${scaleY(pathPts.p1[1])} C ${scaleX(pathPts.c3[0])} ${scaleY(pathPts.c3[1])}, ${scaleX(pathPts.c4[0])} ${scaleY(pathPts.c4[1])}, ${scaleX(pathPts.p2[0])} ${scaleY(pathPts.p2[1])} C ${scaleX(pathPts.c5[0])} ${scaleY(pathPts.c5[1])}, ${scaleX(pathPts.c6[0])} ${scaleY(pathPts.c6[1])}, ${scaleX(pathPts.p3[0])} ${scaleY(pathPts.p3[1])}`,
     [pathScale],
   );
+  // 与板块 aspect-1320/920 一致：SVG 与 CSS offset-path 共用同一套坐标范围
+  const debugViewBoxH = (920 * pathScale.w) / 1320;
   const dolphinDurationMs = 5000;
   const enableSwim = true;
   // 鱼头朝向相对图片的校准角：用于路径 auto 朝向，不是直接旋转图片
@@ -41,14 +42,8 @@ export default function Frotier({ showSwimPath = false }: Props) {
     { src: "/frontier-dolphin-2.png", sizeClass: "w-434/1320", baseOffsetClass: "fmt-[132/1320] fml-[-35/1320]" },
     { src: "/frontier-dolphin-3.png", sizeClass: "w-371/1320", baseOffsetClass: "fmt-[56/1320] fml-[-11/1320]" },
   ] as const;
-  const dolphinKeyframes = `
-    @keyframes dolphin-swim {
-      0% { offset-distance: 0%; opacity: 0; }
-      8% { offset-distance: 8%; opacity: 1; }
-      92% { offset-distance: 92%; opacity: 1; }
-      100% { offset-distance: 100%; opacity: 0; }
-    }
-  `;
+  const dolphinOpacity =
+    scrollProgress <= 8 ? scrollProgress / 8 : scrollProgress >= 92 ? (100 - scrollProgress) / 8 : 1;
 
   const renderDolphins = () => (
     <div
@@ -58,17 +53,20 @@ export default function Frotier({ showSwimPath = false }: Props) {
           ? {
               offsetPath: `path("${swimPath}")`,
               offsetRotate: `auto ${swimHeadOffsetDeg}deg`,
-              // 第一只海豚中心作为运动锚点（不再用尾部/左上角）
               offsetAnchor: "28.4% 14.4%",
-              animation: `dolphin-swim ${dolphinDurationMs}ms linear infinite`,
+              offsetDistance: `${scrollProgress}%`,
+              opacity: dolphinOpacity,
               willChange: "offset-distance, opacity",
             }
           : {}),
       }}
     >
-      {/* 运动锚点（与 offsetAnchor 同参照系：当前运动容器） */}
+      {/* 路径锚点与海豚锚点：同一 DOM 位置（offsetAnchor 28.4% 14.4%），与海豚相对关系不变 */}
       {showSwimPath && (
-        <div className="absolute z-50 left-[28.4%] top-[14.4%] -translate-x-1/2 -translate-y-1/2 size-2 rounded-full bg-[#00d4ff] border border-black" />
+        <div className="pointer-events-none absolute z-120 left-[28.4%] top-[14.4%] -translate-x-1/2 -translate-y-1/2 size-3">
+          <div className="absolute inset-0 rounded-full border-2 border-lime-400 bg-transparent" aria-hidden />
+          <div className="absolute left-1/2 top-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00d4ff] border border-black" aria-hidden />
+        </div>
       )}
       {dolphins.map((d, i) => (
         <img
@@ -82,13 +80,14 @@ export default function Frotier({ showSwimPath = false }: Props) {
   );
   const renderSwimPath = () => (
     <svg
-      className="absolute inset-0 z-0 pointer-events-none overflow-visible"
-      viewBox="0 0 1320 1394"
+      className="absolute inset-0 z-110 pointer-events-none overflow-visible"
+      viewBox={`0 0 ${pathScale.w} ${debugViewBoxH}`}
       preserveAspectRatio="none"
       aria-hidden
       style={{ overflow: "visible" }}
     >
       <path d={swimPath} fill="none" stroke="rgba(12,12,12,0.35)" strokeWidth="3" strokeDasharray="10 8" />
+
       {(
         [
           [pathPts.p0, pathPts.c1],
@@ -153,19 +152,51 @@ possibilities for exploration, innovation, and discovery.`;
     return () => ro.disconnect();
   }, []);
 
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    let raf = 0;
+    const calc = () => {
+      raf = 0;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      // 进入视口到离开视口的全过程映射到 0..100
+      const total = rect.height + vh;
+      const passed = vh - rect.top;
+      const p = (passed / total) * 100;
+      const clamped = Math.max(0, Math.min(100, p));
+      setScrollProgress(clamped);
+    };
+
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(calc);
+    };
+
+    calc();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return <>
-    <div ref={containerRef} className="relative -translate-x-1/2 left-1/2 fmt-[150/1320] aspect-1320/1017 flex flex-col">
+    <DebugBg className="relative -translate-x-1/2 left-1/2 fmt-[150/1320] aspect-1320/920 flex flex-col">
+      <div ref={containerRef} className="absolute inset-0 pointer-events-none" />
       <img src="/frontier-title.png" className="absolute z-10 -translate-x-1/2 left-1/2 w-261/1320" />
-      <p className="relative z-10 text-center fmt-[60/1320] font-medium fls-[-0.84/1320] ft-[96/1320] tracking-[-0.03em]">Shape the Ocean&apos;s Future</p>
+      <p className="relative z-10 text-center fmt-[50/1320] font-medium ft-[96/1320] tracking-[-0.03em]">Shape the Ocean&apos;s Future</p>
       
       {showSwimPath && renderSwimPath()}
       {renderDolphins()}
-      <style>{dolphinKeyframes}</style>
 
       <p className={"relative z-10 fml-[42/1320] fmt-[30/1320] text-left ft-[40/1320] font-medium"}>5-Year Plan</p>
       <p className={"relative z-10 fml-[42/1320] text-left ft-[28/1320] tracking-[-0.03em] text-[#626262] w-913/1320"}>{fiveYearBody}</p>
       <p className={"relative z-10 fmr-[30/1320] fmt-[357/1320] text-right ft-[40/1320] font-medium"}>30-Year Vision</p>
       <p className={"relative z-10 ml-auto fmr-[30/1320] text-right ft-[28/1320] tracking-[-0.03em] text-[#626262] w-805/1320"}>{thirtyYearBody}</p>
-    </div>
+    </DebugBg>
   </>;
 }

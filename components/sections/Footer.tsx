@@ -17,7 +17,7 @@ const exploreText = "The Decentralized Ecosystem for Ocean Exploration";
 
 export default function Footer() {
   return <>
-    <div className="relative -translate-x-1/2 left-1/2 fmt-[238/1320] aspect-1320/613 fr-[64/1320] bg-linear-to-b from-[#0c0c0c] via-[#1e191f] to-[#222] shadow-md @container-[size]">
+    <div className="relative -translate-x-1/2 left-1/2 fmt-[238/1320] aspect-1320/613 fr-[50/1320] bg-linear-to-b from-[#0c0c0c] via-[#1e191f] to-[#222] shadow-md @container-[size]">
       
       <div className="relative fmx-[30/1320] fmt-[30/1320] aspect-1260/67 flex bg-white rounded-full">
         <img src="/logo.svg" className="fm-[25/1260]"/>
@@ -33,9 +33,9 @@ export default function Footer() {
         </div> 
       </div>
 
-      <p className="absolute fml-[69/1320] fmt-[456/1320] ft-[24/1320] font-thin text-[#a9a9a9]">Copyright © 2026 Roam Networks</p>
-      <p className="absolute right-0 fmr-[314/1320] fmt-[456/1320] ft-[24/1320] font-thin text-[#a9a9a9]">Terms of Service</p>
-      <p className="absolute right-0 fmr-[113/1320] fmt-[456/1320] ft-[24/1320] font-thin text-[#a9a9a9]">Privacy Policy</p>
+      <p className="absolute fml-[40/1320] fmt-[460/1320] ft-[20/1320] font-thin text-[#a9a9a9]">Copyright © 2026 Oceanea</p>
+      <p className="absolute right-0 fmr-[240/1320] fmt-[460/1320] ft-[20/1320] font-thin text-[#a9a9a9]">Terms of Service</p>
+      <p className="absolute right-0 fmr-[40/1320] fmt-[460/1320] ft-[20/1320] font-thin text-[#a9a9a9]">Privacy Policy</p>
       
       <div className="fmt-[20/1320] fmx-[30/1320] aspect-1260/529 flex relative">
         {linkColumns.map(({ links, fml }) => (

@@ -1,22 +1,21 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../common/Button";
+import { DebugBg, useDebugMode } from "../features/DebugMode";
 
 type Pt = [number, number];
 type JellyPath = { p0: Pt; c1: Pt; c2: Pt; p1: Pt; c3: Pt; c4: Pt; p2: Pt };
 type DebugPoint = readonly [string, Pt, string];
-type Props = {
-  showJellyPaths?: boolean;
-};
-
-export default function Real({ showJellyPaths = false }: Props) {
+export default function Real() {
+  const showJellyPaths = useDebugMode();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [containerW, setContainerW] = useState(1320);
-  const swimDurationMs = 7000;
-  const jellyAnchorX = 50;
-  const jellyAnchorY = 34;
+  const swimDurationMs = 5000;
   const jellyHeadOffsetDeg = 90;
+  // 严格模仿海豚：图片固定 top-0 left-0；锚点用「图片真实中心」投影到 overlay 百分比
+  // 不猜纵横比：从图片 onLoad 的 naturalWidth/Height 获取
+  const [imgAspectByIndex, setImgAspectByIndex] = useState<Record<number, number>>({});
 
   const scale = (v: number) => (v * containerW) / 1320;
   const spt = ([x, y]: Pt) => [scale(x), scale(y)] as const;
@@ -30,62 +29,67 @@ export default function Real({ showJellyPaths = false }: Props) {
     const [x6, y6] = spt(pts.p2);
     return `M ${x0} ${y0} C ${x1} ${y1}, ${x2} ${y2}, ${x3} ${y3} C ${x4} ${y4}, ${x5} ${y5}, ${x6} ${y6}`;
   };
+  const debugViewBoxH = (920 * containerW) / 1320;
 
   const jellyfishes = [
     {
       src: "/real-jellyfish.png",
+      sizeW: 414,
       sizeClass: "w-414/1320",
       delayMs: 0,
       path: {
-        p0: [440, 930],
-        c1: [395, 750],
-        c2: [285, 645],
-        p1: [240, 470],
-        c3: [204, 330],
-        c4: [155, 278],
-        p2: [40, 120],
+        p0: [410, 855],
+        c1: [380, 738],
+        c2: [294, 669],
+        p1: [260, 556],
+        c3: [226, 442],
+        c4: [180, 431],
+        p2: [120, 328],
       } as JellyPath,
     },
     {
       src: "/real-jellyfish.png",
+      sizeW: 303,
       sizeClass: "w-303/1320",
+      delayMs: -3000,
+      path: {
+        p0: [550, 842],
+        c1: [535, 736],
+        c2: [475, 683],
+        p1: [460, 582],
+        c3: [445, 480],
+        c4: [400, 445],
+        p2: [378, 335],
+      } as JellyPath,
+    },
+    {
+      src: "/real-jellyfish.png",
+      sizeW: 403,
+      sizeClass: "w-403/1320",
+      delayMs: -1000,
+      path: {
+        p0: [690, 861],
+        c1: [705, 754],
+        c2: [765, 700],
+        p1: [780, 595],
+        c3: [795, 489],
+        c4: [840, 454],
+        p2: [870, 341],
+      } as JellyPath,
+    },
+    {
+      src: "/real-jellyfish.png",
+      sizeW: 346,
+      sizeClass: "w-346/1320",
       delayMs: -4000,
       path: {
-        p0: [560, 910],
-        c1: [540, 748],
-        c2: [460, 666],
-        p1: [440, 510],
-        c3: [420, 354],
-        c4: [395, 300],
-        p2: [330, 130],
-      } as JellyPath,
-    },
-    {
-      src: "/real-jellyfish.png",
-      sizeClass: "w-403/1320",
-      delayMs: -2000,
-      path: {
-        p0: [700, 940],
-        c1: [720, 776],
-        c2: [800, 692],
-        p1: [820, 530],
-        c3: [840, 384],
-        c4: [870, 314],
-        p2: [940, 140],
-      } as JellyPath,
-    },
-    {
-      src: "/real-jellyfish.png",
-      sizeClass: "w-346/1320",
-      delayMs: -6000,
-      path: {
-        p0: [840, 890],
-        c1: [870, 740],
-        c2: [970, 652],
-        p1: [1000, 500],
-        c3: [1035, 348],
-        c4: [1065, 309],
-        p2: [1130, 160],
+        p0: [880, 829],
+        c1: [903, 731],
+        c2: [978, 674],
+        p1: [1000, 575],
+        c3: [1023, 476],
+        c4: [1060, 451],
+        p2: [1080, 354],
       } as JellyPath,
     },
   ] as const;
@@ -106,8 +110,8 @@ unknown and advance the ocean ecosystem.`;
 
   const debugSvg = showJellyPaths ? (
     <svg
-      className="absolute inset-0 z-20 pointer-events-none overflow-visible"
-      viewBox="0 0 1320 1762"
+      className="absolute inset-0 z-110 pointer-events-none overflow-visible"
+      viewBox={`0 0 ${containerW} ${debugViewBoxH}`}
       preserveAspectRatio="none"
       style={{ overflow: "visible" }}
       aria-hidden
@@ -164,48 +168,77 @@ unknown and advance the ocean ecosystem.`;
   ) : null;
 
   const jellyfishItems = jellyfishes.map((j, i) => (
+    // 结构对齐海豚：同一个作用域里同时生成 path + anchor，并用于 offsetAnchor 与 debug 点位
     <div
       key={`jelly-${i}`}
-      className={`absolute top-0 left-0 ${j.sizeClass}`}
+      className="absolute inset-0"
       style={{
         offsetPath: `path("${pathD(j.path)}")`,
         offsetRotate: `auto ${jellyHeadOffsetDeg}deg`,
-        offsetAnchor: `${jellyAnchorX}% ${jellyAnchorY}%`,
+        // 图片固定 top-0 left-0，所以图片中心在 overlay 上的百分比 = (w/1320)*50, (h/1320)*50
+        // h 由图片真实纵横比推导：h = w * aspect
+        offsetAnchor: (() => {
+          const aspect = imgAspectByIndex[i] ?? 1; // 图片未加载前先用 1，占位；加载后自动校正
+          const xPct = (j.sizeW / 1320) * 50;
+          const yPct = ((j.sizeW * aspect) / 1320) * 50;
+          return `${xPct}% ${yPct}%`;
+        })(),
         animation: `jelly-swim ${swimDurationMs}ms linear ${j.delayMs}ms infinite`,
         willChange: "offset-distance, opacity",
       }}
     >
       {showJellyPaths && (
-        <div
-          className="absolute z-30 -translate-x-1/2 -translate-y-1/2 size-2 rounded-full bg-[#00d4ff] border border-black"
-          style={{ left: `${jellyAnchorX}%`, top: `${jellyAnchorY}%` }}
-        />
+        (() => {
+          const aspect = imgAspectByIndex[i] ?? 1;
+          const xPct = (j.sizeW / 1320) * 50;
+          const yPct = ((j.sizeW * aspect) / 1320) * 50;
+          return (
+            <>
+              <div
+                className="absolute z-120 -translate-x-1/2 -translate-y-1/2 size-2 rounded-full bg-[#00d4ff] border border-black"
+                style={{ left: `${xPct}%`, top: `${yPct}%` }}
+              />
+              <div
+                className="absolute z-120 -translate-x-1/2 -translate-y-1/2 size-1.5 rounded-full bg-lime-400 border border-black"
+                style={{ left: `${xPct}%`, top: `${yPct}%` }}
+              />
+            </>
+          );
+        })()
       )}
       <img
         src={j.src}
         alt=""
-        className="block w-full h-auto max-w-none"
+        className={`absolute top-0 left-0 block h-auto max-w-none ${j.sizeClass}`}
+        onLoad={(e) => {
+          const img = e.currentTarget;
+          const nw = img.naturalWidth;
+          const nh = img.naturalHeight;
+          if (!nw || !nh) return;
+          const aspect = nh / nw;
+          setImgAspectByIndex((prev) => (prev[i] === aspect ? prev : { ...prev, [i]: aspect }));
+        }}
         style={{ animation: `jelly-pulse 1700ms ease-in-out ${j.delayMs}ms infinite` }}
       />
     </div>
   ));
 
   return <>
-    <div ref={containerRef} className="relative -translate-x-1/2 left-1/2 fmt-[224/1320] aspect-1320/1163 flex flex-col items-center">
+    <DebugBg className="relative -translate-x-1/2 left-1/2 fmt-[224/1320] aspect-1320/920 flex flex-col items-center">
 
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div ref={containerRef} className="absolute inset-0 z-0 pointer-events-none">
         {debugSvg}
         {jellyfishItems}
       </div>
 
       <p className="relative z-10 ft-[96/1320] font-medium fls-[-2.88/1320] text-center">Built on Real-World Value</p>
       <p className="relative z-10 w-1227/1320 fmt-[27/1320] ft-[28/1320] fls-[-0.84/1320] text-center text-[#626262] whitespace-pre-lin">{bodyText}</p>
-      <Button text="Start Your Journey" className="relative z-10 fmt-[556/1320] w-497/1320 aspect-497/80"/>
+      <Button text="Start Your Journey" className="relative z-10 fmt-[450/1320] w-497/1320 aspect-497/80"/>
       <style>{`
         @keyframes jelly-swim {
           0% { offset-distance: 0%; opacity: 0; }
-          10% { offset-distance: 10%; opacity: 1; }
-          90% { offset-distance: 90%; opacity: 1; }
+          20% { offset-distance: 20%; opacity: 1; }
+          60% { offset-distance: 60%; opacity: 1; }
           100% { offset-distance: 100%; opacity: 0; }
         }
         @keyframes jelly-pulse {
@@ -213,6 +246,6 @@ unknown and advance the ocean ecosystem.`;
           50% { transform: scaleX(0.98) scaleY(1.08); }
         }
       `}</style>
-    </div>
+    </DebugBg>
   </>;
 }

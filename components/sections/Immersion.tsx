@@ -1,3 +1,5 @@
+import { DebugBg } from "../features/DebugMode";
+
 export default function Immersion() {
   const subtitleText = `Oceanea is transforming underwater entertainment with a four-in-one and multi-IP guided
   approach.One unified experience across real and virtual worlds, unlocking new ways to explore,
@@ -27,24 +29,24 @@ export default function Immersion() {
   ];
 
   return <>
-    <div className="relative -translate-x-1/2 left-1/2 fmt-[430/1320] aspect-1320/1174">
+    <DebugBg className="relative -translate-x-1/2 left-1/2 fmt-[220/1320] aspect-1320/920">
       <div className="relative w-1120/1320 fmx-[100/1320] aspect-1120/150 flex flex-col items-center justify-center">
         <img src="/immersion-left.svg" className="absolute top-0 left-0 w-45/1120"/>
         <p className={"absolute ft-[96/1320] font-medium fls-[-2.88/1320] text-center"}>Enter The Oceanverse</p>
         <img src="/immersion-right.svg" className="absolute bottom-0 right-0 w-45/1120"/>
       </div>
       <p className={"fmt-[18/1320] ft-[28/1320] aspect-1320/119 fls-[-0.96/1320] text-[#626262] text-center"}>{subtitleText}</p>
-      <div className="fmt-[136/1320] flex w-full justify-between">
+      <div className="fmt-[30/1320] flex w-full justify-between">
         {immersionCards.map((card) => (
-          <div key={card.title} className="group relative aspect-314/741 w-314/1320 overflow-hidden rounded-[3.788cqw]">
+          <div key={card.title} className="group relative aspect-314/600 w-314/1320 overflow-hidden rounded-[3.788cqw] shadow-[3px_6px_7.5px_rgba(0,0,0,0.20)]">
             <img src={card.src} className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-130"/>
-            <div className="absolute bottom-[1.6%] left-[3.7%] right-[3.7%] h-[31.6%] rounded-[3.788cqw] bg-[rgba(255,255,255,0.1)] flex flex-col items-center z-10">
-              <p className={"fmt-[35/300] ft-[32/1320] fls-[-0.96/1320] text-white text-center"}>{card.title}</p>
-              <p className={`fmt-[10/300] fmx-[35/300] ft-[24/1320] fls-[-0.72/1320] flh-[25/1320] text-[rgba(255,255,255,0.6)] text-center`}>{card.desc}</p>
+            <div className="absolute bottom-[0%] h-[50%] from-[8.917%] from-[rgba(255,255,255,0)] overflow-clip size-full to-white via-[38.014%] via-[rgba(255,255,255,0.5)] bg-linear-to-b flex flex-col items-center z-10">
+              <p className={"fmt-[140/300] ft-[32/1320] font-medium fls-[-0.96/1320] text-center"}>{card.title}</p>
+              <p className={`fmt-[10/300] fmx-[35/300] ft-[24/1320] fls-[-0.72/1320] flh-[25/1320] text-[#626262] text-center`}>{card.desc}</p>
             </div>
           </div>
         ))}
       </div>
-    </div>
+    </DebugBg>
   </>;
 }

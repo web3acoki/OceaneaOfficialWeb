@@ -1,3 +1,6 @@
+"use client";
+
+import { DebugModeProvider } from "../components/features/DebugMode";
 import Header from "../components/sections/Header";
 import Welcome from "../components/sections/Welcome";
 import Bar from "../components/sections/Bar";
@@ -11,21 +14,21 @@ import News from "../components/sections/News";
 import Footer from "../components/sections/Footer";
 
 export default function Home() {
-  const showPathDebug = false;
-
   return <>
-    <Header />
-    <div className="relative -translate-x-1/2 left-1/2 w-[min(calc(100vw-80px),1320px)] @container-[size]">
-      <Welcome />
-      <Bar />
-      <Frotier showSwimPath={showPathDebug} />
-      <Immersion />
-      <Innovation />
-      <Community />
-      <Real showJellyPaths={showPathDebug} />
-      <Partner />
-      <News />
-      <Footer />
-    </div>
+    <DebugModeProvider>
+      <Header />
+      <div className="relative -translate-x-1/2 left-1/2 w-[min(calc(100vw-80px),1320px)] @container-[size]">
+        <Welcome />
+        <Bar />
+        <Frotier />
+        <Immersion />
+        <Innovation />
+        <Community />
+        <Real />
+        <Partner />
+        <News />
+        <Footer />
+      </div>
+    </DebugModeProvider>
   </>;
 }
