@@ -12,7 +12,7 @@ export default function Frotier() {
   const [scrollProgress, setScrollProgress] = useState(0); // 0..100
   const scaleX = (x: number) => (x * pathScale.w) / 1320;
   // 与 fml/fmt 同一基准：纵向也按容器宽度比例缩放，避免小屏时路径与海豚偏移
-  const pathYOffset = isMobileMode ? 600 : 0;
+  const pathYOffset = isMobileMode ? 550 : 0;
   const scaleY = (y: number) => ((y + pathYOffset) * pathScale.w) / 1320;
   const pathPts = {
     p0: [-280, 180] as [number, number],

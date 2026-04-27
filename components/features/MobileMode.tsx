@@ -21,14 +21,14 @@ export function MobileModeProvider({ children, maxWidthPx = 700 }: MobileModePro
     onChange();
 
     // Safari < 14 fallback
-    if ("addEventListener" in mql) {
+    if (typeof mql.addEventListener === "function") {
       mql.addEventListener("change", onChange);
       return () => mql.removeEventListener("change", onChange);
     }
     // eslint-disable-next-line deprecation/deprecation
-    mql.addListener(onChange);
+    (mql as unknown as { addListener: (cb: () => void) => void }).addListener(onChange);
     // eslint-disable-next-line deprecation/deprecation
-    return () => mql.removeListener(onChange);
+    return () => (mql as unknown as { removeListener: (cb: () => void) => void }).removeListener(onChange);
   }, [query]);
 
   return <MobileModeContext.Provider value={isMobile}>{children}</MobileModeContext.Provider>;
