@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@source "../app/**/*.{js,jsx,ts,tsx,mdx}";
+@source "../components/**/*.{js,jsx,ts,tsx,mdx}";
+@source "../pages/**/*.{js,jsx,ts,tsx,mdx}";
+@plugin "../plugins/f-utilities.plugin.mjs";
+@plugin "../plugins/p-utilities.plugin.mjs";
+
+@theme {
+  --color-0: #0C0C0C;
+  --color-1: #4C4C4C;
+  --font-sans: var(--font-geologica), ui-sans-serif, system-ui, sans-serif;
+}
