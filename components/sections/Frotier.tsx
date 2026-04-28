@@ -12,7 +12,9 @@ export default function Frotier() {
   const [scrollProgress, setScrollProgress] = useState(0); // 0..100
   const scaleX = (x: number) => (x * pathScale.w) / 1320;
   // 与 fml/fmt 同一基准：纵向也按容器宽度比例缩放，避免小屏时路径与海豚偏移
-  const pathYOffset = isMobileMode ? 550 : 0;
+  const pathYOffset = isMobileMode
+    ? 550
+    : 0;
   const scaleY = (y: number) => ((y + pathYOffset) * pathScale.w) / 1320;
   const pathPts = {
     p0: [-280, 180] as [number, number],
@@ -187,25 +189,32 @@ possibilities for exploration, innovation, and discovery.`;
   }, []);
 
   return <>
-    <DebugBg className={isMobileMode ? "relative -translate-x-1/2 left-1/2 fmt-[60/340] aspect-340/400 flex flex-col" : 
-    "relative -translate-x-1/2 left-1/2 fmt-[160/1320] aspect-1320/920 flex flex-col"}>
+    <DebugBg className={isMobileMode
+      ? "relative -translate-x-1/2 left-1/2 fmt-[60/340] aspect-340/400 flex flex-col"
+      : "relative -translate-x-1/2 left-1/2 fmt-[160/1320] aspect-1320/920 flex flex-col"}>
       <div ref={containerRef} className="absolute inset-0 pointer-events-none" />
-      <img src="/frontier-title.png" className={isMobileMode ? "absolute z-10 -translate-x-1/2 left-1/2 w-88/340 " : 
-      "absolute z-10 -translate-x-1/2 left-1/2 w-261/1320"} />
-      <p className={isMobileMode ? "relative z-10 text-center fmt-[6/340] font-medium ft-[32/340] fls-[-0.96/340] flh-[35/340]" : 
-      "relative z-10 text-center fmt-[50/1320] font-medium ft-[96/1320] fls-[-2.88/1320]"}>Shape the Ocean&apos;s Future</p>
+      <img src="/frontier-title.png" className={isMobileMode
+        ? "absolute z-10 -translate-x-1/2 left-1/2 w-88/340 "
+        : "absolute z-10 -translate-x-1/2 left-1/2 w-261/1320"} />
+      <p className={isMobileMode
+        ? "relative z-10 text-center fmt-[6/340] font-medium ft-[32/340] fls-[-0.96/340] flh-[35/340]"
+        : "relative z-10 text-center fmt-[50/1320] font-medium ft-[96/1320] fls-[-2.88/1320]"}>Shape the Ocean&apos;s Future</p>
       
       {showSwimPath && renderSwimPath()}
       {renderDolphins()}
 
-      <p className={isMobileMode ? "relative z-10 fmt-[23/340] text-left ft-[18/340]  font-medium" : 
-      "relative z-10 fml-[42/1320] fmt-[30/1320] text-left ft-[40/1320] font-medium"}>5-Year Plan</p>
-      <p className={isMobileMode ? "relative z-10 text-left ft-[14/340] fls-[-0.42/340] flh-[15/340] text-[#626262]" : 
-      "relative z-10 fml-[42/1320] text-left ft-[28/1320] tracking-[-0.03em] text-[#626262] w-913/1320"}>{fiveYearBody}</p>
-      <p className={isMobileMode ? "relative z-10 fmt-[182/340] text-right ft-[18/340] font-medium" : 
-      "relative z-10 fmr-[30/1320] fmt-[357/1320] text-right ft-[40/1320] font-medium"}>30-Year Vision</p>
-      <p className={isMobileMode ? "relative z-10 text-right ft-[14/340] fls-[-0.42/340] flh-[15/340] text-[#626262]" : 
-      "relative z-10 ml-auto fmr-[30/1320] text-right ft-[28/1320] tracking-[-0.03em] text-[#626262] w-805/1320"}>{thirtyYearBody}</p>
+      <p className={isMobileMode
+        ? "relative z-10 fmt-[23/340] text-left ft-[18/340]  font-medium"
+        : "relative z-10 fml-[42/1320] fmt-[30/1320] text-left ft-[40/1320] font-medium"}>5-Year Plan</p>
+      <p className={isMobileMode
+        ? "relative z-10 text-left ft-[14/340] fls-[-0.42/340] flh-[15/340] text-[#626262]"
+        : "relative z-10 fml-[42/1320] text-left ft-[28/1320] tracking-[-0.03em] text-[#626262] w-913/1320"}>{fiveYearBody}</p>
+      <p className={isMobileMode
+        ? "relative z-10 fmt-[182/340] text-right ft-[18/340] font-medium"
+        : "relative z-10 fmr-[30/1320] fmt-[357/1320] text-right ft-[40/1320] font-medium"}>30-Year Vision</p>
+      <p className={isMobileMode
+        ? "relative z-10 text-right ft-[14/340] fls-[-0.42/340] flh-[15/340] text-[#626262]"
+        : "relative z-10 ml-auto fmr-[30/1320] text-right ft-[28/1320] tracking-[-0.03em] text-[#626262] w-805/1320"}>{thirtyYearBody}</p>
     </DebugBg>
   </>;
 }

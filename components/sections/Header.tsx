@@ -65,11 +65,12 @@ export default function Header() {
       {isMobileMode && <>
         <div className="fixed z-50 w-[min(calc(100vw-80px),1320px)] -translate-x-1/2 left-1/2 flex flex-row items-center justify-between">
           <div className="relative fmt-[12/340] aspect-115/25 w-115/340 flex rounded-full bg-white shadow-[0px_3px_6px_2px_rgba(0,0,0,0.10)] ">
-            <button type="button" aria-label="Back to top" onClick={onLogoClick} className="fmx-[20/115] cursor-pointer">
+            <button type="button" aria-label="Back to top" onClick={onLogoClick} className="z-50 fmx-[20/115] cursor-pointer">
               <img src="/logo.svg" className="w-full h-full"/>
             </button>
           </div>
-          <div className="relative z-20 fmt-[12/340] w-25/340 flex rounded-full bg-white shadow-[0px_3px_6px_2px_rgba(0,0,0,0.10)]">
+          <Button text={buttonText} className="fmt-[12/340] fml-[100/340] w-75/340 aspect-166/53" onClick={onButtonClick}/>
+          <div className="relative z-30 fmt-[12/340] w-25/340 flex rounded-full bg-white shadow-[0px_3px_6px_2px_rgba(0,0,0,0.10)]">
             <button type="button" aria-label="Open menu" onClick={() => setMobileNavOpen((v) => !v)} className="relative w-full aspect-square">
               <div className="rounded-full shadow-[0px_4px_7.1px_0px_rgba(0,0,0,0.15)]"/>
               <img src="/header/mobile-menu-icon.svg" alt="" className="fmx-[5/25] aspect-square"/>
@@ -77,7 +78,7 @@ export default function Header() {
           </div>
           {mobileNavOpen && (
             <div className="absolute z-20 fml-[195/340] w-150/340 @container-[size]">
-              <img className="absolute w-full aspect-150/180" src="/header/mobile-menu-bg.svg" />
+              <img className="absolute w-full aspect-150/180 pointer-events-none" src="/header/mobile-menu-bg.svg" />
               <div className="absolute fmt-[30/150] fml-[25/150] grid fg-[18/150] ">
                 {["Product","Build","Learn","Join Oceanea",].map((label) => (
                   <div key={label} className="contents">

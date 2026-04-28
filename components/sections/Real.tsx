@@ -3,11 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "../common/Button";
 import { DebugBg, useDebugMode } from "../features/DebugMode";
+import { useMobileMode } from "../features/MobileMode";
 
 type Pt = [number, number];
 type JellyPath = { p0: Pt; c1: Pt; c2: Pt; p1: Pt; c3: Pt; c4: Pt; p2: Pt };
 type DebugPoint = readonly [string, Pt, string];
 export default function Real() {
+  const isMobileMode = useMobileMode();
   const showJellyPaths = useDebugMode();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [containerW, setContainerW] = useState(1320);
@@ -17,8 +19,17 @@ export default function Real() {
   // 不猜纵横比：从图片 onLoad 的 naturalWidth/Height 获取
   const [imgAspectByIndex, setImgAspectByIndex] = useState<Record<number, number>>({});
 
-  const scale = (v: number) => (v * containerW) / 1320;
-  const spt = ([x, y]: Pt) => [scale(x), scale(y)] as const;
+  const containerH = isMobileMode
+    ? (400 * containerW) / 340
+    : (920 * containerW) / 1320;
+  // 路径坐标仍按 1320×920 等比缩放（不拉伸）；mobile 的额外高度作为留白，
+  // 将整条路径下移到容器底部区域，保持形状同时不遮挡上方文案。
+  const pathH = (920 * containerW) / 1320;
+  const pathOffsetY = isMobileMode ? Math.max(0, containerH - pathH) : 0;
+
+  const scaleX = (v: number) => (v * containerW) / 1320;
+  const scaleY = (v: number) => (v * pathH) / 920;
+  const spt = ([x, y]: Pt) => [scaleX(x), scaleY(y) + pathOffsetY] as const;
   const pathD = (pts: JellyPath) => {
     const [x0, y0] = spt(pts.p0);
     const [x1, y1] = spt(pts.c1);
@@ -29,7 +40,7 @@ export default function Real() {
     const [x6, y6] = spt(pts.p2);
     return `M ${x0} ${y0} C ${x1} ${y1}, ${x2} ${y2}, ${x3} ${y3} C ${x4} ${y4}, ${x5} ${y5}, ${x6} ${y6}`;
   };
-  const debugViewBoxH = (920 * containerW) / 1320;
+  const debugViewBoxH = containerH;
 
   const jellyfishes = [
     {
@@ -146,17 +157,17 @@ unknown and advance the ocean ecosystem.`;
             ).map(([[px, py], [cx, cy]], idx) => (
               <line
                 key={`pc-line-${i}-${idx}`}
-                x1={scale(px)}
-                y1={scale(py)}
-                x2={scale(cx)}
-                y2={scale(cy)}
+                x1={scaleX(px)}
+                y1={scaleY(py) + pathOffsetY}
+                x2={scaleX(cx)}
+                y2={scaleY(cy) + pathOffsetY}
                 stroke="rgba(59,130,246,0.7)"
                 strokeWidth="1.6"
                 strokeDasharray="4 4"
               />
             ))}
             {points.map(([name, [x0, y0], color]) => (
-              <g key={`${i}-${name}`} transform={`translate(${scale(x0)} ${scale(y0)})`}>
+              <g key={`${i}-${name}`} transform={`translate(${scaleX(x0)} ${scaleY(y0) + pathOffsetY})`}>
                 <circle r="5" fill={color} stroke="#fff" strokeWidth="1.8" />
                 <text x="8" y="-8" fontSize="11" fill="#0c0c0c" stroke="#fff" strokeWidth="0.5">{`${name}-${i + 1}`}</text>
               </g>
@@ -180,7 +191,7 @@ unknown and advance the ocean ecosystem.`;
         offsetAnchor: (() => {
           const aspect = imgAspectByIndex[i] ?? 1; // 图片未加载前先用 1，占位；加载后自动校正
           const xPct = (j.sizeW / 1320) * 50;
-          const yPct = ((j.sizeW * aspect) / 1320) * 50;
+          const yPct = ((j.sizeW * aspect) / 1320) * (containerW / containerH) * 50;
           return `${xPct}% ${yPct}%`;
         })(),
         animation: `jelly-swim ${swimDurationMs}ms linear ${j.delayMs}ms infinite`,
@@ -191,7 +202,7 @@ unknown and advance the ocean ecosystem.`;
         (() => {
           const aspect = imgAspectByIndex[i] ?? 1;
           const xPct = (j.sizeW / 1320) * 50;
-          const yPct = ((j.sizeW * aspect) / 1320) * 50;
+          const yPct = ((j.sizeW * aspect) / 1320) * (containerW / containerH) * 50;
           return (
             <>
               <div
@@ -224,16 +235,24 @@ unknown and advance the ocean ecosystem.`;
   ));
 
   return <>
-    <DebugBg className="relative -translate-x-1/2 left-1/2 fmt-[224/1320] aspect-1320/920 flex flex-col items-center">
+    <DebugBg className={isMobileMode
+      ? "relative -translate-x-1/2 left-1/2 fmt-[77/340] aspect-340/400 flex flex-col items-center"
+      :  "relative -translate-x-1/2 left-1/2 fmt-[224/1320] aspect-1320/920 flex flex-col items-center"}>
 
       <div ref={containerRef} className="absolute inset-0 z-0 pointer-events-none">
         {debugSvg}
         {jellyfishItems}
       </div>
 
-      <p className="relative z-10 ft-[96/1320] font-medium fls-[-2.88/1320] text-center">Built on Real-World Value</p>
-      <p className="relative z-10 w-1227/1320 fmt-[27/1320] ft-[28/1320] fls-[-0.84/1320] text-center text-[#626262] whitespace-pre-lin">{bodyText}</p>
-      <Button text="Start Your Journey" className="relative z-10 fmt-[450/1320] w-497/1320 aspect-497/80"/>
+      <p className={isMobileMode
+        ? "relative z-10 ft-[32/340] font-medium fls-[-0.96/340] text-center w-240/340 flh-[35/340]"
+        : "relative z-10 ft-[96/1320] font-medium fls-[-2.88/1320] text-center"}>Built on Real-World Value</p>
+      <p className={isMobileMode
+        ? "relative z-10 fmt-[24/340] ft-[14/340] fls-[-0.42/340] text-center text-[#626262] flh-[15/340]"
+        : "relative z-10 w-1227/1320 fmt-[27/1320] ft-[28/1320] fls-[-0.84/1320] text-center text-[#626262] whitespace-pre-lin"}>{bodyText}</p>
+      <Button text="Start Your Journey" className={isMobileMode
+        ? "relative z-10 fmt-[140/340] w-180/340 aspect-180/30"
+        : "relative z-10 fmt-[450/1320] w-497/1320 aspect-497/80"}/>
       <style>{`
         @keyframes jelly-swim {
           0% { offset-distance: 0%; opacity: 0; }
