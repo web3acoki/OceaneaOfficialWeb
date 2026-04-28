@@ -81,12 +81,9 @@ export default function Footer() {
         ))}
       </div> 
     </div>
-
       <p className="absolute fml-[40/1320] fmt-[460/1320] ft-[20/1320] font-thin text-[#a9a9a9]">Copyright © 2026 Oceanea</p>
       <p className="absolute right-0 fmr-[240/1320] fmt-[460/1320] ft-[20/1320] font-thin text-[#a9a9a9]">Terms of Service</p>
       <p className="absolute right-0 fmr-[40/1320] fmt-[460/1320] ft-[20/1320] font-thin text-[#a9a9a9]">Privacy Policy</p>
-      
-
     <div className="aspect-1320/56"/>
   </>;
 }
