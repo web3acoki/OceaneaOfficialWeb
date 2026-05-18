@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@import "@fontsource-variable/geologica/wght.css";
+@source inline("bg-amber-50");
+@source "../app/**/*.{js,jsx,ts,tsx,mdx}";
+@source "../components/**/*.{js,jsx,ts,tsx,mdx}";
+@source "../pages/**/*.{js,jsx,ts,tsx,mdx}";
+@plugin "../plugins/f-utilities.plugin.mjs";
+@plugin "../plugins/p-utilities.plugin.mjs";
+
+@theme {
+  --color-0: #0C0C0C;
+  --color-1: #4C4C4C;
+  --font-sans: "Geologica Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* XDiver（Player）区块：鱼游动动画 — 来自 Xdiving app/globals.css，组件内 animationName: fish-swim-directional 依赖此定义 */
+@keyframes fish-swim-directional {
+  0% {
+    translate: 0 0;
+    --swim-flip: 1;
+  }
+  50% {
+    translate: calc(-1 * var(--swim-distance-x)) calc(-1 * var(--swim-distance-y));
+    --swim-flip: 1;
+  }
+  50.01% {
+    --swim-flip: -1;
+  }
+  100% {
+    translate: 0 0;
+    --swim-flip: -1;
+  }
+}
