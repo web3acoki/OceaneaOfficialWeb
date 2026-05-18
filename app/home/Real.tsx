@@ -220,7 +220,7 @@ unknown and advance the ocean ecosystem.`;
       <img
         src={j.src}
         alt=""
-        className={`absolute top-0 left-0 block h-auto max-w-none ${j.sizeClass}`}
+        className={`absolute top-0 left-0 block h-auto max-w-none ${j.sizeClass} scale-75`}
         onLoad={(e) => {
           const img = e.currentTarget;
           const nw = img.naturalWidth;
