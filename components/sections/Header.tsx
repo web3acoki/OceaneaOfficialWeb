@@ -26,6 +26,9 @@ export default function Header() {
   const toShortText = (text: string) => text.slice(0, 10);
   const buttonText = displayName ? toShortText(displayName) : "Log in";
   const onButtonClick = () => displayName ? setOpen(true) : login();
+  const shellW = isMobileMode
+    ? "w-[min(calc(100vw-40px),1320px)]"
+    : "w-[min(calc(100vw-80px),1320px)]";
   const onLogoClick = () => {
     if (pathname === "/home" || pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -74,7 +77,7 @@ export default function Header() {
   
   return <>
       {!isMobileMode && <>  
-        <div className="fixed z-50 w-[min(calc(100vw-80px),1320px)] -translate-x-1/2 left-1/2">
+        <div className={`fixed z-50 ${shellW} -translate-x-1/2 left-1/2`}>
           <div className="relative fmt-[26/1320] aspect-1320/80 flex rounded-full bg-white shadow-[0px_0px_12px_3px_rgba(0,0,0,0.15)]">
             <button type="button" aria-label="Go to home" onClick={onLogoClick} className="fm-[25/1320] cursor-pointer">
               <img src="/logo.svg" className="w-full h-full"/>
@@ -138,7 +141,7 @@ export default function Header() {
       }
 
       {isMobileMode && <>
-        <div className="fixed z-50 w-[min(calc(100vw-80px),1320px)] -translate-x-1/2 left-1/2 flex flex-row items-center justify-between">
+        <div className={`fixed z-50 ${shellW} -translate-x-1/2 left-1/2 flex flex-row items-center justify-between`}>
           <div className="relative fmt-[12/340] aspect-115/25 w-115/340 flex rounded-full bg-white shadow-[0px_3px_6px_2px_rgba(0,0,0,0.10)] ">
             <button type="button" aria-label="Go to home" onClick={onLogoClick} className="z-50 fmx-[20/115] cursor-pointer">
               <img src="/logo.svg" className="w-full h-full"/>
