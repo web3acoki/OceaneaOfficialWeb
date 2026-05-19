@@ -19,57 +19,58 @@ type NewsCardProps = {
 };
 
 function NewsCard({ card, isMobileMode }: NewsCardProps) {
+  if (!isMobileMode) {
+    return (
+      <div className="aspect-329/587 w-[calc(328.647/1364.167*100%)] @container-[size]">
+        <div className="relative size-full overflow-hidden shadow-[0px_4px_8.5px_2px_rgba(0,0,0,0.05)] fr-[50/329]">
+          <img src={card.src} alt="" className={card.imageClassName} />
+          <div className="absolute inset-x-0 bottom-0 h-[54.56%] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.68)_66%,rgba(0,0,0,0.92)_100%)]" />
+
+          <div className="absolute fml-[24/329] fmt-[391/587] w-[284/329] text-center text-white">
+            <p className="ft-[24/329] font-medium">X-ARTURA</p>
+            <p className="fmt-[8/329] ft-[16/329] flh-[20/329] fls-[-0.48/329] capitalize">
+              The World's First Exoskeleton-Based Underwater Propulsion Device, Redefining Human Movement Below The Surface
+            </p>
+
+            <div className="fmt-[26/329] flex items-center">
+              <p className="flex h-[calc(22/329*100cqw)] w-[calc(60/329*100cqw)] items-center justify-center rounded-full border border-white ft-[12/329] flh-[20/329] fls-[-0.15/329]">
+                Gearing
+              </p>
+              <p className="fml-[7/329] flex h-[calc(22/329*100cqw)] w-[calc(43/329*100cqw)] items-center justify-center rounded-full border border-white ft-[12/329] flh-[20/329] fls-[-0.15/329]">
+                RWA
+              </p>
+              <button className="fml-[33/329] flex h-[calc(22/329*100cqw)] w-[calc(121/329*100cqw)] items-center justify-center rounded-full bg-white ft-[13/329] font-bold text-[#0c0c0c]">
+                <span>READ MORE</span>
+                <span className="relative ml-[calc(9/329*100cqw)] size-[calc(18/329*100cqw)] rounded-full bg-[#0c0c0c]">
+                  <span className="absolute left-[32%] top-1/2 size-[36%] -translate-y-1/2 rotate-45 border-r-[calc(1.4/329*100cqw)] border-t-[calc(1.4/329*100cqw)] border-white" />
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className={isMobileMode ? "aspect-418/740 @container-[size]" : "aspect-418/740 w-418/1920 @container-[size]"}>
-      <div className={isMobileMode
-        ? "relative aspect-418/720 overflow-hidden shadow-[0px_3px_7.5px_rgba(0,0,0,0.10)] fr-[15/165] "
-        : "relative aspect-418/720 overflow-hidden shadow-[3px_6px_7.5px_rgba(0,0,0,0.20)] fr-[50/418] "
-      }>
+    <div className="aspect-418/740 @container-[size]">
+      <div className="relative aspect-418/720 overflow-hidden shadow-[0px_3px_7.5px_rgba(0,0,0,0.10)] fr-[15/165] ">
         <img src={card.src} alt="" className={card.imageClassName} />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,transparent_45.442%,rgba(255,255,255,0.5)_58%,rgba(255,255,255,0.88)_78%,#ffffff_100%)]" />
-        {!isMobileMode && (
-          <img
-            src="/news-card-fade.png"
-            alt=""
-            className="pointer-events-none absolute bottom-0 left-1/2 z-[1] w-[104.07%] max-w-none -translate-x-1/2"
-          />
-        )}
 
-        {isMobileMode && (
-          <div className="absolute inset-x-0 z-20 fmt-[10/165] flex w-full justify-center fg-[8/165]">
-            <p className="rounded-full bg-0 text-white text-center fpy-[1/165] fpx-[6/165] ft-[6/165]"> RWA </p>
-            <p className="rounded-full bg-0 text-white text-center fpy-[1/165] fpx-[6/165] ft-[6/165]"> Gearing </p>
-          </div>
-        )}
+        <div className="absolute inset-x-0 z-20 fmt-[10/165] flex w-full justify-center fg-[8/165]">
+          <p className="rounded-full bg-0 text-white text-center fpy-[1/165] fpx-[6/165] ft-[6/165]"> RWA </p>
+          <p className="rounded-full bg-0 text-white text-center fpy-[1/165] fpx-[6/165] ft-[6/165]"> Gearing </p>
+        </div>
 
-        <div className={isMobileMode
-          ? "relative z-10 flex flex-col fmt-[200/165] fmx-[5/165]"
-          : "relative z-10 flex flex-col fmt-[450/418] fmx-[16/418]"
-        }>
-          <p className={isMobileMode ? "ft-[15/165] text-center font-medium" : "ft-[36/418] text-center font-medium"}>
-            X-ARTURA
-          </p>
-          <p className={isMobileMode
-            ? "ft-[8/165] flh-[8/165] fls-[-0.24/165] text-center"
-            : "fmt-[10/418] fmx-[30/418] ft-[20/418] flh-[25/418] text-[#7D7D7D] text-center"
-          }>
+        <div className="relative z-10 flex flex-col fmt-[200/165] fmx-[5/165]">
+          <p className="ft-[15/165] text-center font-medium">X-ARTURA</p>
+          <p className="ft-[8/165] flh-[8/165] fls-[-0.24/165] text-center">
             {descLine}
           </p>
 
-          <div className={isMobileMode
-            ? "fmt-[8/165] fmx-[5/165] flex flex-row flex-wrap items-center justify-between"
-            : "fmt-[60/418] fmx-[20/418] flex flex-row flex-wrap items-center justify-between"
-          }>
-            {!isMobileMode && (
-              <>
-                <p className="rounded-full border border-solid fpx-[12/418] fpy-[4/418] ft-[12/418]"> Gearing </p>
-                <p className="rounded-full border border-solid fpx-[12/418] fpy-[4/418] ft-[12/418]"> RWA </p>
-              </>
-            )}
-            <Button
-              text="READ MORE"
-              className={isMobileMode ? "mx-auto w-85/165 aspect-85/20" : "fml-[50/418] w-200/418 aspect-155/30"}
-            />
+          <div className="fmt-[8/165] fmx-[5/165] flex flex-row flex-wrap items-center justify-between">
+            <Button text="READ MORE" className="mx-auto w-85/165 aspect-85/20" />
           </div>
         </div>
       </div>
@@ -88,7 +89,7 @@ export default function News() {
     }>
       <p className={isMobileMode
         ? "ft-[32/340] font-medium fls-[-0.96/340] text-center"
-        : "ft-[96/1320] font-medium fls-[-2.88/1320] text-center"
+        : "ft-[60/1320] font-medium fls-[-1.8/1320] text-center"
       }>
         Oceanea News
       </p>
@@ -98,12 +99,12 @@ export default function News() {
           {cards}
         </NewsCardsStrip>
       ) : (
-        <div className="relative fmt-[50/1320] left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen overflow-hidden">
-          <NewsCardsStrip enableDrag className="relative flex flex-row flex-nowrap justify-center overflow-x-auto fg-[32/1320]">
+        <div className="relative left-1/2 fmt-[33/1320] w-[min(100vw,1364.167px)] -translate-x-1/2 overflow-visible">
+          <NewsCardsStrip enableDrag className="relative flex w-full flex-row flex-nowrap justify-center overflow-x-auto gap-[calc(16/1364.167*100%)]">
             {cards}
           </NewsCardsStrip>
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-[clamp(36px,4vw,72px)] bg-[linear-gradient(90deg,#fff_0%,rgba(255,255,255,0.7)_46%,rgba(255,255,255,0)_100%)] backdrop-blur-[2px]" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-[clamp(36px,4vw,72px)] bg-[linear-gradient(270deg,#fff_0%,rgba(255,255,255,0.7)_46%,rgba(255,255,255,0)_100%)] backdrop-blur-[2px]" />
+          <div className="pointer-events-none absolute left-0 top-[calc(-20/587*100%)] z-20 h-[calc(623/587*100%)] w-[calc(331/1364.167*100%)] bg-[linear-gradient(270deg,rgba(255,255,255,0)_9.7973%,rgba(255,255,255,0.5)_38.26%,#fff_86.318%)]" />
+          <div className="pointer-events-none absolute right-0 top-[calc(-20/587*100%)] z-20 h-[calc(623/587*100%)] w-[calc(323/1364.167*100%)] bg-[linear-gradient(90deg,rgba(255,255,255,0)_0.24851%,rgba(255,255,255,0.5)_36.981%,#fff_73.713%)]" />
         </div>
       )}
     </DebugBg>
