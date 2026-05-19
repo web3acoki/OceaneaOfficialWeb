@@ -26,13 +26,13 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
           <img src={card.src} alt="" className={card.imageClassName} />
           <div className="absolute inset-x-0 bottom-0 h-[54.56%] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.68)_66%,rgba(0,0,0,0.92)_100%)]" />
 
-          <div className="absolute fml-[24/329] fmt-[391/587] w-[284/329] text-center text-white">
-            <p className="ft-[24/329] font-medium">X-ARTURA</p>
-            <p className="fmt-[8/329] ft-[16/329] flh-[20/329] fls-[-0.48/329] capitalize">
+          <div className="absolute left-[7.3%] top-[66.66%] h-[28.3%] w-[86.4%] text-center text-white">
+            <p className="absolute left-[27.8%] top-0 w-[43.3%] ft-[24/329] font-medium leading-none">X-ARTURA</p>
+            <p className="absolute left-0 top-[22.9%] w-full ft-[16/329] flh-[20/329] fls-[-0.48/329] capitalize">
               The World's First Exoskeleton-Based Underwater Propulsion Device, Redefining Human Movement Below The Surface
             </p>
 
-            <div className="fmt-[26/329] flex items-center">
+            <div className="absolute inset-x-0 top-[86.75%] flex items-center">
               <p className="flex h-[calc(22/329*100cqw)] w-[calc(60/329*100cqw)] items-center justify-center rounded-full border border-white ft-[12/329] flh-[20/329] fls-[-0.15/329]">
                 Gearing
               </p>
