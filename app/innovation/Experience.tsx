@@ -11,7 +11,7 @@ export default function Experience() {
 
   return (
     <DebugBg className="relative w-full aspect-1320/774 fmt-[146/1320]">
-      <div className="absolute fml-[90/1320] fmt-[0/1320] w-1140/1320 aspect-1140/700 overflow-hidden fr-[50/1320]">
+      <div className="absolute fmt-[0/1320] w-full aspect-1320/700 overflow-hidden fr-[50/1320]">
         <img
           src="/innovation/experience-fish.png"
           alt="Diver swimming alongside a school of yellow fish"
@@ -21,7 +21,7 @@ export default function Experience() {
         <button
           type="button"
           aria-label="Play video"
-          className="absolute group flex items-center justify-center fml-[520/1140] fmt-[314/1140] w-100/1140 aspect-square rounded-full bg-white cursor-pointer duration-200 hover:scale-105"
+          className="absolute group flex items-center justify-center fml-[610/1320] fmt-[314/1320] w-100/1320 aspect-square rounded-full bg-white cursor-pointer duration-200 hover:scale-105"
         >
           <span
             aria-hidden

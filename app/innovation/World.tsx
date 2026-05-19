@@ -27,13 +27,13 @@ export default function World() {
         Channel Partner Program
       </p>
 
-      {/* 1170:1117 dark teal card (1140×759, rounded 50) at section-local (90, 250) */}
-      <div className="absolute fml-[90/1320] fmt-[250/1320] w-1140/1320 aspect-1140/759 fr-[50/1320] overflow-hidden bg-[#032D40]">
-        {/* 1170:1119 inner world map image (1128×659, rounded 50) — 6px L/R, 45px top inset */}
+      {/* 1170:1117 dark teal card expanded to the page shell width */}
+      <div className="absolute fmt-[250/1320] w-full aspect-1320/759 fr-[50/1320] overflow-hidden bg-[#032D40]">
+        {/* 1170:1119 inner world map image scaled with the wider card */}
         <img
           src="/innovation/world-card-bg.png"
           alt="Map of the world showing dive sites"
-          className="absolute select-none pointer-events-none w-1128/1140 aspect-1128/659 fml-[7/1140] fmt-[45/1140] fr-[50/1140] object-cover"
+          className="absolute select-none pointer-events-none w-1306/1320 aspect-1306/659 fml-[7/1320] fmt-[45/1320] fr-[50/1320] object-cover"
         />
       </div>
 
