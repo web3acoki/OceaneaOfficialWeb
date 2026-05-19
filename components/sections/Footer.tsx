@@ -17,7 +17,11 @@ const linkColumns = [
   { links: [...navLinkColumns[2]], fml: "fml-[1000/1260]", fmt: "fmt-[80/340]" },
 ];
 
-export default function Footer() {
+type FooterProps = {
+  desktopTopMarginClass?: string;
+};
+
+export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: FooterProps) {
   const isMobileMode = useMobileMode();
   const router = useRouter();
   const pathname = usePathname();
@@ -76,7 +80,7 @@ export default function Footer() {
   }
 
   return <>
-    <div className="relative -translate-x-1/2 left-1/2 fmt-[200/1320] aspect-1320/470 fr-[50/1320] bg-linear-to-b from-[#0c0c0c] via-[#1e191f] to-[#222] shadow-md @container-[size]">
+    <div className={`relative -translate-x-1/2 left-1/2 ${desktopTopMarginClass} aspect-1320/470 fr-[50/1320] bg-linear-to-b from-[#0c0c0c] via-[#1e191f] to-[#222] shadow-md @container-[size]`}>
       
       <p className="absolute fml-[40/1320] fmt-[420/1320] ft-[20/1320] font-thin text-[#a9a9a9]">Copyright © 2026 <span className="cursor-pointer" onClick={goHome}>Oceanea</span></p>
       <p className="absolute right-0 fmr-[240/1320] fmt-[420/1320] ft-[20/1320] font-thin text-[#a9a9a9]">Terms of Service</p>

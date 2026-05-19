@@ -12,6 +12,8 @@ import { loginWithBackend } from "../../services/login";
 import { privyUserRef } from "../../services/http";
 import { getUserInfo } from "../../services/userinfo";
 
+const mobileMenuItems = ["Product", "Earn", "Build", "Learn", "Join Oceanea"] as const;
+
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
@@ -20,6 +22,8 @@ export default function Header() {
   const [displayName, setDisplayName] = useState("");
   const [open, setOpen] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [mobileProductOpen, setMobileProductOpen] = useState(false);
+  const [mobileActiveSubItem, setMobileActiveSubItem] = useState<string | null>(null);
   /** 桌面端：当前展开的下拉对应 `navTopLabels` 下标；`null` 为关闭 */
   const [navDropdownIndex, setNavDropdownIndex] = useState<number | null>(null);
   const desktopNavClusterRef = useRef<HTMLDivElement>(null);
@@ -35,6 +39,11 @@ export default function Header() {
       return;
     }
     router.push("/home");
+  };
+  const closeMobileNav = () => {
+    setMobileNavOpen(false);
+    setMobileProductOpen(false);
+    setMobileActiveSubItem(null);
   };
 
   useEffect(() => {
@@ -74,6 +83,30 @@ export default function Header() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [navDropdownIndex]);
+
+  useEffect(() => {
+    if (!isMobileMode) closeMobileNav();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMobileMode]);
+
+  useEffect(() => {
+    closeMobileNav();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileNavOpen) return;
+    document.body.classList.add("oceanea-mobile-nav-open");
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeMobileNav();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.classList.remove("oceanea-mobile-nav-open");
+      window.removeEventListener("keydown", onKey);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mobileNavOpen]);
   
   return <>
       {!isMobileMode && <>  
@@ -141,34 +174,136 @@ export default function Header() {
       }
 
       {isMobileMode && <>
-        <div className={`fixed z-50 ${shellW} -translate-x-1/2 left-1/2 flex flex-row items-center justify-between`}>
-          <div className="relative fmt-[12/340] aspect-115/25 w-115/340 flex rounded-full bg-white shadow-[0px_3px_6px_2px_rgba(0,0,0,0.10)] ">
-            <button type="button" aria-label="Go to home" onClick={onLogoClick} className="z-50 fmx-[20/115] cursor-pointer">
-              <img src="/logo.svg" className="w-full h-full"/>
+        {!mobileNavOpen && (
+          <div className="fixed left-1/2 top-0 z-50 h-[52px] w-[min(100vw,402px)] -translate-x-1/2 @container pointer-events-none">
+            <button
+              type="button"
+              aria-label="Go to home"
+              onClick={onLogoClick}
+              className="pointer-events-auto absolute left-[calc(30/402*100cqw)] top-[12px] h-[25px] w-[calc(115/402*100cqw)] cursor-pointer rounded-[50px] bg-white shadow-[0px_3px_6px_2px_rgba(0,0,0,0.10)]"
+            >
+              <img src="/header/mobile-figma-logo.svg" alt="Oceanea" className="absolute left-[calc(19/115*100%)] top-[7px] h-[10px] w-[calc(77/115*100%)]" />
+            </button>
+            <button
+              type="button"
+              aria-label="Open menu"
+              aria-expanded={mobileNavOpen}
+              onClick={() => setMobileNavOpen(true)}
+              className="pointer-events-auto absolute right-[calc(33/402*100cqw)] top-[12px] size-[25px] cursor-pointer rounded-full bg-white shadow-[0px_3px_6px_2px_rgba(0,0,0,0.10)]"
+            >
+              <img src="/header/mobile-menu-icon.svg" alt="" className="absolute left-[6px] top-[6px] size-[13px]" />
             </button>
           </div>
-          <Button text={buttonText} className="fmt-[12/340] fml-[100/340] w-75/340 aspect-166/53" onClick={onButtonClick}/>
-          <div className="relative z-30 fmt-[12/340] w-25/340 flex rounded-full bg-white shadow-[0px_3px_6px_2px_rgba(0,0,0,0.10)]">
-            <button type="button" aria-label="Open menu" onClick={() => setMobileNavOpen((v) => !v)} className="relative w-full aspect-square">
-              <div className="rounded-full shadow-[0px_4px_7.1px_0px_rgba(0,0,0,0.15)]"/>
-              <img src="/header/mobile-menu-icon.svg" alt="" className="fmx-[5/25] aspect-square"/>
-            </button>
-          </div>
-          {mobileNavOpen && (
-            <div className="absolute z-20 fml-[195/340] w-150/340 @container-[size]">
-              <img className="absolute w-full aspect-150/180 pointer-events-none" src="/header/mobile-menu-bg.svg" />
-              <div className="absolute fmt-[30/150] fml-[25/150] grid fg-[18/150] ">
-                {["Product","Build","Learn","Join Oceanea",].map((label) => (
-                  <div key={label} className="contents">
-                    <p className="text-right ft-[15/150] hover:opacity-75 cursor-pointer">
-                      {label} <span aria-hidden className=" inline-block w-10/340 text-center">·</span>
-                    </p>
+        )}
+
+        {mobileNavOpen && (
+          <>
+          <button
+            type="button"
+            aria-label="Close mobile menu backdrop"
+            onClick={closeMobileNav}
+            className="fixed inset-0 z-40 cursor-default bg-[rgba(255,255,255,0.35)] backdrop-blur-[4.7px]"
+          />
+          <div className="fixed left-1/2 top-0 z-50 w-[min(100vw,402px)] -translate-x-1/2 @container pointer-events-none">
+            <div
+              className="pointer-events-auto relative w-full rounded-bl-[28px] rounded-br-[28px] bg-[#f8f8f8]"
+              style={{ height: mobileProductOpen ? 675 : 515 }}
+            >
+              <button
+                type="button"
+                aria-label="Go to home"
+                onClick={onLogoClick}
+                className="absolute left-[calc(30/402*100cqw)] top-[12px] h-[25px] w-[calc(115/402*100cqw)] cursor-pointer rounded-[50px] bg-white shadow-[0px_3px_6px_2px_rgba(0,0,0,0.10)]"
+              >
+                <img src="/header/mobile-figma-logo.svg" alt="Oceanea" className="absolute left-[calc(19/115*100%)] top-[7px] h-[10px] w-[calc(77/115*100%)]" />
+              </button>
+              <button
+                type="button"
+                aria-label="Close menu"
+                onClick={closeMobileNav}
+                className="absolute right-[calc(33/402*100cqw)] top-[13px] size-[24px] rotate-45 cursor-pointer"
+              >
+                <img src="/header/mobile-close-icon.svg" alt="" className="size-full" />
+              </button>
+              <div className="absolute left-[calc(37/402*100cqw)] top-[82px] h-px w-[calc(332/402*100cqw)] bg-[#949494]" />
+              <div
+                className="absolute left-[calc(37/402*100cqw)] h-px w-[calc(332/402*100cqw)] bg-[#949494]"
+                style={{ top: mobileProductOpen ? 611 : 456 }}
+              />
+
+              {!mobileProductOpen && (
+                <nav aria-label="Mobile navigation" className="absolute left-[calc(44/402*100cqw)] top-[110.75px] flex w-[234px] flex-col items-start gap-[20px] text-left text-[36px] font-normal leading-[normal] text-[#0c0c0c]">
+                  {mobileMenuItems.map((label) => (
+                    <button
+                      key={label}
+                      type="button"
+                      className="cursor-pointer text-left capitalize hover:opacity-75"
+                      onClick={() => {
+                        if (label === "Product") {
+                          setMobileProductOpen(true);
+                          setMobileActiveSubItem(null);
+                        }
+                      }}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </nav>
+              )}
+
+              {mobileProductOpen && (
+                <nav aria-label="Mobile navigation" className="absolute left-[calc(44/402*100cqw)] top-[110.75px] flex w-[234px] flex-col items-start gap-[20px] text-left">
+                  <div className="flex w-[162px] flex-col items-start gap-[8px]">
+                    <button
+                      type="button"
+                      aria-expanded="true"
+                      className="cursor-pointer text-left text-[36px] font-normal leading-[normal] text-[#0c0c0c] hover:opacity-75"
+                      onClick={() => setMobileProductOpen(false)}
+                    >
+                      Product
+                    </button>
+                    <div className="relative h-[146px] w-[162px]">
+                      {mobileMenuItems.map((label, i) => (
+                        <button
+                          key={label}
+                          type="button"
+                          className="absolute left-0 flex h-[18px] cursor-pointer items-start text-left text-[15px] leading-[normal] text-[#0c0c0c] hover:opacity-75"
+                          style={{ top: i * 32 }}
+                          onClick={() => setMobileActiveSubItem(label)}
+                        >
+                          <span className="mt-[9px] size-[3px] shrink-0 rounded-full bg-[#0c0c0c]" />
+                          <span className={`ml-[6px] whitespace-nowrap pb-[3px] ${mobileActiveSubItem === label ? "border-b border-[#0c0c0c] font-semibold" : "font-normal"}`}>
+                            {label}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                ))}
-              </div>
+                  <div className="flex w-full flex-col items-start gap-[20px] text-[36px] font-normal leading-[normal] text-[#949494]">
+                    {mobileMenuItems.slice(1).map((label) => (
+                      <button key={label} type="button" className="cursor-pointer text-left capitalize hover:text-[#0c0c0c]">
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                </nav>
+              )}
+
+              <button
+                type="button"
+                onClick={() => {
+                  closeMobileNav();
+                  onButtonClick();
+                }}
+                className="absolute h-[20px] min-w-[61px] cursor-pointer rounded-[50px] bg-[#0c0c0c] px-[14px] text-[11px] font-bold leading-[20px] text-white hover:bg-[#4c4c4c]"
+                style={{ left: mobileProductOpen ? "calc(43 / 402 * 100cqw)" : "calc(30 / 402 * 100cqw)", top: mobileProductOpen ? 639 : 479 }}
+              >
+                {buttonText === "Log in" ? "Log In" : buttonText}
+              </button>
             </div>
-          )}
-        </div>
+          </div>
+          </>
+        )}
       </>}
 
     <Menu open={open} displayName={displayName} onClose={() => setOpen(false)}/>
