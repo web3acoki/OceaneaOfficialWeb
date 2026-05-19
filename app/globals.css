@@ -31,3 +31,12 @@
     --swim-flip: -1;
   }
 }
+
+body.oceanea-mobile-nav-open .oceanea-page-main {
+  transition: filter 160ms ease;
+}
+
+body.oceanea-mobile-nav-open .oceanea-page-main > * {
+  filter: blur(4.7px) !important;
+  transition: filter 160ms ease;
+}

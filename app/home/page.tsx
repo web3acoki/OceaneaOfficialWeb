@@ -20,8 +20,8 @@ function HomeMain() {
     <div
       className={
         isMobileMode
-          ? "relative -translate-x-1/2 left-1/2 w-[min(calc(100vw-40px),1320px)] @container-[size]"
-          : "relative -translate-x-1/2 left-1/2 w-[min(calc(100vw-80px),1320px)] @container-[size]"
+          ? "oceanea-page-main relative -translate-x-1/2 left-1/2 w-[min(calc(100vw-40px),1320px)] @container-[size]"
+          : "oceanea-page-main relative -translate-x-1/2 left-1/2 w-[min(calc(100vw-80px),1320px)] @container-[size]"
       }>
       <Welcome />
       <Bar />
