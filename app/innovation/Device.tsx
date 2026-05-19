@@ -10,7 +10,7 @@ import { useMobileMode } from "@/components/features/MobileMode";
  */
 
 export default function Device() {
-  void useMobileMode();
+  const isMobileMode = useMobileMode();
 
   return (
     <DebugBg className="relative w-full aspect-1320/1476 fmt-[73/1320]">
@@ -29,7 +29,10 @@ export default function Device() {
       />
 
       {/* 1170:1129 subtitle — 60px Geologica Medium TITLE-case, centered */}
-      <p className="absolute z-10 left-0 right-0 fmt-[102/1320] text-center font-medium ft-[60/1320] flh-[95/1320] fls-[-1.8/1320] text-[#0C0C0C] whitespace-nowrap">
+      <p className={isMobileMode
+        ? "absolute z-10 left-0 right-0 fmt-[102/1320] px-[1%] text-center font-medium text-[clamp(11px,3.6cqw,26px)] leading-[1.12] tracking-[-0.04em] text-[#0C0C0C] whitespace-nowrap"
+        : "absolute z-10 left-0 right-0 fmt-[102/1320] px-[1%] text-center font-medium text-[clamp(26px,4cqw,52px)] leading-[1.12] tracking-[-0.03em] text-[#0C0C0C] whitespace-nowrap"
+      }>
         The World&rsquo;s First Exoskeleton-Powered Smart DPV
       </p>
 
