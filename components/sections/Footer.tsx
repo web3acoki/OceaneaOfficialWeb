@@ -36,7 +36,7 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
 
   if (isMobileMode) {
     return <>
-      <div className="relative -translate-x-1/2 left-1/2 fmt-[37/340] aspect-340/200 fr-[20/340] bg-linear-to-b from-[#0c0c0c] via-[#1e191f] to-[#222] shadow-[0px_6px_10px_10px_rgba(0,0,0,0.05)] overflow-hidden">
+      <div className="relative -translate-x-1/2 left-1/2 fmt-[37/340] aspect-340/200 fr-[20/340] bg-black shadow-[0px_6px_10px_10px_rgba(0,0,0,0.05)] overflow-hidden">
         <div className="absolute fmt-[18/340] right-0 w-87/340 flex fg-[50/340]">
           <img src="/Telegram.svg" className=" w-19/87"/>
           <img src="/X.svg" className="w-19/87" />
@@ -80,16 +80,23 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
   }
 
   return <>
-    <div className={`relative -translate-x-1/2 left-1/2 ${desktopTopMarginClass} aspect-1320/470 fr-[50/1320] bg-linear-to-b from-[#0c0c0c] via-[#1e191f] to-[#222] shadow-md @container-[size]`}>
+    <div className={`relative -translate-x-1/2 left-1/2 ${desktopTopMarginClass} aspect-1320/470 fr-[50/1320] bg-black shadow-md @container-[size]`}>
       
       <p className="absolute fml-[40/1320] fmt-[420/1320] ft-[20/1320] font-thin text-[#a9a9a9]">Copyright © 2026 <span className="cursor-pointer" onClick={goHome}>Oceanea</span></p>
       <p className="absolute right-0 fmr-[240/1320] fmt-[420/1320] ft-[20/1320] font-thin text-[#a9a9a9]">Terms of Service</p>
       <p className="absolute right-0 fmr-[40/1320] fmt-[420/1320] ft-[20/1320] font-thin text-[#a9a9a9]">Privacy Policy</p>
       
-      <div className="relative fmx-[30/1320] fmt-[30/1320] aspect-1260/67 flex bg-white rounded-full">
-        <img src="/logo.svg" className="fm-[20/1260] cursor-pointer" onClick={goHome}/>
+      <div className="relative fmx-[30/1320] fmt-[30/1320] aspect-1260/67 flex">
+        <button
+          type="button"
+          aria-label="Go to home"
+          onClick={goHome}
+          className="absolute fml-[0/1260] fmt-[0/1260] flex aspect-207/42 w-207/1260 cursor-pointer items-center justify-center rounded-full bg-white"
+        >
+          <img src="/logo.svg" className="w-148/207" alt="Oceanea" />
+        </button>
         {topNavItems.map(({ label, fml }) => (
-          <p key={label} className={["absolute fmy-[20/1260] ft-[24/1320] font-bold", fml].join(" ")}>{label}</p>
+          <p key={label} className={["absolute fmy-[20/1260] ft-[24/1320] font-bold text-white", fml].join(" ")}>{label}</p>
         ))}
       </div>
 
