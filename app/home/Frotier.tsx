@@ -55,7 +55,6 @@ export default function Frotier() {
   ] as const;
   const dolphinOpacity =
     scrollProgress <= 8 ? scrollProgress / 8 : scrollProgress >= 92 ? (100 - scrollProgress) / 8 : 1;
-
   const renderDolphins = () => (
     <div
       className="absolute inset-0 z-0 pointer-events-none"
@@ -85,6 +84,8 @@ export default function Frotier() {
             key={`${d.src}-${i}`}
             src={d.src}
             alt=""
+            loading="lazy"
+            decoding="async"
             className={`absolute top-0 left-0 ${d.sizeClass} ${d.baseOffsetClass}`}
           />
         ))
@@ -243,16 +244,22 @@ export default function Frotier() {
       v.removeEventListener("pause", stop);
       v.style.opacity = "";
     };
-  }, []);
+  }, [USE_DOLPHIN_IMAGES]);
 
   return <>
     <DebugBg className={isMobileMode
       ? "relative -translate-x-1/2 left-1/2 fmt-[60/340] aspect-340/400 flex flex-col"
       : "relative -translate-x-1/2 left-1/2 fmt-[160/1320] aspect-1320/920 flex flex-col"}>
       <div ref={containerRef} className="absolute inset-0 pointer-events-none" />
-      <img src="/frontier-title.png" className={isMobileMode
-        ? "absolute z-10 -translate-x-1/2 left-1/2 w-88/340 "
-        : "absolute z-10 -translate-x-1/2 left-1/2 w-261/1320"} />
+      <img
+        src="/frontier-title.png"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className={isMobileMode
+          ? "absolute z-10 -translate-x-1/2 left-1/2 w-88/340 "
+          : "absolute z-10 -translate-x-1/2 left-1/2 w-261/1320"}
+      />
       <p className={isMobileMode
         ? "relative z-10 text-center fmt-[6/340] font-medium ft-[32/340] fls-[-0.96/340] flh-[35/340]"
         : "relative z-10 text-center fmt-[50/1320] font-medium ft-[96/1320] fls-[-2.88/1320]"}>Shape the Ocean&apos;s Future</p>

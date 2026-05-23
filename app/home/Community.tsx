@@ -11,9 +11,15 @@ export default function Community() {
       <div className={isMobileMode
         ? "flex w-full flex-row items-center justify-center fg-[10/340]"
         : "flex w-full flex-row items-center justify-center fg-[24/1320]"}>
-        <img src="/community.svg" className={isMobileMode 
-          ? "absolute left-60/340 top-7/580 block w-20/340 aspect-20/20 shrink-0" 
-          : "block w-63/1320 aspect-63/63 shrink-0"} />
+        <img
+          src="/community.svg"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className={isMobileMode
+            ? "absolute left-60/340 top-7/580 block w-20/340 aspect-20/20 shrink-0"
+            : "block w-63/1320 aspect-63/63 shrink-0"}
+        />
         <p className={isMobileMode
           ? "ft-[32/340] font-medium fls-[-0.96/340] text-center w-240/340 flh-[35/340]"
           : "ft-[96/1320] font-medium fls-[-2.88/1320] text-center"}>Unlock the Ocean Together</p>
@@ -26,6 +32,9 @@ export default function Community() {
         : "relative w-full fmt-[40/1320] aspect-1320/600 overflow-hidden fr-[50/1920]"}>
         <img
           src="/community-back.png"
+          alt=""
+          loading="lazy"
+          decoding="async"
           className={isMobileMode
             ? "absolute h-[120%] w-auto min-w-full left-[-80%] max-w-none top-[-5%]"
             : "absolute top-[-10%]"}

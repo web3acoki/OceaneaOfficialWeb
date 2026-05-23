@@ -59,6 +59,9 @@ export default function Welcome() {
       </svg>
       <img
         src="/welcome-back.png"
+        alt=""
+        fetchPriority="high"
+        decoding="async"
         className={isMobileMode
           ? "absolute h-[156.6%] left-[-9.84%] top-[-33.15%] w-[127.19%] max-w-none"
           : "absolute top-[-79.38%] left-[-8.09%] w-[116.17%] max-w-none"}
@@ -73,8 +76,16 @@ export default function Welcome() {
       : "relative -translate-x-1/2 left-1/2 fmt-[125/1320] aspect-1320/800 fr-[64/1320] overflow-hidden"}>
       {waterRippleBg}
       <div className="absolute inset-0">
-        {divers.map((d) => (<img key={d.src} src={d.src} className={`${d.imgClass}`} 
-        style={{ animation: `divers-float 5000ms ease-in-out ${d.delayMs}ms infinite` }}/>))}
+        {divers.map((d) => (
+          <img
+            key={d.src}
+            src={d.src}
+            alt=""
+            decoding="async"
+            className={`${d.imgClass}`}
+            style={{ animation: `divers-float 5000ms ease-in-out ${d.delayMs}ms infinite` }}
+          />
+        ))}
       </div>
       <div className="relative flex flex-col items-center text-center text-white">
         <p className={isMobileMode
