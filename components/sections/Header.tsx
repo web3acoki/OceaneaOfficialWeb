@@ -12,7 +12,8 @@ import { loginWithBackend } from "../../services/login";
 import { privyUserRef } from "../../services/http";
 import { getUserInfo } from "../../services/userinfo";
 
-const mobileMenuItems = ["Product", "Earn", "Build", "Learn", "Join Oceanea"] as const;
+const mobileJoinLabel = "Join Oceanea";
+const mobileTopItems = [...navTopLabels, mobileJoinLabel];
 
 export default function Header() {
   const router = useRouter();
@@ -22,7 +23,7 @@ export default function Header() {
   const [displayName, setDisplayName] = useState("");
   const [open, setOpen] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [mobileProductOpen, setMobileProductOpen] = useState(false);
+  const [mobileExpandedIndex, setMobileExpandedIndex] = useState<number | null>(null);
   const [mobileActiveSubItem, setMobileActiveSubItem] = useState<string | null>(null);
   /** 桌面端：当前展开的下拉对应 `navTopLabels` 下标；`null` 为关闭 */
   const [navDropdownIndex, setNavDropdownIndex] = useState<number | null>(null);
@@ -42,9 +43,12 @@ export default function Header() {
   };
   const closeMobileNav = () => {
     setMobileNavOpen(false);
-    setMobileProductOpen(false);
+    setMobileExpandedIndex(null);
     setMobileActiveSubItem(null);
   };
+  const mobileExpanded = mobileExpandedIndex !== null;
+  const mobileExpandedLabel = mobileExpanded ? navTopLabels[mobileExpandedIndex] : null;
+  const mobileExpandedItems = mobileExpanded ? navLinkColumns[mobileExpandedIndex] : [];
 
   useEffect(() => {
     privyUserRef.current = authenticated && user ? user : null;
@@ -207,7 +211,7 @@ export default function Header() {
           <div className="fixed left-1/2 top-0 z-50 w-[min(100vw,402px)] -translate-x-1/2 @container pointer-events-none">
             <div
               className="pointer-events-auto relative w-full rounded-bl-[28px] rounded-br-[28px] bg-[#f8f8f8]"
-              style={{ height: mobileProductOpen ? 675 : 515 }}
+              style={{ height: 515 }}
             >
               <button
                 type="button"
@@ -228,19 +232,20 @@ export default function Header() {
               <div className="absolute left-[calc(37/402*100cqw)] top-[82px] h-px w-[calc(332/402*100cqw)] bg-[#949494]" />
               <div
                 className="absolute left-[calc(37/402*100cqw)] h-px w-[calc(332/402*100cqw)] bg-[#949494]"
-                style={{ top: mobileProductOpen ? 611 : 456 }}
+                style={{ top: 456 }}
               />
 
-              {!mobileProductOpen && (
+              {!mobileExpanded && (
                 <nav aria-label="Mobile navigation" className="absolute left-[calc(44/402*100cqw)] top-[110.75px] flex w-[234px] flex-col items-start gap-[20px] text-left text-[36px] font-normal leading-[normal] text-[#0c0c0c]">
-                  {mobileMenuItems.map((label) => (
+                  {mobileTopItems.map((label) => (
                     <button
                       key={label}
                       type="button"
                       className="cursor-pointer text-left capitalize hover:opacity-75"
                       onClick={() => {
-                        if (label === "Product") {
-                          setMobileProductOpen(true);
+                        const navIndex = navTopLabels.findIndex((item) => item === label);
+                        if (navIndex >= 0) {
+                          setMobileExpandedIndex(navIndex);
                           setMobileActiveSubItem(null);
                         }
                       }}
@@ -251,37 +256,67 @@ export default function Header() {
                 </nav>
               )}
 
-              {mobileProductOpen && (
+              {mobileExpanded && (
                 <nav aria-label="Mobile navigation" className="absolute left-[calc(44/402*100cqw)] top-[110.75px] flex w-[234px] flex-col items-start gap-[20px] text-left">
                   <div className="flex w-[162px] flex-col items-start gap-[8px]">
                     <button
                       type="button"
                       aria-expanded="true"
                       className="cursor-pointer text-left text-[36px] font-normal leading-[normal] text-[#0c0c0c] hover:opacity-75"
-                      onClick={() => setMobileProductOpen(false)}
+                      onClick={() => setMobileExpandedIndex(null)}
                     >
-                      Product
+                      {mobileExpandedLabel}
                     </button>
                     <div className="relative h-[146px] w-[162px]">
-                      {mobileMenuItems.map((label, i) => (
-                        <button
-                          key={label}
-                          type="button"
-                          className="absolute left-0 flex h-[18px] cursor-pointer items-start text-left text-[15px] leading-[normal] text-[#0c0c0c] hover:opacity-75"
-                          style={{ top: i * 32 }}
-                          onClick={() => setMobileActiveSubItem(label)}
-                        >
-                          <span className="mt-[9px] size-[3px] shrink-0 rounded-full bg-[#0c0c0c]" />
-                          <span className={`ml-[6px] whitespace-nowrap pb-[3px] ${mobileActiveSubItem === label ? "border-b border-[#0c0c0c] font-semibold" : "font-normal"}`}>
-                            {label}
-                          </span>
-                        </button>
-                      ))}
+                      {mobileExpandedItems.map((label, i) => {
+                        const href = navLinkHref[label];
+                        const itemClassName = "absolute left-0 flex h-[18px] cursor-pointer items-start text-left text-[15px] leading-[normal] text-[#0c0c0c] hover:opacity-75";
+                        const content = (
+                          <>
+                            <span className="mt-[9px] size-[3px] shrink-0 rounded-full bg-[#0c0c0c]" />
+                            <span className={`ml-[6px] whitespace-nowrap pb-[3px] ${mobileActiveSubItem === label ? "border-b border-[#0c0c0c] font-semibold" : "font-normal"}`}>
+                              {label}
+                            </span>
+                          </>
+                        );
+                        return href ? (
+                          <Link
+                            key={label}
+                            href={href}
+                            className={itemClassName}
+                            style={{ top: i * 32 }}
+                            onClick={closeMobileNav}
+                          >
+                            {content}
+                          </Link>
+                        ) : (
+                          <button
+                            key={label}
+                            type="button"
+                            className={itemClassName}
+                            style={{ top: i * 32 }}
+                            onClick={() => setMobileActiveSubItem(label)}
+                          >
+                            {content}
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
                   <div className="flex w-full flex-col items-start gap-[20px] text-[36px] font-normal leading-[normal] text-[#949494]">
-                    {mobileMenuItems.slice(1).map((label) => (
-                      <button key={label} type="button" className="cursor-pointer text-left capitalize hover:text-[#0c0c0c]">
+                    {mobileTopItems.filter((_, i) => i !== mobileExpandedIndex).map((label) => (
+                      <button
+                        key={label}
+                        type="button"
+                        className="cursor-pointer text-left capitalize hover:text-[#0c0c0c]"
+                        onClick={() => {
+                          const navIndex = navTopLabels.findIndex((item) => item === label);
+                          if (navIndex >= 0) {
+                            setMobileExpandedIndex(navIndex);
+                            setMobileActiveSubItem(null);
+                          }
+                        }}
+                      >
                         {label}
                       </button>
                     ))}
@@ -296,7 +331,7 @@ export default function Header() {
                   onButtonClick();
                 }}
                 className="absolute h-[20px] min-w-[61px] cursor-pointer rounded-[50px] bg-[#0c0c0c] px-[14px] text-[11px] font-bold leading-[20px] text-white hover:bg-[#4c4c4c]"
-                style={{ left: mobileProductOpen ? "calc(43 / 402 * 100cqw)" : "calc(30 / 402 * 100cqw)", top: mobileProductOpen ? 639 : 479 }}
+                style={{ left: mobileExpanded ? "calc(43 / 402 * 100cqw)" : "calc(30 / 402 * 100cqw)", top: 479 }}
               >
                 {buttonText === "Log in" ? "Log In" : buttonText}
               </button>

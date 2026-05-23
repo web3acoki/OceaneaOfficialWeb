@@ -73,9 +73,15 @@ immersive ocean gameplay, what once was vision is now becoming reality`;
           <div className={isMobileMode
             ? "flex flex-row justify-center fg-[8/340]"
             : "flex flex-row justify-center fg-[41/1320] fmt-[10/650]"}>
-            <img src={part.iconSrc} className={isMobileMode ? 
-              "w-20/340" : 
-              "w-55/650"}/>
+            <img
+              src={part.iconSrc}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className={isMobileMode ?
+                "w-20/340" :
+                "w-55/650"}
+            />
             <p className={isMobileMode
               ? "ft-[15/340] fmy-[2/340] font-bold"
               : "ft-[36/1320] fmy-[10/650] font-bold whitespace-nowrap"}>{part.pillLabel}</p>
@@ -83,7 +89,7 @@ immersive ocean gameplay, what once was vision is now becoming reality`;
           <div className={isMobileMode
             ? "relative fmt-[20/340] aspect-340/340 fr-[25/340] shadow-[0px_4px_10.3px_3px_rgba(0,0,0,0.1)] bg-[linear-gradient(180deg,rgba(245,253,255,0.46)_2.772%,#f5fdff_37.181%,#d4f1f8_71.59%)]"
             : "relative fmt-[90/650] aspect-650/750 fr-[50/1320] shadow-[0px_4px_10.3px_3px_rgba(0,0,0,0.1)] bg-[linear-gradient(180deg,rgba(245,253,255,0.46)_2.772%,#f5fdff_37.181%,#d4f1f8_71.59%)]"}>
-            <img src={part.backSrc} className={part.backImgClassName} alt="" />
+            <img src={part.backSrc} className={part.backImgClassName} alt="" loading="lazy" decoding="async" />
             <p className={isMobileMode
               ? "relative z-10 ft-[12/340] fmt-[240/340] fmx-[35/340] fls-[-0.36/340] text-center flh-[12/340]"
               : "relative z-10 ft-[24/1320] fmt-[520/650] fmx-[80/650] fls-[-0.72/1320] text-center"}>{part.description}</p>

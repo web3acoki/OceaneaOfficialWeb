@@ -38,15 +38,27 @@ export default function Immersion() {
       <div className={isMobileMode
         ? "relative w-220/340 fmx-[56/340] aspect-220/100 flex flex-col items-center justify-center"
         : "relative w-1120/1320 fmx-[100/1320] aspect-1120/150 flex flex-col items-center justify-center "}>
-        <img src="/immersion-left.svg" className={isMobileMode
-          ? "absolute top-0 left-0 w-22/220"
-          : "absolute top-0 left-0 w-45/1120"}/>
+        <img
+          src="/immersion-left.svg"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className={isMobileMode
+            ? "absolute top-0 left-0 w-22/220"
+            : "absolute top-0 left-0 w-45/1120"}
+        />
         <p className={isMobileMode
           ? "absolute ft-[32/340] fls-[-0.96/340] flh-[35/340] text-center"
           : "absolute ft-[96/1320] font-medium fls-[-2.88/1320] text-center "}>Enter The Oceanverse</p>
-        <img src="/immersion-right.svg" className={isMobileMode
-          ? "absolute bottom-0 right-0 w-22/220"
-          : "absolute bottom-0 right-0 w-45/1120"}/>
+        <img
+          src="/immersion-right.svg"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className={isMobileMode
+            ? "absolute bottom-0 right-0 w-22/220"
+            : "absolute bottom-0 right-0 w-45/1120"}
+        />
       </div>
       <p className={isMobileMode
         ? "fmt-[18/340] ft-[14/340] fls-[-0.54/340] flh-[15/340] text-[#7D7D7D] text-center"
@@ -58,7 +70,13 @@ export default function Immersion() {
           <div key={card.title} className={isMobileMode
             ? "group relative aspect-165/267 w-full overflow-hidden fr-[15/340] shadow-[0px_4px_6px_rgba(0,0,0,0.10)]"
             : "group relative aspect-314/600 w-314/1320 overflow-hidden fr-[50/1320] shadow-[3px_6px_7.5px_rgba(0,0,0,0.20)]"}>
-            <img src={card.src} className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-130"/>
+            <img
+              src={card.src}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-130"
+            />
             <div className={isMobileMode
               ? "absolute inset-x-0 bottom-0 h-1/2 overflow-hidden bg-linear-to-b from-[rgba(255,255,255,0)] from-[1%] via-[rgba(12,12,12,0.3)] via-[38%] to-[#0C0C0C] flex flex-col items-center z-10 fr-[0_0_27/165_27/165]"
               : "absolute inset-x-0 bottom-0 h-1/2 overflow-hidden bg-linear-to-b from-[rgba(255,255,255,0)] from-[1%] via-[rgba(12,12,12,0.3)] via-[38%] to-[#0C0C0C] flex flex-col items-center z-10 fr-[0_0_50/314_50/314]"}>

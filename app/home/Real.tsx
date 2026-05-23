@@ -220,6 +220,8 @@ unknown and advance the ocean ecosystem.`;
       <img
         src={j.src}
         alt=""
+        loading="lazy"
+        decoding="async"
         className={`absolute top-0 left-0 block h-auto max-w-none ${j.sizeClass} scale-75`}
         onLoad={(e) => {
           const img = e.currentTarget;
