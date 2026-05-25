@@ -70,20 +70,16 @@ export default function Diving() {
     </DebugBg>
 
     <DebugBg className={isMobileMode ? "fmt-[24/340]" : "fmt-[50/1320]"}>
-      <div className={isMobileMode
-        ? "relative overflow-hidden fr-[20/340] shadow-md aspect-340/520 @container-[size]"
-        : "relative overflow-hidden fr-[50/1320] shadow-md aspect-1320/900 @container-[size]"}
+      <div className="relative overflow-hidden fr-[50/1320] shadow-md aspect-1320/900 @container-[size]"
         style={{
           background:
             "linear-gradient(180deg, rgba(22, 64, 114, 0.1) 0%, rgba(247, 252, 254, 0.76) 42%, rgba(255, 255, 255, 1) 61%, rgba(22, 64, 114, 0.2) 100%)",
         }}>
-        {!isMobileMode && divingDesktopImages.map((img) => (
-          <img key={img.src} src={img.src} className={`pointer-events-none absolute max-w-none select-none ${img.layout}`}/>
+        {divingDesktopImages.map((img) => (
+          <img key={img.src} src={img.src} alt="" className={`pointer-events-none absolute max-w-none select-none ${img.layout}`}/>
         ))}
 
-        <div className={isMobileMode
-          ? "relative z-10 flex flex-col fg-[24/340] fmx-[20/340] fmt-[20/340]"
-          : "relative z-10 grid min-h-0 grid-cols-2 fg-[28/1320] fmt-[300/1320]"}>
+        <div className="relative z-10 grid min-h-0 grid-cols-2 fg-[28/1320] fmt-[300/1320]">
           {cardBlocks.flatMap((block, i) => {
             const cell = (
               <div key={block.title}>
@@ -94,7 +90,7 @@ export default function Diving() {
                 ))}
               </div>
             );
-            if (!isMobileMode && i === 1) {
+            if (i === 1) {
               return [
                 cell,
                 <div key="diving-divider" className="col-span-2 flex items-center justify-center fmt-[12/1320]">
