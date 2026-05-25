@@ -37,7 +37,7 @@ export default function Experience() {
       </div>
 
       <Button
-        text="Book A Dive Experience"
+        text="Book a Dive Experience"
         className="absolute fml-[477/1320] fmt-[724/1320] w-366/1320 aspect-366/50"
       />
     </DebugBg>

@@ -61,10 +61,10 @@ export default function Diving() {
         Explore, compete, govern, and connect—discover a vast undersea world.
       </p>
       <Button
-        text="play Now"
+        text="Play Now"
         className={isMobileMode
-          ? "fmt-[24/340] mx-auto w-223/340 aspect-223/50"
-          : "fmt-[33/1320] mx-auto w-223/1320 aspect-223/50"}
+          ? "fmt-[24/340] mx-auto w-250/340 aspect-250/58"
+          : "fmt-[33/1320] mx-auto w-270/1320 aspect-270/62"}
         onClick={() => window.open("https://game.oceanea.io/", "_blank", "noopener,noreferrer")}
       />
     </DebugBg>
