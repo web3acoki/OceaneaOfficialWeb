@@ -38,7 +38,7 @@ export default function Device() {
 
       {/* 1170:1130 paragraph — 24px Geologica Regular, centered, #7D7D7D */}
       <p className="absolute z-10 left-1/2 -translate-x-1/2 fmt-[230/1320] w-1182/1320 text-center font-normal ft-[24/1320] fls-[-0.72/1320] text-[#7D7D7D] whitespace-pre-line leading-[1.3]">
-        {`Powered by advanced exoskeleton-sensing control technology, X-Artura enables effortless underwater actions such as going straight, turning, sudden stopping, reversing, and backstroke floating.\n\nWith no need for hand-held operation, divers can fully free their hands and move underwater like a free fish—enjoying a far more immersive and delightful diving experience.`}
+        {`Powered by advanced exoskeleton-sensing control technology, X-Artura enables effortless underwater actions such as going straight, turning, sudden stopping, reversing, and backstroke floating. With no need for hand-held operation, divers can fully free their hands and move underwater like a free fish—enjoying a far more immersive and delightful diving experience.`}
       </p>
     </DebugBg>
   );

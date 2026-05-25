@@ -208,10 +208,9 @@ export default function Header() {
             onClick={closeMobileNav}
             className="fixed inset-0 z-40 cursor-default bg-[rgba(255,255,255,0.35)] backdrop-blur-[4.7px]"
           />
-          <div className="fixed left-1/2 top-0 z-50 w-[min(100vw,402px)] -translate-x-1/2 @container pointer-events-none">
+          <div className="fixed left-1/2 top-0 z-50 h-[100dvh] w-[min(100vw,402px)] -translate-x-1/2 @container pointer-events-none">
             <div
-              className="pointer-events-auto relative w-full rounded-bl-[28px] rounded-br-[28px] bg-[#f8f8f8]"
-              style={{ height: 515 }}
+              className="pointer-events-auto relative h-full w-full overflow-hidden rounded-bl-[28px] rounded-br-[28px] bg-[#f8f8f8]"
             >
               <button
                 type="button"
@@ -230,13 +229,10 @@ export default function Header() {
                 <img src="/header/mobile-close-icon.svg" alt="" className="size-full" />
               </button>
               <div className="absolute left-[calc(37/402*100cqw)] top-[82px] h-px w-[calc(332/402*100cqw)] bg-[#949494]" />
-              <div
-                className="absolute left-[calc(37/402*100cqw)] h-px w-[calc(332/402*100cqw)] bg-[#949494]"
-                style={{ top: 456 }}
-              />
+              <div className="absolute bottom-[70px] left-[calc(37/402*100cqw)] h-px w-[calc(332/402*100cqw)] bg-[#949494]" />
 
               {!mobileExpanded && (
-                <nav aria-label="Mobile navigation" className="absolute left-[calc(44/402*100cqw)] top-[110.75px] flex w-[234px] flex-col items-start gap-[20px] text-left text-[36px] font-normal leading-[normal] text-[#0c0c0c]">
+                <nav aria-label="Mobile navigation" className="absolute bottom-[96px] left-[calc(44/402*100cqw)] top-[110.75px] flex w-[234px] flex-col items-start gap-[20px] overflow-y-auto text-left text-[36px] font-normal leading-[normal] text-[#0c0c0c]">
                   {mobileTopItems.map((label) => (
                     <button
                       key={label}
@@ -257,8 +253,8 @@ export default function Header() {
               )}
 
               {mobileExpanded && (
-                <nav aria-label="Mobile navigation" className="absolute left-[calc(44/402*100cqw)] top-[110.75px] flex w-[234px] flex-col items-start gap-[20px] text-left">
-                  <div className="flex w-[162px] flex-col items-start gap-[8px]">
+                <nav aria-label="Mobile navigation" className="absolute bottom-[96px] left-[calc(44/402*100cqw)] top-[110.75px] w-[calc(314/402*100cqw)] overflow-y-auto text-left">
+                  <div className="flex w-[162px] flex-col items-start gap-[10px]">
                     <button
                       type="button"
                       aria-expanded="true"
@@ -267,10 +263,10 @@ export default function Header() {
                     >
                       {mobileExpandedLabel}
                     </button>
-                    <div className="relative h-[146px] w-[162px]">
-                      {mobileExpandedItems.map((label, i) => {
+                    <div className="flex w-[162px] flex-col items-start gap-[12px]">
+                      {mobileExpandedItems.map((label) => {
                         const href = navLinkHref[label];
-                        const itemClassName = "absolute left-0 flex h-[18px] cursor-pointer items-start text-left text-[15px] leading-[normal] text-[#0c0c0c] hover:opacity-75";
+                        const itemClassName = "flex min-h-[18px] cursor-pointer items-start text-left text-[15px] leading-[normal] text-[#0c0c0c] hover:opacity-75";
                         const content = (
                           <>
                             <span className="mt-[9px] size-[3px] shrink-0 rounded-full bg-[#0c0c0c]" />
@@ -284,7 +280,6 @@ export default function Header() {
                             key={label}
                             href={href}
                             className={itemClassName}
-                            style={{ top: i * 32 }}
                             onClick={closeMobileNav}
                           >
                             {content}
@@ -294,7 +289,6 @@ export default function Header() {
                             key={label}
                             type="button"
                             className={itemClassName}
-                            style={{ top: i * 32 }}
                             onClick={() => setMobileActiveSubItem(label)}
                           >
                             {content}
@@ -303,7 +297,7 @@ export default function Header() {
                       })}
                     </div>
                   </div>
-                  <div className="flex w-full flex-col items-start gap-[20px] text-[36px] font-normal leading-[normal] text-[#949494]">
+                  <div className="mt-[30px] flex w-full flex-col items-start gap-[20px] text-[36px] font-normal leading-[normal] text-[#949494]">
                     {mobileTopItems.filter((_, i) => i !== mobileExpandedIndex).map((label) => (
                       <button
                         key={label}
@@ -331,7 +325,7 @@ export default function Header() {
                   onButtonClick();
                 }}
                 className="absolute h-[20px] min-w-[61px] cursor-pointer rounded-[50px] bg-[#0c0c0c] px-[14px] text-[11px] font-bold leading-[20px] text-white hover:bg-[#4c4c4c]"
-                style={{ left: mobileExpanded ? "calc(43 / 402 * 100cqw)" : "calc(30 / 402 * 100cqw)", top: 479 }}
+                style={{ left: "calc(30 / 402 * 100cqw)", bottom: 28 }}
               >
                 {buttonText === "Log in" ? "Log In" : buttonText}
               </button>

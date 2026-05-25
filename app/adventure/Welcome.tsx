@@ -23,7 +23,9 @@ export default function Welcome() {
           : "fmt-[18/1320] text-center ft-[20/1320] font-medium fls-[-0.6/1320]"}>{subtitleText}</p>
         <Button
           text="Play Now"
-          className="fmt-[30/1320] w-160/1320 aspect-160/50 mx-auto"
+          className={isMobileMode
+            ? "fmt-[24/340] w-190/340 aspect-190/56 mx-auto"
+            : "fmt-[30/1320] w-210/1320 aspect-210/60 mx-auto"}
           onClick={() => {
             window.open("https://game.oceanea.io/", "_blank", "noopener,noreferrer");
           }}
