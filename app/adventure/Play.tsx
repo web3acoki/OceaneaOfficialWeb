@@ -10,21 +10,26 @@ const playBody =
 
 export default function Play() {
   const isMobileMode = useMobileMode();
+  const displayPlayTitle = isMobileMode
+    ? `Where Virtual Diving
+Meets the Real Ocean`
+    : playTitle;
   return <>
     <DebugBg className={isMobileMode
       ? "relative -translate-x-1/2 left-1/2 fmt-[48/340] "
       : "relative -translate-x-1/2 left-1/2 fmt-[125/1320]"}>
       <p className={isMobileMode
-        ? "ft-[32/340] font-medium fls-[-0.96/340] text-center"
-        : "ft-[60/1320] font-medium fls-[-2.88/1320] text-center"}>{playTitle}</p>
+        ? "mx-auto w-[calc(260/340*100%)] min-w-0 whitespace-pre-line ft-[22/340] font-medium flh-[27/340] text-center"
+        : "ft-[36/1320] font-medium flh-[43/1320] text-center"}>{displayPlayTitle}</p>
       <p className={isMobileMode
-        ? "fmt-[12/340] text-center ft-[14/340] font-medium fls-[-0.42/340] text-[#626262]"
-        : "fmt-[18/1320] text-center ft-[24/1320] font-medium fls-[-0.6/1320] text-[#626262] fmx-[200/1320]"}>{playBody}</p>
+        ? "fmt-[12/340] mx-auto w-[calc(260/340*100%)] min-w-0 text-center ft-[11/340] font-normal flh-[14/340] text-[#626262]"
+        : "fmt-[8/1320] text-center ft-[12/1320] font-normal flh-[16/1320] text-[#626262] fmx-[258/1320]"}>{playBody}</p>
       <Button
-        text="Play Now"
+        text="Play"
         className={isMobileMode
-          ? "fmt-[24/340] w-170/340 aspect-170/52 mx-auto"
-          : "fmt-[30/1320] w-170/1320 aspect-170/58 mx-auto"}
+          ? "fmt-[14/340] w-72/340 aspect-72/24 mx-auto"
+          : "fmt-[13/1320] w-82/1320 aspect-82/30 mx-auto"}
+        textClassName="text-[38cqh]"
         onClick={() => {
           window.open("https://game.oceanea.io/", "_blank", "noopener,noreferrer");
         }}

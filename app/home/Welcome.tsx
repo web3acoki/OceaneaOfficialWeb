@@ -26,7 +26,7 @@ export default function Welcome() {
   ] as const;
 
   const titleText = "Experience, Explore, and Own the Ocean";
-  const subtitleText = `Oceanea is a decentralized ocean experience network, redefining underwater experiences, revealing uncharted depths, and empowering everyone to cocreate and share in the ocean together.`;
+  const subtitleText = `Oceanea is a decentralized ocean ecosystem, redefining underwater experiences, revealing uncharted depths, and empowering everyone to cocreate and share in the ocean together.`;
 
   const diversKeyframes = `
     @keyframes divers-float {
@@ -73,7 +73,7 @@ export default function Welcome() {
   return <>
     <div className={isMobileMode
       ? "relative -translate-x-1/2 left-1/2 fmt-[48/340] aspect-340/340 fr-[15/340] overflow-hidden"
-      : "relative -translate-x-1/2 left-1/2 fmt-[125/1320] aspect-1320/800 fr-[64/1320] overflow-hidden"}>
+      : "relative left-1/2 mt-[111px] h-[860px] w-[min(calc(100vw-80px),1140px)] -translate-x-1/2 overflow-hidden rounded-[50px]"}>
       {waterRippleBg}
       <div className="absolute inset-0">
         {divers.map((d) => (
@@ -87,17 +87,28 @@ export default function Welcome() {
           />
         ))}
       </div>
-      <div className="relative flex flex-col items-center text-center text-white">
-        <p className={isMobileMode
-          ? "fmt-[100/340] fmx-[10/340] ft-[22/340] font-medium flh-[24/340] fls-[-0.66/340]"
-          : "fmt-[252/1320] fmx-[73/1320] ft-[82/1320] font-medium flh-[85/1320] fls-[-2.46/1320]"}>{titleText}</p>
-        <p className={isMobileMode
-          ? "fmt-[23/340] w-260/340 font-light ft-[14/340] flh-[13/340] fls-[-0.42/340]"
-          : "fmt-[23/1320] w-800/1320 ft-[32/1320] flh-[35/1320] fls-[-0.96/1320]"}>{subtitleText}</p>
-        <Button text="Join Oceanea" className={isMobileMode
-          ? "fmt-[49/340] w-95/340 aspect-95/20"
-          : "fmt-[75/1320] w-385/1320 aspect-385/60"}/>
-      </div>
+      {isMobileMode ? (
+        <div className="relative flex flex-col items-center text-center text-white">
+          <p className="fmt-[100/340] fmx-[10/340] ft-[22/340] font-medium flh-[24/340] fls-[-0.66/340]">{titleText}</p>
+          <p className="fmt-[23/340] w-260/340 font-light ft-[14/340] flh-[13/340] fls-[-0.42/340]">{subtitleText}</p>
+          <Button text="Join Oceanea" className="fmt-[49/340] w-95/340 aspect-95/20" />
+        </div>
+      ) : (
+        <div className="absolute left-[86px] top-[301px] flex w-[969px] flex-col items-center gap-[33px] rounded-[50px] text-center text-white">
+          <div className="flex w-full flex-col items-center gap-[18px]">
+            <div className="w-full text-[64px] font-medium leading-[70px] tracking-[-1.92px]">
+              <p>Experience, Explore, and Own</p>
+              <p>the Ocean</p>
+            </div>
+            <p className="w-[495px] text-[20px] font-normal leading-[26px] tracking-[-0.6px]">{subtitleText}</p>
+          </div>
+          <Button
+            text="Join Oceanea"
+            className="h-[49px] w-[195px]"
+            textClassName="text-[20px] font-bold leading-[normal]"
+          />
+        </div>
+      )}
       <style>{diversKeyframes}</style>
     </div>
   </>;

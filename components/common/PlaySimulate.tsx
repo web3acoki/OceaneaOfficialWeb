@@ -1,7 +1,82 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type RefObject } from 'react';
+
+function HarpoonRope({ ropeWidth, ropeRef }: {
+  ropeWidth: number;
+  ropeRef: RefObject<HTMLDivElement | null>;
+}) {
+  return (
+    <div
+      ref={ropeRef}
+      className="absolute"
+      style={{
+        left: 0,
+        top: 0,
+        width: `${ropeWidth}vw`,
+        height: 0,
+        transformOrigin: 'top center',
+        transform: 'translateX(-50%)',
+        zIndex: 12,
+        pointerEvents: 'none',
+        opacity: 0,
+      }}
+    >
+      <Image
+        src="/XDiver/HarpoonRope.png"
+        alt="Harpoon Rope"
+        width={100}
+        height={1000}
+        className="w-full h-full"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'fill',
+          display: 'block',
+        }}
+      />
+    </div>
+  );
+}
+
+function HarpoonHead({ headWidth, headHeight, headRef }: {
+  headWidth: number;
+  headHeight: number;
+  headRef: RefObject<HTMLDivElement | null>;
+}) {
+  return (
+    <div
+      ref={headRef}
+      className="absolute"
+      style={{
+        left: 0,
+        top: 0,
+        transform: 'translate(-50%, -50%)',
+        width: `${headWidth}vw`,
+        height: `${headHeight}vw`,
+        zIndex: 13,
+        pointerEvents: 'none',
+        transformOrigin: 'center center',
+        opacity: 0,
+      }}
+    >
+      <Image
+        src="/XDiver/HarpoonHead.png"
+        alt="Harpoon Head"
+        width={100}
+        height={100}
+        className="w-full h-full"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'contain',
+          display: 'block',
+        }}
+      />
+    </div>
+  );
+}
 
 export default function PlaySimulate() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -236,7 +311,7 @@ export default function PlaySimulate() {
     }
   };
 
-  const getFishZIndex = (fishKey: keyof typeof fishSwimConfig) => {
+  const getFishZIndex = () => {
     return 3;
   };
 
@@ -454,82 +529,6 @@ export default function PlaySimulate() {
     );
   };
 
-  // 渲染鱼叉（从人位置发射到鱼位置）
-  const HarpoonRope = ({ ropeWidth, ropeRef }: {
-    ropeWidth: number;
-    ropeRef: { current: HTMLDivElement | null };
-  }) => {
-    return (
-      <div
-        ref={ropeRef}
-        className="absolute"
-        style={{
-          left: 0,
-          top: 0,
-          width: `${ropeWidth}vw`,
-          height: 0,
-          transformOrigin: 'top center',
-          transform: 'translateX(-50%)',
-          zIndex: 12,
-          pointerEvents: 'none',
-          opacity: 0,
-        }}
-      >
-        <Image
-          src="/XDiver/HarpoonRope.png"
-          alt="Harpoon Rope"
-          width={100} // 占位值，实际尺寸根据图片调整
-          height={1000} // 占位值，实际尺寸根据图片调整
-          className="w-full h-full"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'fill', // 填充整个容器
-            display: 'block',
-          }}
-        />
-      </div>
-    );
-  };
-
-  const HarpoonHead = ({ headWidth, headHeight, headRef }: {
-    headWidth: number;
-    headHeight: number;
-    headRef: { current: HTMLDivElement | null };
-  }) => {
-    return (
-      <div
-        ref={headRef}
-        className="absolute"
-        style={{
-          left: 0,
-          top: 0,
-          transform: 'translate(-50%, -50%)',
-          width: `${headWidth}vw`,
-          height: `${headHeight}vw`,
-          zIndex: 13,
-          pointerEvents: 'none',
-          transformOrigin: 'center center',
-          opacity: 0,
-        }}
-      >
-        <Image
-          src="/XDiver/HarpoonHead.png"
-          alt="Harpoon Head"
-          width={100}
-          height={100}
-          className="w-full h-full"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'contain',
-            display: 'block',
-          }}
-        />
-      </div>
-    );
-  };
-
   const renderFrameDialog = (fishKey: keyof typeof frameOffsets) => {
     const offset = frameOffsets[fishKey];
     const data = fishData[fishKey];
@@ -719,7 +718,7 @@ export default function PlaySimulate() {
             top: `${relativePositions.angler.top * scale}vw`,
             width: `${originalSizes.angler.width * scale}vw`,
             height: `${originalSizes.angler.height * scale}vw`,
-            zIndex: getFishZIndex('clownfish'),
+            zIndex: getFishZIndex(),
             pointerEvents: 'none',
             transformOrigin: 'center center',
             ...getFishSwimStyle('angler'),
@@ -770,7 +769,7 @@ export default function PlaySimulate() {
             top: `${relativePositions.swordfish.top * scale}vw`,
             width: `${originalSizes.swordfish.width * scale}vw`,
             height: `${originalSizes.swordfish.height * scale}vw`,
-            zIndex: getFishZIndex('angler'),
+            zIndex: getFishZIndex(),
             pointerEvents: 'none',
             transformOrigin: 'center center',
             ...getFishSwimStyle('swordfish'),
@@ -821,7 +820,7 @@ export default function PlaySimulate() {
             top: `${relativePositions.moonfish.top * scale}vw`,
             width: `${originalSizes.moonfish.width * scale}vw`,
             height: `${originalSizes.moonfish.height * scale}vw`,
-            zIndex: getFishZIndex('swordfish'),
+            zIndex: getFishZIndex(),
             pointerEvents: 'none',
             transformOrigin: 'center center',
             ...getFishSwimStyle('moonfish'),
@@ -872,7 +871,7 @@ export default function PlaySimulate() {
             top: `${relativePositions.whaleshark.top * scale}vw`,
             width: `${originalSizes.whaleshark.width * scale}vw`,
             height: `${originalSizes.whaleshark.height * scale}vw`,
-            zIndex: getFishZIndex('moonfish'),
+            zIndex: getFishZIndex(),
             pointerEvents: 'none',
             transformOrigin: 'center center',
             ...getFishSwimStyle('whaleshark'),
