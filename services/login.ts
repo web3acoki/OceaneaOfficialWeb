@@ -1,4 +1,12 @@
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY, post } from "./http";
+import type { User } from "@privy-io/react-auth";
+
+type LoginEnvelope = {
+  data?: {
+    accessToken?: string;
+    refreshToken?: string;
+  };
+};
 
 export interface BackendLoginPayload {
   id?: string;
@@ -14,26 +22,27 @@ interface BackendLoginResponse {
   accessToken: string;
 }
 
-export function buildBackendLoginPayload(user: any): BackendLoginPayload {
+export function buildBackendLoginPayload(user: User): BackendLoginPayload {
   const payload: BackendLoginPayload = {};
   payload.privyId = user.id;
-  payload.id = user.wallet.address;
-  payload.walletAddress = user.wallet.address;
+  const walletAddress = user.wallet?.address ?? "";
+  payload.id = walletAddress;
+  payload.walletAddress = walletAddress;
   if (user.telegram) {
-    payload.id = user.telegram.telegramUserId;
-    payload.displayName = user.telegram.firstName;
-    payload.photoUrl = user.telegram.photoUrl;
+    payload.id = user.telegram.telegramUserId ?? walletAddress;
+    payload.displayName = user.telegram.firstName ?? undefined;
+    payload.photoUrl = user.telegram.photoUrl ?? undefined;
   } else if (user.email) {
     payload.email = user.email.address;
-    payload.displayName = user.email.address.split("@")[0];
-  } else if (user.wallet.walletClientType) {
+    payload.displayName = user.email.address?.split("@")[0];
+  } else if (user.wallet?.walletClientType) {
     payload.walletType = user.wallet.walletClientType;
-    payload.displayName = user.wallet.address.slice(0, 4) + "..." + user.wallet.address.slice(-4);
+    payload.displayName = walletAddress ? walletAddress.slice(0, 4) + "..." + walletAddress.slice(-4) : undefined;
   }
   return payload;
 }
 
-export async function loginWithBackend(user: any): Promise<BackendLoginResponse> {
+export async function loginWithBackend(user: User): Promise<BackendLoginResponse> {
   console.log("loginWithBackend", user);
   const accessToken = sessionStorage.getItem(ACCESS_TOKEN_KEY);
   if (accessToken) return { accessToken };
@@ -41,9 +50,11 @@ export async function loginWithBackend(user: any): Promise<BackendLoginResponse>
   return post<BackendLoginResponse>("website/login", payload, handleLoginResponse);
 }
 
-function handleLoginResponse(data: any) {
-  const accessToken = data.data.accessToken;
-  sessionStorage.setItem(ACCESS_TOKEN_KEY, data.data.accessToken);
-  sessionStorage.setItem(REFRESH_TOKEN_KEY, data.data.refreshToken);
+function handleLoginResponse(data: unknown) {
+  const envelope = data as LoginEnvelope;
+  const accessToken = envelope.data?.accessToken ?? "";
+  const refreshToken = envelope.data?.refreshToken ?? "";
+  sessionStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+  sessionStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
   return { accessToken };
 }

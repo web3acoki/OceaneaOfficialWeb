@@ -13,6 +13,10 @@ export interface UserInfoResponse {
   data: displayData;
 }
 
+type UserInfoEnvelope = {
+  data: displayData;
+};
+
 export function getUserInfo(): Promise<UserInfoResponse> {
-  return get<UserInfoResponse>("website/userinfo", (data: any) => ({ data: data.data }));
+  return get<UserInfoResponse>("website/userinfo", (data: unknown) => ({ data: (data as UserInfoEnvelope).data }));
 }

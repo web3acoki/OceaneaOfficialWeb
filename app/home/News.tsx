@@ -41,8 +41,21 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
               </p>
               <button className="fml-[33/329] flex h-[calc(22/329*100cqw)] w-[calc(121/329*100cqw)] items-center justify-center rounded-full bg-white ft-[13/329] font-bold text-[#0c0c0c]">
                 <span>READ MORE</span>
-                <span className="relative ml-[calc(9/329*100cqw)] size-[calc(18/329*100cqw)] rounded-full bg-[#0c0c0c]">
-                  <span className="absolute left-[32%] top-1/2 size-[36%] -translate-y-1/2 rotate-45 border-r-[calc(1.4/329*100cqw)] border-t-[calc(1.4/329*100cqw)] border-white" />
+                <span className="ml-[calc(9/329*100cqw)] flex size-[calc(18/329*100cqw)] shrink-0 items-center justify-center rounded-full bg-[#0c0c0c]">
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 18 18"
+                    className="size-[calc(12/329*100cqw)]"
+                    fill="none"
+                  >
+                    <path
+                      d="M7 5L11 9L7 13"
+                      stroke="white"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </span>
               </button>
             </div>

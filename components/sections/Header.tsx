@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { usePrivy } from "@privy-io/react-auth";
@@ -31,9 +31,6 @@ export default function Header() {
   const toShortText = (text: string) => text.slice(0, 10);
   const buttonText = displayName ? toShortText(displayName) : "Log in";
   const onButtonClick = () => displayName ? setOpen(true) : login();
-  const shellW = isMobileMode
-    ? "w-[min(calc(100vw-40px),1320px)]"
-    : "w-[min(calc(100vw-80px),1320px)]";
   const onLogoClick = () => {
     if (pathname === "/home" || pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -89,13 +86,13 @@ export default function Header() {
   }, [navDropdownIndex]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (!isMobileMode) closeMobileNav();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMobileMode]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     closeMobileNav();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   useEffect(() => {
@@ -109,24 +106,22 @@ export default function Header() {
       document.body.classList.remove("oceanea-mobile-nav-open");
       window.removeEventListener("keydown", onKey);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mobileNavOpen]);
   
   return <>
       {!isMobileMode && <>  
-        <div className={`fixed z-50 ${shellW} -translate-x-1/2 left-1/2`}>
-          <div className="relative fmt-[26/1320] aspect-1320/80 flex rounded-full bg-white shadow-[0px_0px_12px_3px_rgba(0,0,0,0.15)]">
-            <button type="button" aria-label="Go to home" onClick={onLogoClick} className="fm-[25/1320] cursor-pointer">
-              <img src="/logo.svg" className="w-full h-full"/>
+        <div className="fixed left-1/2 z-50 w-[min(calc(100vw-80px),1140px)] -translate-x-1/2">
+          <div className="relative mt-[38px] flex h-[60px] items-center rounded-[122px] bg-white pb-[8px] pl-[22px] pr-[9px] pt-[7px] shadow-[0px_0px_12px_3px_rgba(0,0,0,0.15)]">
+            <button type="button" aria-label="Go to home" onClick={onLogoClick} className="flex h-[21px] w-[159px] shrink-0 cursor-pointer items-center">
+              <img src="/logo.svg" className="w-full h-auto" alt="Oceanea" />
             </button>
-            <div className="absolute left-21/40 top-1/2 w-1/2 h-1/2 -translate-x-1/2 -translate-y-1/2 @container-[size]">
-              <div ref={desktopNavClusterRef} className="flex items-center whitespace-nowrap fg-[38/660]">
+            <div className="ml-[149px] w-[545px] shrink-0">
+              <div ref={desktopNavClusterRef} className="flex items-center justify-center gap-[28px] whitespace-nowrap">
                 {navTopLabels.map((label, i) => (
-                  <Fragment key={label}>
-                    <span className="relative inline-block align-middle">
+                  <span key={label} className="relative inline-flex items-center gap-[10px] align-middle">
                       <button
                         type="button"
-                        className="hover:opacity-75 ft-[27/660] cursor-pointer border-0 bg-transparent p-0 font-inherit text-inherit"
+                        className="cursor-pointer border-0 bg-transparent p-0 text-[20px] font-normal leading-[normal] text-[#0c0c0c] hover:opacity-75"
                         aria-expanded={navDropdownIndex === i}
                         aria-haspopup="menu"
                         aria-controls={`header-nav-menu-${label}`}
@@ -135,6 +130,14 @@ export default function Header() {
                       >
                         {label}
                       </button>
+                      <svg
+                        aria-hidden="true"
+                        viewBox="0 0 10 5"
+                        className="block h-[5px] w-[10px] shrink-0"
+                        fill="none"
+                      >
+                        <path d="M1 1L5 4L9 1" stroke="#0c0c0c" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
                       {navDropdownIndex === i && (
                         <div
                           id={`header-nav-menu-${label}`}
@@ -145,7 +148,7 @@ export default function Header() {
                           {navLinkColumns[i].map((item) => {
                             const href = navLinkHref[item];
                             const rowCls =
-                              "block w-full cursor-pointer whitespace-nowrap rounded-xl px-4 py-2.5 text-left ft-[16/660] font-medium text-[#0c0c0c] no-underline outline-none hover:bg-[#0c0c0c]/[0.06] focus-visible:bg-[#0c0c0c]/[0.08]";
+                              "block w-full cursor-pointer whitespace-nowrap rounded-xl px-4 py-2.5 text-left text-[14px] font-normal text-[#0c0c0c] no-underline outline-none hover:bg-[#0c0c0c]/[0.06] focus-visible:bg-[#0c0c0c]/[0.08]";
                             return href ? (
                               <Link
                                 key={item}
@@ -164,14 +167,17 @@ export default function Header() {
                           })}
                         </div>
                       )}
-                    </span>
-                    <p className="opacity-75 ft-[15/660]">|</p>
-                  </Fragment>
+                  </span>
                 ))}
-                <p className="hover:opacity-75 ft-[27/660] cursor-pointer">Join Oceanea</p>
+                <p className="cursor-pointer text-[20px] font-normal leading-[normal] text-[#0c0c0c] hover:opacity-75">Join Oceanea</p>
               </div>
             </div>
-            <Button text={buttonText} className="ml-auto fm-[15/1320] aspect-166/53" onClick={onButtonClick}/>
+            <Button
+              text={buttonText}
+              className="ml-auto h-[45px] w-[107px]"
+              textClassName="text-[20px] font-normal"
+              onClick={onButtonClick}
+            />
             </div>
           </div>
         </>

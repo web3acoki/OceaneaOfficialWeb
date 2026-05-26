@@ -24,7 +24,7 @@ export default function NewsCardsStrip({ className = "", children, enableDrag = 
         /* already released */
       }
     }
-  }, []);
+  }, [enableDrag]);
 
   const onPointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
     if (!enableDrag) return;

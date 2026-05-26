@@ -16,7 +16,7 @@ export default function Frotier() {
       className={
         isMobileMode
           ? "absolute inset-0 z-0 flex items-start justify-center pointer-events-none fpt-[205/340]"
-          : "absolute inset-0 z-0 flex items-start justify-center pointer-events-none fpt-[410/1320]"
+          : "absolute inset-0 z-0 flex items-start justify-center pointer-events-none pt-[410px]"
       }
       data-frontier-dolphin="static"
       style={{
@@ -31,7 +31,7 @@ export default function Frotier() {
         className={
           isMobileMode
             ? "w-300/340 h-auto max-w-none object-contain"
-            : "w-749/1320 h-auto max-w-none object-contain"
+            : "w-[749px] h-auto max-w-none object-contain"
         }
         src="/frontier.mp4"
         autoPlay
@@ -88,7 +88,7 @@ export default function Frotier() {
   return <>
     <DebugBg className={isMobileMode
       ? "relative -translate-x-1/2 left-1/2 fmt-[60/340] aspect-340/400 flex flex-col"
-      : "relative -translate-x-1/2 left-1/2 fmt-[160/1320] aspect-1320/920 flex flex-col"}>
+      : "relative left-1/2 mt-[160px] h-[920px] w-[1140px] -translate-x-1/2 flex flex-col"}>
       <img
         src="/frontier-title.png"
         alt=""
@@ -96,14 +96,14 @@ export default function Frotier() {
         decoding="async"
         className={isMobileMode
           ? "absolute z-10 -translate-x-1/2 left-1/2 w-88/340 "
-          : "absolute z-10 -translate-x-1/2 left-1/2 w-261/1320"}
+          : "absolute z-10 -translate-x-1/2 left-1/2 w-[225px]"}
       />
       <p className={isMobileMode
         ? "relative z-10 text-center fmt-[6/340] font-medium ft-[32/340] fls-[-0.96/340] flh-[35/340]"
-        : "relative z-10 text-center fmt-[50/1320] font-medium ft-[96/1320] fls-[-2.88/1320]"}>Shape the Ocean&apos;s Future</p>
+        : "relative z-10 mt-[50px] text-center text-[48px] font-medium leading-[56px]"}>Shape the Ocean&apos;s Future</p>
       <p className={isMobileMode
         ? "relative z-10 mx-auto fmt-[24/340] ft-[14/340] fls-[-0.42/340] text-center text-[#7D7D7D] flh-[15/340] fmx-[20/340]"
-        : "relative z-10 fmx-[200/1320] fmt-[27/1320] ft-[28/1320] fls-[-0.84/1320] text-center text-[#7D7D7D] whitespace-pre-line"}>{subtitleText}</p>
+        : "relative z-10 mx-auto mt-[24px] w-[736px] text-center text-[16px] leading-[22px] tracking-[-0.48px] text-[#7D7D7D] whitespace-pre-line"}>{subtitleText}</p>
       {renderDolphins()}
     </DebugBg>
   </>;

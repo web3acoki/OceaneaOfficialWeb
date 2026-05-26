@@ -22,11 +22,11 @@ export default function Community() {
         />
         <p className={isMobileMode
           ? "ft-[32/340] font-medium fls-[-0.96/340] text-center w-240/340 flh-[35/340]"
-          : "ft-[96/1320] font-medium fls-[-2.88/1320] text-center"}>Unlock the Ocean Together</p>
+          : "ft-[60/1320] font-medium flh-[70/1320] text-center"}>Unlock the Ocean Together</p>
       </div>
       <p className={isMobileMode
         ? "fmt-[24/340] ft-[14/340] fls-[-0.42/340] text-center text-[#7D7D7D] flh-[15/340]"
-        : "fmt-[20/1320] ft-[32/1320] fls-[-0.84/1320] text-center text-[#7D7D7D]"}>{bodyText}</p>
+        : "fmt-[18/1320] fmx-[140/1320] ft-[24/1320] flh-[30/1320] text-center text-[#7D7D7D]"}>{bodyText}</p>
       <div className={isMobileMode
         ? "relative w-full fmt-[25/340] aspect-340/360 overflow-hidden fr-[25/340]"
         : "relative w-full fmt-[40/1320] aspect-1320/600 overflow-hidden fr-[50/1920]"}>

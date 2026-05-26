@@ -239,7 +239,7 @@ unknown and advance the ocean ecosystem.`;
   return <>
     <DebugBg className={isMobileMode
       ? "relative -translate-x-1/2 left-1/2 fmt-[77/340] aspect-340/400 flex flex-col items-center"
-      :  "relative -translate-x-1/2 left-1/2 fmt-[224/1320] aspect-1320/920 flex flex-col items-center"}>
+      :  "relative left-1/2 mt-[224px] h-[920px] w-[1140px] -translate-x-1/2 flex flex-col items-center"}>
 
       <div ref={containerRef} className="absolute inset-0 z-0 pointer-events-none">
         {debugSvg}
@@ -248,13 +248,13 @@ unknown and advance the ocean ecosystem.`;
 
       <p className={isMobileMode
         ? "relative z-10 ft-[32/340] font-medium fls-[-0.96/340] text-center w-240/340 flh-[35/340]"
-        : "relative z-10 ft-[96/1320] font-medium fls-[-2.88/1320] text-center"}>Built on Real-World Value</p>
+        : "relative z-10 text-center text-[48px] font-medium leading-[56px] tracking-[-1.44px]"}>Built on Real-World Value</p>
       <p className={isMobileMode
         ? "relative z-10 fmt-[24/340] ft-[14/340] fls-[-0.42/340] text-center text-[#7D7D7D] flh-[15/340]"
-        : "relative z-10 w-1227/1320 fmt-[27/1320] ft-[28/1320] fls-[-0.84/1320] text-center text-[#7D7D7D] whitespace-pre-lin"}>{bodyText}</p>
+        : "relative z-10 mt-[24px] w-[920px] text-center text-[16px] leading-[22px] tracking-[-0.48px] text-[#7D7D7D] whitespace-pre-line"}>{bodyText}</p>
       <Button text="Start Your Journey" className={isMobileMode
         ? "relative z-10 fmt-[140/340] w-180/340 aspect-180/30"
-        : "relative z-10 fmt-[450/1320] w-497/1320 aspect-497/80"}/>
+        : "relative z-10 mt-[390px] h-[50px] w-[280px]"} textClassName={isMobileMode ? undefined : "text-[20px] font-bold leading-[normal]"}/>
       <style>{`
         @keyframes jelly-swim {
           0% { offset-distance: 0%; opacity: 0; }

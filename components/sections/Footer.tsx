@@ -6,15 +6,19 @@ import { navLinkColumns, navLinkHref, navTopLabels } from "../nav/siteNav";
 import { useMobileMode } from "../features/MobileMode";
 
 const topNavItems = [
-  { label: navTopLabels[0], fml: "fml-[600/1260]", fmt: "fmt-[20/340]" },
-  { label: navTopLabels[1], fml: "fml-[800/1260]", fmt: "fmt-[50/340]" },
-  { label: navTopLabels[2], fml: "fml-[1000/1260]", fmt: "fmt-[80/340]" },
+  { label: navTopLabels[0], fml: "fml-[570/1260]", fmt: "fmt-[20/340]", desktopLeft: 344 },
+  { label: navTopLabels[1], fml: "fml-[740/1260]", fmt: "fmt-[42/340]", desktopLeft: 514 },
+  { label: navTopLabels[2], fml: "fml-[910/1260]", fmt: "fmt-[64/340]", desktopLeft: 667 },
+  { label: navTopLabels[3], fml: "fml-[1080/1260]", fmt: "fmt-[86/340]", desktopLeft: 807 },
+  { label: "Join Oceanea", fml: "fml-[1160/1260]", fmt: "fmt-[108/340]", desktopLeft: 952 },
 ];
 
 const linkColumns = [
-  { links: [...navLinkColumns[0]], fml: "fml-[600/1260]", fmt: "fmt-[20/340]" },
-  { links: [...navLinkColumns[1]], fml: "fml-[800/1260]", fmt: "fmt-[50/340]" },
-  { links: [...navLinkColumns[2]], fml: "fml-[1000/1260]", fmt: "fmt-[80/340]" },
+  { links: [...navLinkColumns[0]], fml: "fml-[570/1260]", fmt: "fmt-[20/340]", desktopLeft: 344 },
+  { links: [...navLinkColumns[1]], fml: "fml-[740/1260]", fmt: "fmt-[42/340]", desktopLeft: 514 },
+  { links: [...navLinkColumns[2]], fml: "fml-[910/1260]", fmt: "fmt-[64/340]", desktopLeft: 667 },
+  { links: [...navLinkColumns[3]], fml: "fml-[1080/1260]", fmt: "fmt-[86/340]", desktopLeft: 807 },
+  { links: [], fml: "fml-[1160/1260]", fmt: "fmt-[108/340]", desktopLeft: 952 },
 ];
 
 type FooterProps = {
@@ -38,16 +42,16 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
     return <>
       <div className="relative -translate-x-1/2 left-1/2 fmt-[37/340] aspect-340/200 fr-[20/340] bg-black shadow-[0px_6px_10px_10px_rgba(0,0,0,0.05)] overflow-hidden">
         <div className="absolute fmt-[18/340] right-0 w-87/340 flex fg-[50/340]">
-          <img src="/Telegram.svg" className=" w-19/87"/>
-          <img src="/X.svg" className="w-19/87" />
+          <img src="/Telegram.svg" alt="" className=" w-19/87"/>
+          <img src="/X.svg" alt="" className="w-19/87" />
         </div> 
 
-        <p className="absolute fml-[26/340] fmt-[175/340] ft-[8/340] text-[#a9a9a9]"> Copyright © 2026 Roam Networks</p>
-        <p className="absolute fml-[195/340] fmt-[175/340] ft-[8/340] text-[#a9a9a9]">Terms of Service</p>
-        <p className="absolute fml-[269/340] fmt-[175/340] ft-[8/340] text-[#a9a9a9]">Privacy Policy</p>
+        <p className="absolute fml-[26/340] fmt-[175/340] ft-[8/340] text-[#a9a9a9]">Copyright © 2026 Oceanea</p>
+        <p className="absolute fml-[198/340] fmt-[175/340] ft-[8/340] text-[#a9a9a9]">Terms of Service</p>
+        <p className="absolute fml-[270/340] fmt-[175/340] ft-[8/340] text-[#a9a9a9]">Privacy Policy</p>
         
         <div className="fmt-[18/340] fml-[26/340] aspect-77/16 w-77/340 rounded-full bg-white cursor-pointer" onClick={goHome} >
-          <img src="/logo.svg" className="fp-[20/340]"/>
+          <img src="/logo.svg" alt="Oceanea" className="fp-[20/340]"/>
         </div>
 
         <div className="fml-[26/340] text-white">
@@ -60,7 +64,7 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
           {linkColumns.map(({ links, fmt }) => (
             <div key={fmt} className={["absolute flex fg-[13/340]", fmt].join(" ")}>
               {links.map((t) => (
-                <p key={t} className="fmt-[5/340] ft-[9/340] flex-1 min-w-20  whitespace-nowrap ">
+                <p key={t} className="fmt-[5/340] ft-[8/340] flex-1 min-w-18 whitespace-nowrap ">
                   {navLinkHref[t] ? (
                     <Link href={navLinkHref[t]!} className="text-inherit no-underline">
                       {t}
@@ -80,39 +84,43 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
   }
 
   return <>
-    <div className={`relative -translate-x-1/2 left-1/2 ${desktopTopMarginClass} aspect-1320/470 fr-[50/1320] bg-black shadow-md @container-[size]`}>
+    <div className={`relative left-1/2 ${desktopTopMarginClass} h-[469px] w-[1140px] -translate-x-1/2 overflow-hidden rounded-[40px] bg-[#0c0c0c] shadow-[0px_6px_10px_10px_rgba(0,0,0,0.05)]`}>
       
-      <p className="absolute fml-[40/1320] fmt-[420/1320] ft-[20/1320] font-thin text-[#a9a9a9]">Copyright © 2026 <span className="cursor-pointer" onClick={goHome}>Oceanea</span></p>
-      <p className="absolute right-0 fmr-[240/1320] fmt-[420/1320] ft-[20/1320] font-thin text-[#a9a9a9]">Terms of Service</p>
-      <p className="absolute right-0 fmr-[40/1320] fmt-[420/1320] ft-[20/1320] font-thin text-[#a9a9a9]">Privacy Policy</p>
+      <p className="absolute left-[29px] top-[414px] text-[20px] font-thin text-[#7d7d7d]">Copyright © 2026 <span className="cursor-pointer" onClick={goHome}>Oceanea</span></p>
+      <p className="absolute left-[calc(50%+167px)] top-[417px] text-[20px] font-thin text-[#7d7d7d] opacity-80">Terms of Service</p>
+      <p className="absolute left-[calc(50%+404px)] top-[417px] text-[20px] font-thin text-[#7d7d7d] opacity-80">Privacy Policy</p>
       
-      <div className="relative fmx-[30/1320] fmt-[30/1320] aspect-1260/67 flex">
+      <div className="relative h-[67px] w-full">
         <button
           type="button"
           aria-label="Go to home"
           onClick={goHome}
-          className="absolute fml-[0/1260] fmt-[0/1260] flex aspect-207/42 w-207/1260 cursor-pointer items-center justify-center rounded-full bg-white"
+          className="absolute left-[15px] top-[23px] flex h-[42px] w-[207px] cursor-pointer items-center justify-center rounded-[40px] bg-white px-[16px] py-[8px]"
         >
-          <img src="/logo.svg" className="w-148/207" alt="Oceanea" />
+          <img src="/logo.svg" className="h-[19px] w-[148px]" alt="Oceanea" />
         </button>
-        {topNavItems.map(({ label, fml }) => (
-          <p key={label} className={["absolute fmy-[20/1260] ft-[24/1320] font-bold text-white", fml].join(" ")}>{label}</p>
-        ))}
+        <div className="absolute inset-x-0 top-[31px] text-[20px] font-semibold capitalize leading-[normal] text-white">
+          {topNavItems.map(({ label, desktopLeft }) => (
+            <p key={label} className="absolute whitespace-nowrap" style={{ left: desktopLeft }}>{label}</p>
+          ))}
+        </div>
       </div>
 
-      <div className="fml-[98/1320] fmt-[51/1320] w-177/1320 flex flex-col absolute">
-        <div className="fmt-[21/177] fg-[16/177] flex flex-row items-center">
-          <img src="/Telegram.svg" className="w-48/177"/>
-          <img src="/X.svg" className="w-48/177"/>
+      <div className="absolute left-[28px] top-[80px] flex items-center gap-[16px]">
+        <div className="flex size-[48px] items-center justify-center">
+          <img src="/Telegram.svg" alt="" className="size-[36px]"/>
+        </div>
+        <div className="flex size-[48px] items-center justify-center opacity-60">
+          <img src="/X.svg" alt="" className="size-[36px]"/>
         </div> 
       </div>
 
       
-      <div className="fmt-[20/1320] fmx-[30/1320] aspect-1260/529 flex relative">
-        {linkColumns.map(({ links, fml }) => (
-          <div key={fml} className={["absolute ft-[20/1320] w-150/1320", fml].join(" ")}>
+      <div className="absolute inset-x-0 top-[88px] text-[16px] font-normal capitalize leading-[normal] text-[#7d7d7d]">
+        {linkColumns.map(({ links, desktopLeft }, i) => (
+          <div key={i} className="absolute w-[136px]" style={{ left: desktopLeft }}>
              {links.map((label) => (
-               <p key={label} className=" text-white whitespace-nowrap fmt-[35/150]">
+               <p key={label} className="mb-[6px] whitespace-nowrap">
                  {navLinkHref[label] ? (
                    <Link href={navLinkHref[label]!} className="text-inherit no-underline">
                      {label}

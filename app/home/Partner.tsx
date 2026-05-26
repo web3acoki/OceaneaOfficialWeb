@@ -8,7 +8,7 @@ export default function Partner() {
       : "relative -translate-x-1/2 left-1/2 fmt-[220/1320] aspect-1320/260"}>
       <p className={isMobileMode
         ? "ft-[32/340] font-medium fls-[-0.96/340] text-center"
-        : "ft-[96/1320] font-medium fls-[-2.88/1320] text-center"}>Partners & Investors</p>
+        : "ft-[60/1320] font-medium flh-[70/1320] text-center"}>Partners & Investors</p>
       <div className="fmt-[60/1320] flex flex-row items-center justify-center fg-[120/1320]">
         <img src="/partner-creatordao.png" alt="" loading="lazy" decoding="async" className="w-358/1320 transition-transform duration-100 ease-out hover:-translate-y-3" />
         <img src="/partner-layer.png" alt="" loading="lazy" decoding="async" className="w-208/1320 transition-transform duration-100 ease-out hover:-translate-y-3" />
