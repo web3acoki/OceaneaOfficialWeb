@@ -100,11 +100,11 @@ export default function Welcome() {
               <p>Experience, Explore, and Own</p>
               <p>the Ocean</p>
             </div>
-            <p className="w-[495px] text-[20px] font-normal leading-[26px] tracking-[-0.6px]">{subtitleText}</p>
+            <p className="w-[495px] text-[20px] font-medium leading-[26px] tracking-[-0.6px]">{subtitleText}</p>
           </div>
           <Button
             text="Join Oceanea"
-            className="h-[49px] w-[195px]"
+            className="h-[50px] w-[195px]"
             textClassName="text-[20px] font-bold leading-[normal]"
           />
         </div>

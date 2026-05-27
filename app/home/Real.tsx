@@ -248,10 +248,10 @@ unknown and advance the ocean ecosystem.`;
 
       <p className={isMobileMode
         ? "relative z-10 ft-[32/340] font-medium fls-[-0.96/340] text-center w-240/340 flh-[35/340]"
-        : "relative z-10 text-center text-[48px] font-medium leading-[56px] tracking-[-1.44px]"}>Built on Real-World Value</p>
+        : "relative z-10 text-center text-[60px] font-medium leading-[70px] tracking-[-1.8px]"}>Built on Real-World Value</p>
       <p className={isMobileMode
         ? "relative z-10 fmt-[24/340] ft-[14/340] fls-[-0.42/340] text-center text-[#7D7D7D] flh-[15/340]"
-        : "relative z-10 mt-[24px] w-[920px] text-center text-[16px] leading-[22px] tracking-[-0.48px] text-[#7D7D7D] whitespace-pre-line"}>{bodyText}</p>
+        : "relative z-10 mt-[24px] w-[920px] text-center text-[24px] font-normal leading-[30px] tracking-[-0.72px] text-[#7D7D7D] whitespace-pre-line"}>{bodyText}</p>
       <Button text="Start Your Journey" className={isMobileMode
         ? "relative z-10 fmt-[140/340] w-180/340 aspect-180/30"
         : "relative z-10 mt-[390px] h-[50px] w-[280px]"} textClassName={isMobileMode ? undefined : "text-[20px] font-bold leading-[normal]"}/>

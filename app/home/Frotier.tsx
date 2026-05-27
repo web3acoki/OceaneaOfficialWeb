@@ -100,10 +100,10 @@ export default function Frotier() {
       />
       <p className={isMobileMode
         ? "relative z-10 text-center fmt-[6/340] font-medium ft-[32/340] fls-[-0.96/340] flh-[35/340]"
-        : "relative z-10 mt-[50px] text-center text-[48px] font-medium leading-[56px]"}>Shape the Ocean&apos;s Future</p>
+        : "relative z-10 mt-[50px] text-center text-[60px] font-medium leading-[70px] tracking-[-1.8px]"}>Shape the Ocean&apos;s Future</p>
       <p className={isMobileMode
         ? "relative z-10 mx-auto fmt-[24/340] ft-[14/340] fls-[-0.42/340] text-center text-[#7D7D7D] flh-[15/340] fmx-[20/340]"
-        : "relative z-10 mx-auto mt-[24px] w-[736px] text-center text-[16px] leading-[22px] tracking-[-0.48px] text-[#7D7D7D] whitespace-pre-line"}>{subtitleText}</p>
+        : "relative z-10 mx-auto mt-[24px] w-[920px] text-center text-[24px] font-normal leading-[30px] tracking-[-0.72px] text-[#7D7D7D] whitespace-pre-line"}>{subtitleText}</p>
       {renderDolphins()}
     </DebugBg>
   </>;

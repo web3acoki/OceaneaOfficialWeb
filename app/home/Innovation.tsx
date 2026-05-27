@@ -58,10 +58,10 @@ immersive ocean gameplay, what once was vision is now becoming reality`;
       : "relative left-1/2 mt-[220px] h-[210px] w-[1140px] -translate-x-1/2"}>
       <p className={isMobileMode
         ? "font-medium ft-[32/340] fls-[-0.96/340] fmx-[70/340] text-center"
-        : "text-center text-[48px] font-medium leading-[56px] tracking-[-1.44px]"}>Bringing the Vision Alive</p>
+        : "text-center text-[60px] font-medium leading-[70px] tracking-[-1.8px]"}>Bringing the Vision Alive</p>
       <p className={isMobileMode
         ? "fmt-[25/340] flh-[15/340] ft-[14/340] fls-[-0.42/340] text-center text-[#7D7D7D]"
-        : "mx-auto mt-[24px] w-[736px] text-center text-[16px] leading-[22px] tracking-[-0.48px] text-[#7D7D7D]"}>{bodyLine1}</p>
+        : "mx-auto mt-[24px] w-[920px] text-center text-[24px] font-normal leading-[30px] tracking-[-0.72px] text-[#7D7D7D]"}>{bodyLine1}</p>
     </DebugBg>
 
     <DebugBg className={isMobileMode
@@ -95,7 +95,7 @@ immersive ocean gameplay, what once was vision is now becoming reality`;
               : "relative z-10 mx-auto mt-[440px] w-[392px] text-center text-[20px] leading-[26px] tracking-[-0.6px]"}>{part.description}</p>
             <Button text={part.buttonText} className={isMobileMode
               ? "absolute fmx-[80/340] fmt-[10/340] w-180/340 aspect-180/30"
-              : "absolute bottom-[20px] left-1/2 h-[50px] w-[457px] -translate-x-1/2"} textClassName="text-[24px] font-bold leading-[normal]" onClick={part.onButtonClick} />
+              : "absolute bottom-[20px] left-1/2 h-[50px] w-[457px] -translate-x-1/2"} textClassName="text-[20px] font-bold leading-[normal]" onClick={part.onButtonClick} />
           </div>
         </div>
       ))}

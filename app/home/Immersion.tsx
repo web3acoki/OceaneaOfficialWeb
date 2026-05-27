@@ -47,7 +47,7 @@ export default function Immersion() {
         />
         <p className={isMobileMode
           ? "absolute ft-[32/340] fls-[-0.96/340] flh-[35/340] text-center"
-          : "absolute text-center text-[48px] font-medium leading-[56px] tracking-[-1.44px]"}>Enter The Oceanverse</p>
+          : "absolute text-center text-[60px] font-medium leading-[70px] tracking-[-1.8px]"}>Enter The Oceanverse</p>
         <img
           src="/immersion-right.svg"
           alt=""
@@ -60,7 +60,7 @@ export default function Immersion() {
       </div>
       <p className={isMobileMode
         ? "fmt-[18/340] ft-[14/340] fls-[-0.54/340] flh-[15/340] text-[#7D7D7D] text-center"
-        : "mx-auto mt-[12px] w-[672px] text-center text-[16px] leading-[22px] tracking-[-0.48px] text-[#7D7D7D]"}>{subtitleText}</p>
+        : "mx-auto mt-[24px] w-[920px] text-center text-[24px] font-normal leading-[30px] tracking-[-0.72px] text-[#7D7D7D]"}>{subtitleText}</p>
       <div className={isMobileMode
         ? "fmt-[25/340] grid w-full grid-cols-2 fg-[10/340]"
         : "mt-[55px] flex w-full gap-[18px]"}>

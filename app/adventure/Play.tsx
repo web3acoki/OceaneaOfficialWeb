@@ -20,16 +20,16 @@ Meets the Real Ocean`
       : "relative -translate-x-1/2 left-1/2 fmt-[125/1320]"}>
       <p className={isMobileMode
         ? "mx-auto w-[calc(260/340*100%)] min-w-0 whitespace-pre-line ft-[22/340] font-medium flh-[27/340] text-center"
-        : "ft-[36/1320] font-medium flh-[43/1320] text-center"}>{displayPlayTitle}</p>
+        : "ft-[60/1320] font-medium flh-[70/1320] fls-[-1.8/1320] text-center text-[#0C0C0C]"}>{displayPlayTitle}</p>
       <p className={isMobileMode
         ? "fmt-[12/340] mx-auto w-[calc(260/340*100%)] min-w-0 text-center ft-[11/340] font-normal flh-[14/340] text-[#626262]"
-        : "fmt-[8/1320] text-center ft-[12/1320] font-normal flh-[16/1320] text-[#626262] fmx-[258/1320]"}>{playBody}</p>
+        : "fmt-[18/1320] text-center ft-[24/1320] font-normal flh-[30/1320] text-[#7D7D7D] fmx-[218/1320]"}>{playBody}</p>
       <Button
-        text="Play"
+        text="Play Now"
         className={isMobileMode
           ? "fmt-[14/340] w-72/340 aspect-72/24 mx-auto"
-          : "fmt-[13/1320] w-82/1320 aspect-82/30 mx-auto"}
-        textClassName="text-[38cqh]"
+          : "fmt-[24/1320] w-179/1320 aspect-179/50 mx-auto"}
+        textClassName={isMobileMode ? "text-[38cqh]" : "text-[20px] font-bold leading-[normal]"}
         onClick={() => {
           window.open("https://game.oceanea.io/", "_blank", "noopener,noreferrer");
         }}
