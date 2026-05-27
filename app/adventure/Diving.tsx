@@ -42,86 +42,85 @@ export default function Diving() {
 
   const mobileDivingCards = (
     <div
-      className="relative left-1/2 fmt-[24/340] aspect-340/360 w-full -translate-x-1/2 overflow-hidden fr-[25/340] shadow-md"
+      className="relative mt-[28px] ml-[max(0px,calc((100%_-_412px)/2_-_48px))] aspect-[412/480] w-[min(412px,100%)] overflow-visible"
+    >
+      <div
+        className="absolute inset-0 overflow-hidden rounded-[14px]"
       style={{
         background:
-          "linear-gradient(180deg, rgba(22, 64, 114, 0.08) 0%, rgba(247, 252, 254, 0.78) 42%, rgba(255, 255, 255, 1) 62%, rgba(22, 64, 114, 0.18) 100%)",
+            "linear-gradient(180deg, rgba(44, 90, 138, 0.21) 0%, rgba(245, 250, 252, 0.9) 34%, rgba(255, 255, 255, 1) 58%, rgba(34, 78, 128, 0.2) 100%)",
       }}
-    >
-      <img src="/game/diving/diving-img-5.png" alt="" className="pointer-events-none absolute left-[-15%] top-[-3%] w-[44%] max-w-none select-none" />
-      <img src="/game/diving/diving-002-1.png" alt="" className="pointer-events-none absolute right-[-12%] top-[2%] w-[38%] max-w-none select-none" />
-      <img src="/game/diving/diving-002-2.png" alt="" className="pointer-events-none absolute left-[43%] top-[5%] w-[20%] max-w-none select-none" />
-      <img src="/game/diving/diving-object.png" alt="" className="pointer-events-none absolute bottom-[-4%] left-[-8%] w-[34%] max-w-none select-none" />
-      <img src="/game/diving/diving-img-4.png" alt="" className="pointer-events-none absolute bottom-[-6%] right-[-10%] w-[42%] max-w-none select-none" />
+      />
 
-      <div className="relative z-10 grid grid-cols-2 gap-x-[10px] gap-y-[18px] px-[22px] pt-[104px] text-[#0c0c0c]">
-        {cardBlocks.map((block, i) => (
-          <div key={block.title} className={i % 2 === 0 ? "text-right" : "text-left"}>
-            <p className="text-[15px] font-medium leading-[17px]">{block.title}</p>
-            <p className="mt-[6px] text-[9px] font-normal leading-[11px] text-[#626262]">
-              {block.body}
-            </p>
-          </div>
-        ))}
+      <img src="/game/diving/diving-img-5.png" alt="" className="pointer-events-none absolute left-[-54px] top-[30px] z-20 w-[176px] max-w-none select-none" />
+      <img src="/game/diving/diving-002-1.png" alt="" className="pointer-events-none absolute right-[-50px] top-[24px] z-20 w-[166px] max-w-none select-none" />
+      <img src="/game/diving/diving-002-2.png" alt="" className="pointer-events-none absolute left-[244px] top-[86px] z-20 w-[58px] max-w-none select-none opacity-70" />
+      <img src="/game/diving/diving-object.png" alt="" className="pointer-events-none absolute bottom-[28px] left-[-2px] z-20 w-[128px] max-w-none select-none" />
+      <img src="/game/diving/diving-img-4.png" alt="" className="pointer-events-none absolute bottom-[-6px] right-[-92px] z-20 w-[202px] max-w-none select-none" />
+
+      <div className="absolute left-1/2 top-[224px] z-30 h-[76px] w-px -translate-x-1/2 bg-[rgba(169,169,169,0.55)]" />
+      <div className="absolute left-1/2 top-[262px] z-30 h-px w-[68px] -translate-x-1/2 bg-[rgba(169,169,169,0.55)]" />
+
+      <MobileFeatureBlock body={cardBlocks[0].body} title={cardBlocks[0].title} bodyFirst className="left-[72px] top-[164px]" />
+      <MobileFeatureBlock body={cardBlocks[1].body} title={cardBlocks[1].title} bodyFirst className="left-[244px] top-[164px]" />
+      <MobileFeatureBlock body={cardBlocks[2].body} title={cardBlocks[2].title} className="left-[72px] top-[254px]" />
+      <MobileFeatureBlock body={cardBlocks[3].body} title={cardBlocks[3].title} className="left-[244px] top-[254px]" />
       </div>
-    </div>
   );
 
   const desktopDivingCards = (
-    <div className="relative mx-auto aspect-620/710 w-[calc(620/1140*100%)] overflow-visible @container-[size]">
+    <div className="relative left-1/2 mt-[50px] aspect-[1140/1320] w-[min(calc(100vw-80px),1140px)] -translate-x-1/2 overflow-visible">
       <div
-        className="absolute inset-0 overflow-hidden rounded-[calc(34/620*100cqw)] shadow-md"
+        className="absolute inset-0 overflow-hidden rounded-[34px] shadow-md"
         style={{
           background:
-            "linear-gradient(180deg, rgba(22, 64, 114, 0.1) 0%, rgba(247, 252, 254, 0.76) 42%, rgba(255, 255, 255, 1) 61%, rgba(22, 64, 114, 0.2) 100%)",
+            "linear-gradient(180deg, rgba(44, 90, 138, 0.21) 0%, rgba(245, 250, 252, 0.9) 34%, rgba(255, 255, 255, 1) 58%, rgba(34, 78, 128, 0.2) 100%)",
         }}
       />
 
-      <img src="/game/diving/diving-img-5.png" alt="" className="pointer-events-none absolute left-[calc(-72/620*100cqw)] top-[calc(-24/620*100cqw)] z-20 w-[calc(302/620*100cqw)] max-w-none select-none" />
-      <img src="/game/diving/diving-002-1.png" alt="" className="pointer-events-none absolute right-[calc(-72/620*100cqw)] top-[calc(-18/620*100cqw)] z-20 w-[calc(232/620*100cqw)] max-w-none select-none" />
-      <img src="/game/diving/diving-002-2.png" alt="" className="pointer-events-none absolute left-[calc(326/620*100cqw)] top-[calc(130/620*100cqw)] z-20 w-[calc(86/620*100cqw)] max-w-none select-none opacity-58" />
-      <img src="/game/diving/diving-object.png" alt="" className="pointer-events-none absolute bottom-[calc(78/620*100cqw)] left-[calc(0/620*100cqw)] z-20 w-[calc(178/620*100cqw)] max-w-none select-none" />
-      <img src="/game/diving/diving-img-4.png" alt="" className="pointer-events-none absolute bottom-[calc(-30/620*100cqw)] right-[calc(-122/620*100cqw)] z-20 w-[calc(282/620*100cqw)] max-w-none select-none" />
+      <img src="/game/diving/diving-img-5.png" alt="" className="pointer-events-none absolute left-[-15.8%] top-[6%] z-20 w-[48%] max-w-none select-none" />
+      <img src="/game/diving/diving-002-1.png" alt="" className="pointer-events-none absolute right-[-7%] top-[3.8%] z-20 w-[42%] max-w-none select-none" />
+      <img src="/game/diving/diving-002-2.png" alt="" className="pointer-events-none absolute left-[55%] top-[22%] z-20 w-[11.6%] max-w-none select-none opacity-70" />
+      <img src="/game/diving/diving-object.png" alt="" className="pointer-events-none absolute bottom-[6%] left-[-0.1%] z-20 w-[30%] max-w-none select-none" />
+      <img src="/game/diving/diving-img-4.png" alt="" className="pointer-events-none absolute bottom-[2%] right-[-6%] z-20 w-[38%] max-w-none select-none" />
 
-      <FeatureBlock body={cardBlocks[0].body} title={cardBlocks[0].title} bodyFirst className="left-[calc(110/620*100cqw)] top-[calc(204/620*100cqw)]" />
-      <FeatureBlock body={cardBlocks[1].body} title={cardBlocks[1].title} bodyFirst className="left-[calc(352/620*100cqw)] top-[calc(204/620*100cqw)]" />
-      <FeatureBlock body={cardBlocks[2].body} title={cardBlocks[2].title} className="left-[calc(110/620*100cqw)] top-[calc(324/620*100cqw)]" />
-      <FeatureBlock body={cardBlocks[3].body} title={cardBlocks[3].title} className="left-[calc(352/620*100cqw)] top-[calc(324/620*100cqw)]" />
+      <div className="absolute left-1/2 top-[43%] z-30 h-[14%] w-px -translate-x-1/2 bg-[rgba(169,169,169,0.55)]" />
+      <div className="absolute left-1/2 top-[50%] z-30 h-px w-[10%] -translate-x-1/2 bg-[rgba(169,169,169,0.55)]" />
 
-      <div className="absolute left-1/2 top-[calc(238/620*100cqw)] z-30 h-[calc(146/620*100cqw)] w-px -translate-x-1/2 bg-[rgba(169,169,169,0.5)]" />
-      <div className="absolute left-1/2 top-[calc(311/620*100cqw)] z-30 h-px w-[calc(116/620*100cqw)] -translate-x-1/2 bg-[rgba(169,169,169,0.5)]" />
+      <DesktopFeatureBlock body={cardBlocks[0].body} title={cardBlocks[0].title} bodyFirst className="left-[26%] top-[34%]" />
+      <DesktopFeatureBlock body={cardBlocks[1].body} title={cardBlocks[1].title} bodyFirst className="left-[56%] top-[34%]" />
+      <DesktopFeatureBlock body={cardBlocks[2].body} title={cardBlocks[2].title} className="left-[26%] top-[55%]" />
+      <DesktopFeatureBlock body={cardBlocks[3].body} title={cardBlocks[3].title} className="left-[56%] top-[55%]" />
     </div>
   );
 
   return <>
     <DebugBg className={isMobileMode
-      ? "relative -translate-x-1/2 left-1/2 fmt-[48/340] "
-      : "relative -translate-x-1/2 left-1/2 fmt-[125/1320]"}>
+      ? "relative mt-[48px] ml-[max(0px,calc((100%_-_412px)/2_-_48px))] w-[min(412px,100%)]"
+      : "relative mx-auto mt-[125px] w-[760px]"}>
       <p className={isMobileMode
-        ? "mx-auto w-[calc(260/340*100%)] min-w-0 ft-[22/340] font-medium flh-[27/340] text-center"
-        : "ft-[60/1320] font-medium flh-[70/1320] fls-[-1.8/1320] text-center text-[#0C0C0C]"}>Beyond diving.</p>
+        ? "mx-auto w-[260px] min-w-0 text-center text-[22px] font-medium leading-[27px]"
+        : "mx-auto w-full min-w-0 text-center text-[64px] font-semibold leading-[72px] text-[#0C0C0C]"}>Beyond diving.</p>
       <p className={isMobileMode
-        ? "fmt-[12/340] mx-auto w-[calc(260/340*100%)] min-w-0 text-center ft-[11/340] font-normal flh-[14/340] text-[#626262]"
-        : "fmt-[18/1320] text-center ft-[24/1320] font-normal flh-[30/1320] text-[#7D7D7D] fmx-[218/1320]"}>
+        ? "mx-auto mt-[10px] w-[260px] min-w-0 text-center text-[9px] font-normal leading-[11px] text-[#626262]"
+        : "mx-auto mt-[20px] w-[560px] min-w-0 text-center text-[22px] font-normal leading-[28px] text-[#626262]"}>
         Explore, compete, govern, and connect—discover a vast undersea world.
       </p>
       <Button
         text="Play Now"
-        className={isMobileMode
-          ? "fmt-[14/340] mx-auto w-82/340 aspect-82/28"
-          : "fmt-[24/1320] mx-auto w-179/1320 aspect-179/50"}
-        textClassName={isMobileMode ? "text-[38cqh]" : "text-[20px] font-bold leading-[normal]"}
+        className={isMobileMode ? "mx-auto mt-[12px] h-[20px] w-[80px]" : "mx-auto mt-[28px] h-[50px] w-[180px]"}
+        textClassName={isMobileMode ? "text-[10px] font-bold leading-none" : "text-[22px] font-bold leading-none"}
         onClick={() => window.open("https://game.oceanea.io/", "_blank", "noopener,noreferrer")}
       />
     </DebugBg>
 
-    <DebugBg className={isMobileMode ? "fmt-[24/340]" : "relative left-1/2 w-[min(calc(100vw-80px),1140px)] -translate-x-1/2 fmt-[50/1320]"}>
+    <DebugBg className={isMobileMode ? "" : ""}>
       {isMobileMode ? mobileDivingCards : desktopDivingCards}
     </DebugBg>
   </>
 }
 
-function FeatureBlock({
+function MobileFeatureBlock({
   body,
   title,
   className,
@@ -133,18 +132,18 @@ function FeatureBlock({
   bodyFirst?: boolean;
 }) {
   const bodyNode = (
-    <p className="text-center text-[calc(8/620*100cqw)] font-medium leading-[1.25] tracking-[-0.03em] text-[#626262]">
+    <p className="text-center text-[6.2px] font-medium leading-[7.3px] tracking-[-0.03em] text-[#626262]">
       {body}
     </p>
   );
   const titleNode = (
-    <p className="mt-[calc(10/620*100cqw)] whitespace-nowrap text-center text-[calc(16/620*100cqw)] font-medium leading-[1.1] text-[#0c0c0c]">
+    <p className="mt-[7px] whitespace-nowrap text-center text-[14px] font-medium leading-[15px] text-[#0c0c0c]">
       {title}
     </p>
   );
 
   return (
-    <div className={`absolute z-30 w-[calc(158/620*100cqw)] ${className}`}>
+    <div className={`absolute z-30 w-[96px] ${className}`}>
       {bodyFirst ? (
         <>
           {bodyNode}
@@ -152,10 +151,53 @@ function FeatureBlock({
         </>
       ) : (
         <>
-          <p className="whitespace-nowrap text-center text-[calc(16/620*100cqw)] font-medium leading-[1.1] text-[#0c0c0c]">
+          <p className="whitespace-nowrap text-center text-[14px] font-medium leading-[15px] text-[#0c0c0c]">
             {title}
           </p>
-          <p className="mt-[calc(10/620*100cqw)] text-center text-[calc(8/620*100cqw)] font-medium leading-[1.25] tracking-[-0.03em] text-[#626262]">
+          <p className="mt-[8px] text-center text-[6.2px] font-medium leading-[7.3px] tracking-[-0.03em] text-[#626262]">
+            {body}
+          </p>
+        </>
+      )}
+    </div>
+  );
+}
+
+function DesktopFeatureBlock({
+  body,
+  title,
+  className,
+  bodyFirst = false,
+}: {
+  body: string;
+  title: string;
+  className: string;
+  bodyFirst?: boolean;
+}) {
+  const bodyNode = (
+    <p className="text-center text-[16px] font-medium leading-[20px] tracking-[-0.03em] text-[#626262]">
+      {body}
+    </p>
+  );
+  const titleNode = (
+    <p className="mt-[12px] whitespace-nowrap text-center text-[30px] font-medium leading-[34px] text-[#0c0c0c]">
+      {title}
+    </p>
+  );
+
+  return (
+    <div className={`absolute z-30 w-[18%] ${className}`}>
+      {bodyFirst ? (
+        <>
+          {bodyNode}
+          {titleNode}
+        </>
+      ) : (
+        <>
+          <p className="whitespace-nowrap text-center text-[30px] font-medium leading-[34px] text-[#0c0c0c]">
+            {title}
+          </p>
+          <p className="mt-[12px] text-center text-[16px] font-medium leading-[20px] tracking-[-0.03em] text-[#626262]">
             {body}
           </p>
         </>

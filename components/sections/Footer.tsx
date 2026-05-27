@@ -86,7 +86,7 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
   return <>
     <div className={`relative left-1/2 ${desktopTopMarginClass} h-[469px] w-[1140px] -translate-x-1/2 overflow-hidden rounded-[40px] bg-[#0c0c0c] shadow-[0px_6px_10px_10px_rgba(0,0,0,0.05)]`}>
       
-      <p className="absolute left-[29px] top-[414px] text-[20px] font-thin text-[#7d7d7d]">Copyright © 2026 <span className="cursor-pointer" onClick={goHome}>Oceanea</span></p>
+      <p className="absolute left-[58px] top-[414px] text-[20px] font-thin text-[#7d7d7d]">Copyright © 2026 <span className="cursor-pointer" onClick={goHome}>Oceanea</span></p>
       <p className="absolute left-[calc(50%+167px)] top-[417px] text-[20px] font-thin text-[#7d7d7d] opacity-80">Terms of Service</p>
       <p className="absolute left-[calc(50%+404px)] top-[417px] text-[20px] font-thin text-[#7d7d7d] opacity-80">Privacy Policy</p>
       
@@ -95,9 +95,9 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
           type="button"
           aria-label="Go to home"
           onClick={goHome}
-          className="absolute left-[15px] top-[23px] flex h-[42px] w-[207px] cursor-pointer items-center justify-center rounded-[40px] bg-white px-[16px] py-[8px]"
+          className="absolute left-[29px] top-[23px] flex h-[42px] w-[178px] cursor-pointer items-center rounded-[40px] bg-white pl-[29px] pr-[25px] py-[8px]"
         >
-          <img src="/logo.svg" className="h-[19px] w-[148px]" alt="Oceanea" />
+          <img src="/logo.svg" className="h-[16px] w-[124px]" alt="Oceanea" />
         </button>
         <div className="absolute inset-x-0 top-[31px] text-[20px] font-semibold capitalize leading-[normal] text-white">
           {topNavItems.map(({ label, desktopLeft }) => (
@@ -106,7 +106,7 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
         </div>
       </div>
 
-      <div className="absolute left-[28px] top-[80px] flex items-center gap-[16px]">
+      <div className="absolute left-[58px] top-[80px] flex items-center gap-[16px]">
         <div className="flex size-[48px] items-center justify-center">
           <img src="/Telegram.svg" alt="" className="size-[36px]"/>
         </div>

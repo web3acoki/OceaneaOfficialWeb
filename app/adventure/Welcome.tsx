@@ -1,6 +1,6 @@
 import { DebugBg } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode";
-import AdventureButton from "./AdventureButton";
+import AdventureButton, { adventureCtaClassName, adventureCtaTextClassName } from "./AdventureButton";
 
 const titleText = `World's First Diving game
 Integrated with Real-World Diving`;
@@ -27,9 +27,8 @@ Real-World Diving`
           ? "fmt-[12/340] w-[calc(250/340*100%)] min-w-0 text-center ft-[12/340] font-medium flh-[15/340]"
           : "fmt-[18/1320] text-center ft-[20/1320] font-medium fls-[-0.6/1320]"}>{subtitleText}</p>
         <AdventureButton
-          className={isMobileMode
-            ? "fmt-[20/340] w-82/340 aspect-82/28 mx-auto"
-            : "fmt-[24/1320] w-90/1320 aspect-90/38 mx-auto"}
+          className={`${isMobileMode ? "fmt-[20/340]" : "fmt-[24/1320]"} ${adventureCtaClassName(isMobileMode)} mx-auto`}
+          textClassName={adventureCtaTextClassName(isMobileMode)}
           onClick={() => {
             window.open("https://game.oceanea.io/", "_blank", "noopener,noreferrer");
           }}

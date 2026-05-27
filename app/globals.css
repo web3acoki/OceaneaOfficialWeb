@@ -13,6 +13,10 @@
   --font-sans: "Geologica Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 /* XDiver（Player）区块：鱼游动动画 — 来自 Xdiving app/globals.css，组件内 animationName: fish-swim-directional 依赖此定义 */
 @keyframes fish-swim-directional {
   0% {

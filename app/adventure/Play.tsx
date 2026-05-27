@@ -2,6 +2,7 @@ import PlaySimulate from "@/components/common/PlaySimulate";
 import { DebugBg } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode";
 import Button from "@/components/common/Button";
+import { adventureCtaClassName, adventureCtaTextClassName } from "./AdventureButton";
 
 const playTitle = "Where Virtual Diving Meets the Real Ocean";
 
@@ -26,10 +27,8 @@ Meets the Real Ocean`
         : "fmt-[18/1320] text-center ft-[24/1320] font-normal flh-[30/1320] text-[#7D7D7D] fmx-[218/1320]"}>{playBody}</p>
       <Button
         text="Play Now"
-        className={isMobileMode
-          ? "fmt-[14/340] w-72/340 aspect-72/24 mx-auto"
-          : "fmt-[24/1320] w-179/1320 aspect-179/50 mx-auto"}
-        textClassName={isMobileMode ? "text-[38cqh]" : "text-[20px] font-bold leading-[normal]"}
+        className={`${isMobileMode ? "fmt-[14/340]" : "fmt-[24/1320]"} ${adventureCtaClassName(isMobileMode)} mx-auto`}
+        textClassName={adventureCtaTextClassName(isMobileMode)}
         onClick={() => {
           window.open("https://game.oceanea.io/", "_blank", "noopener,noreferrer");
         }}
