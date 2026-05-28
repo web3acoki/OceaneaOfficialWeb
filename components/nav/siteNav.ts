@@ -8,10 +8,11 @@ export const navLinkColumns = [
   ["X-ARTURA", "X-DIVER"],
   ["Airdrop"],
   ["Game Arena"],
-  ["Whitepaper", "Blog"],
+  ["Litepaper", "Blog"],
 ] as const;
 
 export const navLinkHref: Partial<Record<string, string>> = {
   "X-ARTURA": "/innovation",
   "X-DIVER": "/adventure",
+  Litepaper: "https://oceanea.gitbook.io/oceanea-litepaper/",
 };
