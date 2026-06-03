@@ -36,7 +36,7 @@ export default function Header() {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-    router.push("/home");
+    router.push("/");
   };
   const closeMobileNav = () => {
     setMobileNavOpen(false);

@@ -12,6 +12,7 @@ export default function RootLayout({
   return <>
     <html lang="en" className="overflow-x-clip overscroll-x-none">
       <head>
+        <title>Oceanea - Deep Blue. Beyond Diving.</title>
         <link rel="icon" href="/logoIcon.svg" type="image/svg+xml" />
       </head>
       <body className="font-sans antialiased overflow-x-clip overscroll-x-none">

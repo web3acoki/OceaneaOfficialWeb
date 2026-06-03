@@ -35,7 +35,7 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-    router.push("/home");
+    router.push("/");
   };
 
   if (isMobileMode) {
