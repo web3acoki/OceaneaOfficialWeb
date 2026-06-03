@@ -125,7 +125,7 @@ export default function Header() {
                   <span key={label} className="inline-flex items-center gap-[10px] align-middle">
                       <button
                         type="button"
-                        className="cursor-pointer border-0 bg-transparent p-0 text-[20px] font-normal leading-[normal] text-[#0c0c0c] hover:opacity-75"
+                        className={`cursor-pointer rounded-[16px] border-0 px-[12px] py-[5px] text-[20px] font-normal leading-[normal] text-[#0c0c0c] transition-[background-color,box-shadow] duration-150 ease-out hover:bg-[#f1f1f1] hover:shadow-[inset_0_0_0_1px_rgba(12,12,12,0.04)] focus-visible:bg-[#f1f1f1] focus-visible:shadow-[inset_0_0_0_1px_rgba(12,12,12,0.04)] ${navDropdownIndex === i ? "bg-[#f1f1f1] shadow-[inset_0_0_0_1px_rgba(12,12,12,0.04)]" : "bg-transparent shadow-none"}`}
                         aria-expanded={navDropdownIndex === i}
                         aria-haspopup="menu"
                         aria-controls={`header-nav-menu-${label}`}
@@ -167,7 +167,7 @@ export default function Header() {
                 {desktopDropdownItems.map((item) => {
                   const href = navLinkHref[item];
                   const rowCls =
-                    "flex h-[40px] w-full items-center justify-between rounded-[16px] px-[32px] text-left text-[18px] font-normal leading-[normal] no-underline outline-none transition-colors";
+                    "flex h-[40px] w-full items-center justify-between rounded-[16px] px-[32px] text-left text-[18px] font-normal leading-[normal] no-underline outline-none transition-[background-color,box-shadow] duration-150 ease-out";
                   const content = <>
                     <span>{item}</span>
                     <span aria-hidden="true" className="text-[16px]">-&gt;</span>
@@ -177,7 +177,7 @@ export default function Header() {
                       key={item}
                       role="menuitem"
                       href={href}
-                      className={`${rowCls} cursor-pointer text-[#0c0c0c] hover:bg-[#0c0c0c]/[0.06] focus-visible:bg-[#0c0c0c]/[0.08]`}
+                      className={`${rowCls} cursor-pointer text-[#0c0c0c] hover:bg-[#f1f1f1] hover:shadow-[inset_0_0_0_1px_rgba(12,12,12,0.04)] focus-visible:bg-[#f1f1f1] focus-visible:shadow-[inset_0_0_0_1px_rgba(12,12,12,0.04)]`}
                       onClick={() => setNavDropdownIndex(null)}
                     >
                       {content}
