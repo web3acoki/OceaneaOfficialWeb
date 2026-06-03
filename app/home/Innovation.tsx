@@ -19,8 +19,8 @@ type InnovationPart = {
 export default function Innovation() {
   const router = useRouter();
   const isMobileMode = useMobileMode();
-  const onDiscoverXArturaClick = () => router.push("/innovation");
-  const onDiscoverXDiverClick = () => router.push("/adventure");
+  const onDiscoverXArturaClick = () => router.push("/x-artura");
+  const onDiscoverXDiverClick = () => router.push("/x-diver");
 
   const bodyLine1 = `Oceanea is already coming to life in the real world. From next-generation underwater mobility to
 immersive ocean gameplay, what once was vision is now becoming reality`;
