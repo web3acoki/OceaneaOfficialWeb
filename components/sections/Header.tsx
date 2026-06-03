@@ -24,7 +24,6 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [mobileExpandedIndex, setMobileExpandedIndex] = useState<number | null>(null);
-  const [mobileActiveSubItem, setMobileActiveSubItem] = useState<string | null>(null);
   /** 桌面端：当前展开的下拉对应 `navTopLabels` 下标；`null` 为关闭 */
   const [navDropdownIndex, setNavDropdownIndex] = useState<number | null>(null);
   const desktopNavClusterRef = useRef<HTMLDivElement>(null);
@@ -41,11 +40,12 @@ export default function Header() {
   const closeMobileNav = () => {
     setMobileNavOpen(false);
     setMobileExpandedIndex(null);
-    setMobileActiveSubItem(null);
   };
   const mobileExpanded = mobileExpandedIndex !== null;
   const mobileExpandedLabel = mobileExpanded ? navTopLabels[mobileExpandedIndex] : null;
   const mobileExpandedItems = mobileExpanded ? navLinkColumns[mobileExpandedIndex] : [];
+  const desktopDropdownItems = navDropdownIndex !== null ? navLinkColumns[navDropdownIndex] : [];
+  const desktopDropdownLabel = navDropdownIndex !== null ? navTopLabels[navDropdownIndex] : null;
 
   useEffect(() => {
     privyUserRef.current = authenticated && user ? user : null;
@@ -110,15 +110,19 @@ export default function Header() {
   
   return <>
       {!isMobileMode && <>  
-        <div className="fixed left-1/2 z-50 w-[min(calc(100vw-80px),1140px)] -translate-x-1/2">
+        <div
+          ref={desktopNavClusterRef}
+          className="fixed left-1/2 z-50 w-[min(calc(100vw-80px),1140px)] -translate-x-1/2"
+          onMouseLeave={() => setNavDropdownIndex(null)}
+        >
           <div className="relative mt-[38px] flex h-[60px] items-center rounded-[122px] bg-white pb-[8px] pl-[22px] pr-[9px] pt-[7px] shadow-[0px_0px_12px_3px_rgba(0,0,0,0.15)]">
             <button type="button" aria-label="Go to home" onClick={onLogoClick} className="flex h-[21px] w-[159px] shrink-0 cursor-pointer items-center">
               <img src="/logo.svg" className="w-full h-auto" alt="Oceanea" />
             </button>
             <div className="ml-[149px] w-[545px] shrink-0">
-              <div ref={desktopNavClusterRef} className="flex items-center justify-center gap-[28px] whitespace-nowrap">
+              <div className="flex items-center justify-center gap-[28px] whitespace-nowrap">
                 {navTopLabels.map((label, i) => (
-                  <span key={label} className="relative inline-flex items-center gap-[10px] align-middle">
+                  <span key={label} className="inline-flex items-center gap-[10px] align-middle">
                       <button
                         type="button"
                         className="cursor-pointer border-0 bg-transparent p-0 text-[20px] font-normal leading-[normal] text-[#0c0c0c] hover:opacity-75"
@@ -126,7 +130,9 @@ export default function Header() {
                         aria-haspopup="menu"
                         aria-controls={`header-nav-menu-${label}`}
                         id={`header-nav-trigger-${label}`}
-                        onClick={() => setNavDropdownIndex((v) => (v === i ? null : i))}
+                        onMouseEnter={() => setNavDropdownIndex(i)}
+                        onFocus={() => setNavDropdownIndex(i)}
+                        onClick={() => setNavDropdownIndex(i)}
                       >
                         {label}
                       </button>
@@ -138,35 +144,6 @@ export default function Header() {
                       >
                         <path d="M1 1L5 4L9 1" stroke="#0c0c0c" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                      {navDropdownIndex === i && (
-                        <div
-                          id={`header-nav-menu-${label}`}
-                          role="menu"
-                          aria-labelledby={`header-nav-trigger-${label}`}
-                          className="absolute left-1/2 top-full z-[60] mt-[0.4em] min-w-[12.5rem] -translate-x-1/2 rounded-2xl border border-[#0c0c0c]/10 bg-white px-1 py-2 shadow-[0_8px_32px_rgba(0,0,0,0.14)]"
-                        >
-                          {navLinkColumns[i].map((item) => {
-                            const href = navLinkHref[item];
-                            const rowCls =
-                              "block w-full cursor-pointer whitespace-nowrap rounded-xl px-4 py-2.5 text-left text-[14px] font-normal text-[#0c0c0c] no-underline outline-none hover:bg-[#0c0c0c]/[0.06] focus-visible:bg-[#0c0c0c]/[0.08]";
-                            return href ? (
-                              <Link
-                                key={item}
-                                role="menuitem"
-                                href={href}
-                                className={rowCls}
-                                onClick={() => setNavDropdownIndex(null)}
-                              >
-                                {item}
-                              </Link>
-                            ) : (
-                              <span key={item} role="menuitem" className={`${rowCls} cursor-default opacity-50`}>
-                                {item}
-                              </span>
-                            );
-                          })}
-                        </div>
-                      )}
                   </span>
                 ))}
                 <p className="cursor-pointer text-[20px] font-normal leading-[normal] text-[#0c0c0c] hover:opacity-75">Join Oceanea</p>
@@ -179,6 +156,46 @@ export default function Header() {
               onClick={onButtonClick}
             />
             </div>
+          {navDropdownIndex !== null && (
+            <div
+              id={`header-nav-menu-${desktopDropdownLabel}`}
+              role="menu"
+              aria-labelledby={`header-nav-trigger-${desktopDropdownLabel}`}
+              className="absolute left-1/2 top-[98px] z-[60] w-[min(582px,calc(100vw-80px))] -translate-x-1/2 rounded-[24px] border border-[#0c0c0c]/10 bg-white p-[10px] shadow-[0_14px_42px_rgba(0,0,0,0.16)]"
+            >
+              <div className="flex flex-col gap-[4px]">
+                {desktopDropdownItems.map((item) => {
+                  const href = navLinkHref[item];
+                  const rowCls =
+                    "flex h-[40px] w-full items-center justify-between rounded-[16px] px-[32px] text-left text-[18px] font-normal leading-[normal] no-underline outline-none transition-colors";
+                  const content = <>
+                    <span>{item}</span>
+                    <span aria-hidden="true" className="text-[16px]">-&gt;</span>
+                  </>;
+                  return href ? (
+                    <Link
+                      key={item}
+                      role="menuitem"
+                      href={href}
+                      className={`${rowCls} cursor-pointer text-[#0c0c0c] hover:bg-[#0c0c0c]/[0.06] focus-visible:bg-[#0c0c0c]/[0.08]`}
+                      onClick={() => setNavDropdownIndex(null)}
+                    >
+                      {content}
+                    </Link>
+                  ) : (
+                    <span
+                      key={item}
+                      role="menuitem"
+                      aria-disabled="true"
+                      className={`${rowCls} cursor-not-allowed text-[#0c0c0c] opacity-40`}
+                    >
+                      {content}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          )}
           </div>
         </>
       }
@@ -216,13 +233,13 @@ export default function Header() {
           />
           <div className="fixed left-1/2 top-0 z-50 h-[100dvh] w-[min(100vw,402px)] -translate-x-1/2 @container pointer-events-none">
             <div
-              className="pointer-events-auto relative h-full w-full overflow-hidden rounded-bl-[28px] rounded-br-[28px] bg-[#f8f8f8]"
+              className="pointer-events-none relative h-full w-full overflow-hidden rounded-bl-[28px] rounded-br-[28px] bg-[#f8f8f8]"
             >
               <button
                 type="button"
                 aria-label="Go to home"
                 onClick={onLogoClick}
-                className="absolute left-[calc(30/402*100cqw)] top-[12px] h-[25px] w-[calc(115/402*100cqw)] cursor-pointer rounded-[50px] bg-white shadow-[0px_3px_6px_2px_rgba(0,0,0,0.10)]"
+                className="pointer-events-auto absolute left-[calc(30/402*100cqw)] top-[12px] h-[25px] w-[calc(115/402*100cqw)] cursor-pointer rounded-[50px] bg-white shadow-[0px_3px_6px_2px_rgba(0,0,0,0.10)]"
               >
                 <img src="/header/mobile-figma-logo.svg" alt="Oceanea" className="absolute left-[calc(19/115*100%)] top-[7px] h-[10px] w-[calc(77/115*100%)]" />
               </button>
@@ -230,7 +247,7 @@ export default function Header() {
                 type="button"
                 aria-label="Close menu"
                 onClick={closeMobileNav}
-                className="absolute right-[calc(33/402*100cqw)] top-[13px] size-[24px] rotate-45 cursor-pointer"
+                className="pointer-events-auto absolute right-[calc(33/402*100cqw)] top-[13px] size-[24px] rotate-45 cursor-pointer"
               >
                 <img src="/header/mobile-close-icon.svg" alt="" className="size-full" />
               </button>
@@ -238,7 +255,7 @@ export default function Header() {
               <div className="absolute bottom-[70px] left-[calc(37/402*100cqw)] h-px w-[calc(332/402*100cqw)] bg-[#949494]" />
 
               {!mobileExpanded && (
-                <nav aria-label="Mobile navigation" className="absolute bottom-[96px] left-[calc(44/402*100cqw)] top-[110.75px] flex w-[234px] flex-col items-start gap-[20px] overflow-y-auto text-left text-[36px] font-normal leading-[normal] text-[#0c0c0c]">
+                <nav aria-label="Mobile navigation" className="pointer-events-auto absolute bottom-[96px] left-[calc(44/402*100cqw)] top-[110.75px] flex w-[234px] flex-col items-start gap-[20px] overflow-y-auto text-left text-[36px] font-normal leading-[normal] text-[#0c0c0c]">
                   {mobileTopItems.map((label) => (
                     <button
                       key={label}
@@ -248,7 +265,6 @@ export default function Header() {
                         const navIndex = navTopLabels.findIndex((item) => item === label);
                         if (navIndex >= 0) {
                           setMobileExpandedIndex(navIndex);
-                          setMobileActiveSubItem(null);
                         }
                       }}
                     >
@@ -259,7 +275,7 @@ export default function Header() {
               )}
 
               {mobileExpanded && (
-                <nav aria-label="Mobile navigation" className="absolute bottom-[96px] left-[calc(44/402*100cqw)] top-[110.75px] w-[calc(314/402*100cqw)] overflow-y-auto text-left">
+                <nav aria-label="Mobile navigation" className="pointer-events-auto absolute bottom-[96px] left-[calc(44/402*100cqw)] top-[110.75px] w-[calc(314/402*100cqw)] overflow-y-auto text-left">
                   <div className="flex w-[162px] flex-col items-start gap-[10px]">
                     <button
                       type="button"
@@ -272,11 +288,11 @@ export default function Header() {
                     <div className="flex w-[162px] flex-col items-start gap-[12px]">
                       {mobileExpandedItems.map((label) => {
                         const href = navLinkHref[label];
-                        const itemClassName = "flex min-h-[18px] cursor-pointer items-start text-left text-[15px] leading-[normal] text-[#0c0c0c] hover:opacity-75";
+                        const itemClassName = "flex min-h-[18px] items-start text-left text-[15px] leading-[normal]";
                         const content = (
                           <>
                             <span className="mt-[9px] size-[3px] shrink-0 rounded-full bg-[#0c0c0c]" />
-                            <span className={`ml-[6px] whitespace-nowrap pb-[3px] ${mobileActiveSubItem === label ? "border-b border-[#0c0c0c] font-semibold" : "font-normal"}`}>
+                            <span className="ml-[6px] whitespace-nowrap pb-[3px] font-normal">
                               {label}
                             </span>
                           </>
@@ -285,20 +301,19 @@ export default function Header() {
                           <Link
                             key={label}
                             href={href}
-                            className={itemClassName}
+                            className={`${itemClassName} cursor-pointer text-[#0c0c0c] hover:opacity-75`}
                             onClick={closeMobileNav}
                           >
                             {content}
                           </Link>
                         ) : (
-                          <button
+                          <span
                             key={label}
-                            type="button"
-                            className={itemClassName}
-                            onClick={() => setMobileActiveSubItem(label)}
+                            aria-disabled="true"
+                            className={`${itemClassName} cursor-not-allowed text-[#0c0c0c] opacity-40`}
                           >
                             {content}
-                          </button>
+                          </span>
                         );
                       })}
                     </div>
@@ -313,7 +328,6 @@ export default function Header() {
                           const navIndex = navTopLabels.findIndex((item) => item === label);
                           if (navIndex >= 0) {
                             setMobileExpandedIndex(navIndex);
-                            setMobileActiveSubItem(null);
                           }
                         }}
                       >
@@ -330,7 +344,7 @@ export default function Header() {
                   closeMobileNav();
                   onButtonClick();
                 }}
-                className="absolute h-[20px] min-w-[61px] cursor-pointer rounded-[50px] bg-[#0c0c0c] px-[14px] text-[11px] font-bold leading-[20px] text-white hover:bg-[#4c4c4c]"
+                className="pointer-events-auto absolute h-[20px] min-w-[61px] cursor-pointer rounded-[50px] bg-[#0c0c0c] px-[14px] text-[11px] font-bold leading-[20px] text-white hover:bg-[#4c4c4c]"
                 style={{ left: "calc(30 / 402 * 100cqw)", bottom: 28 }}
               >
                 {buttonText === "Log in" ? "Log In" : buttonText}
