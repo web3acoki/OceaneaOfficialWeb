@@ -32,20 +32,20 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
               The World&apos;s First Exoskeleton-Based Underwater Propulsion Device, Redefining Human Movement Below The Surface
             </p>
 
-            <div className="absolute inset-x-0 top-[86.75%] flex items-center">
-              <p aria-hidden="true" className="invisible flex h-[calc(22/329*100cqw)] w-[calc(60/329*100cqw)] items-center justify-center rounded-full border border-white ft-[12/329] flh-[20/329] fls-[-0.15/329]">
+            <div className="absolute inset-x-0 top-[82%] flex items-center justify-center">
+              <p aria-hidden="true" className="hidden h-[calc(22/329*100cqw)] w-[calc(60/329*100cqw)] items-center justify-center rounded-full border border-white ft-[12/329] flh-[20/329] fls-[-0.15/329]">
                 Gearing
               </p>
-              <p aria-hidden="true" className="invisible fml-[7/329] flex h-[calc(22/329*100cqw)] w-[calc(43/329*100cqw)] items-center justify-center rounded-full border border-white ft-[12/329] flh-[20/329] fls-[-0.15/329]">
+              <p aria-hidden="true" className="hidden h-[calc(22/329*100cqw)] w-[calc(43/329*100cqw)] items-center justify-center rounded-full border border-white ft-[12/329] flh-[20/329] fls-[-0.15/329]">
                 RWA
               </p>
-              <button className="fml-[33/329] flex h-[calc(22/329*100cqw)] w-[calc(121/329*100cqw)] items-center justify-center rounded-full bg-white ft-[13/329] font-bold text-[#0c0c0c]">
+              <button className="flex h-[calc(40/329*100cqw)] w-[calc(178/329*100cqw)] items-center justify-center rounded-full bg-white ft-[18/329] font-bold text-[#0c0c0c] transition-transform duration-200 hover:scale-105">
                 <span>READ MORE</span>
-                <span className="ml-[calc(9/329*100cqw)] flex size-[calc(18/329*100cqw)] shrink-0 items-center justify-center rounded-full bg-[#0c0c0c]">
+                <span className="ml-[calc(12/329*100cqw)] flex size-[calc(28/329*100cqw)] shrink-0 items-center justify-center rounded-full bg-[#0c0c0c]">
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 18 18"
-                    className="size-[calc(12/329*100cqw)]"
+                    className="size-[calc(17/329*100cqw)]"
                     fill="none"
                   >
                     <path
@@ -82,8 +82,8 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
             {descLine}
           </p>
 
-          <div className="fmt-[8/165] fmx-[5/165] flex flex-row flex-wrap items-center justify-between">
-            <Button text="READ MORE" className="mx-auto w-85/165 aspect-85/20" />
+          <div className="fmt-[8/165] fmx-[5/165] flex flex-row flex-wrap items-center justify-center">
+            <Button text="READ MORE" className="mx-auto w-120/165 aspect-120/32" />
           </div>
         </div>
       </div>
