@@ -13,7 +13,7 @@ export default function RootLayout({
     <html lang="en" className="overflow-x-clip overscroll-x-none">
       <head>
         <title>Oceanea - Deep Blue. Beyond Diving.</title>
-        <link rel="icon" href="/logoIcon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body className="font-sans antialiased overflow-x-clip overscroll-x-none">
         <PrivyProvider appId="cmjksvwjy05n3l40c0s99jnse" config={{ loginMethods: ["email", "telegram", "wallet"] }}>
