@@ -8,7 +8,7 @@ import Button from "../common/Button";
 import Menu from "../features/Menu";
 import { useMobileMode } from "../features/MobileMode";
 import { navLinkColumns, navLinkHref, navTopLabels } from "../nav/siteNav";
-import { loginWithBackend } from "../../services/login";
+import { buildBackendLoginPayload, loginWithBackend } from "../../services/login";
 import { privyUserRef } from "../../services/http";
 import { getUserInfo } from "../../services/userinfo";
 
@@ -27,9 +27,12 @@ export default function Header() {
   /** 桌面端：当前展开的下拉对应 `navTopLabels` 下标；`null` 为关闭 */
   const [navDropdownIndex, setNavDropdownIndex] = useState<number | null>(null);
   const desktopNavClusterRef = useRef<HTMLDivElement>(null);
-  const toShortText = (text: string) => text.slice(0, 10);
-  const buttonText = displayName ? toShortText(displayName) : "Log in";
-  const onButtonClick = () => displayName ? setOpen(true) : login();
+  const walletAddr = user?.wallet?.address ?? "";
+  const buttonText =
+    authenticated && walletAddr.length > 8
+      ? `${walletAddr.slice(0, 4)}...${walletAddr.slice(-4)}`
+      : "Log in";
+  const onButtonClick = () => (authenticated && user ? setOpen(true) : login());
   const onLogoClick = () => {
     if (pathname === "/home" || pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -48,13 +51,31 @@ export default function Header() {
   const desktopDropdownLabel = navDropdownIndex !== null ? navTopLabels[navDropdownIndex] : null;
 
   useEffect(() => {
-    privyUserRef.current = authenticated && user ? user : null;
+    if (!authenticated || !user) {
+      privyUserRef.current = null;
+      setDisplayName("");
+      return;
+    }
+    privyUserRef.current = user;
+
     const syncButtonText = async () => {
-      if (authenticated && user) await loginWithBackend(user);
-      const res = await getUserInfo();
-      setDisplayName(res.data.displayName || "");
+      let name = "";
+      try {
+        try {
+          const res = await getUserInfo();
+          name = res.data?.displayName ?? "";
+        } catch {
+          await loginWithBackend(user);
+          const res = await getUserInfo();
+          name = res.data?.displayName ?? "";
+        }
+      } catch {
+        /* fall back to Privy profile below */
+      }
+      if (!name) name = buildBackendLoginPayload(user).displayName ?? "";
+      setDisplayName(name);
     };
-    void syncButtonText().catch(() => {});
+    void syncButtonText();
   }, [authenticated, user]);
 
   useEffect(() => {
@@ -152,7 +173,6 @@ export default function Header() {
             <Button
               text={buttonText}
               className="ml-auto h-[45px] w-[107px]"
-              textClassName="text-[20px] font-normal"
               onClick={onButtonClick}
             />
             </div>
