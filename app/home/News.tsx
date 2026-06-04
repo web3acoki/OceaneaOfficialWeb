@@ -27,16 +27,16 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
           <div className="absolute inset-x-0 bottom-0 h-[54.56%] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.68)_66%,rgba(0,0,0,0.92)_100%)]" />
 
           <div className="absolute left-[7.3%] top-[66.66%] h-[28.3%] w-[86.4%] text-center text-white">
-            <p className="absolute left-[27.8%] top-0 w-[43.3%] ft-[24/329] font-medium leading-none">X-ARTURA</p>
-            <p className="absolute left-0 top-[22.9%] w-full ft-[16/329] flh-[20/329] fls-[-0.48/329] capitalize">
+            <p aria-hidden="true" className="invisible absolute left-[27.8%] top-0 w-[43.3%] ft-[24/329] font-medium leading-none">X-ARTURA</p>
+            <p aria-hidden="true" className="invisible absolute left-0 top-[22.9%] w-full ft-[16/329] flh-[20/329] fls-[-0.48/329] capitalize">
               The World&apos;s First Exoskeleton-Based Underwater Propulsion Device, Redefining Human Movement Below The Surface
             </p>
 
             <div className="absolute inset-x-0 top-[86.75%] flex items-center">
-              <p className="flex h-[calc(22/329*100cqw)] w-[calc(60/329*100cqw)] items-center justify-center rounded-full border border-white ft-[12/329] flh-[20/329] fls-[-0.15/329]">
+              <p aria-hidden="true" className="invisible flex h-[calc(22/329*100cqw)] w-[calc(60/329*100cqw)] items-center justify-center rounded-full border border-white ft-[12/329] flh-[20/329] fls-[-0.15/329]">
                 Gearing
               </p>
-              <p className="fml-[7/329] flex h-[calc(22/329*100cqw)] w-[calc(43/329*100cqw)] items-center justify-center rounded-full border border-white ft-[12/329] flh-[20/329] fls-[-0.15/329]">
+              <p aria-hidden="true" className="invisible fml-[7/329] flex h-[calc(22/329*100cqw)] w-[calc(43/329*100cqw)] items-center justify-center rounded-full border border-white ft-[12/329] flh-[20/329] fls-[-0.15/329]">
                 RWA
               </p>
               <button className="fml-[33/329] flex h-[calc(22/329*100cqw)] w-[calc(121/329*100cqw)] items-center justify-center rounded-full bg-white ft-[13/329] font-bold text-[#0c0c0c]">
@@ -72,13 +72,13 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,transparent_45.442%,rgba(255,255,255,0.5)_58%,rgba(255,255,255,0.88)_78%,#ffffff_100%)]" />
 
         <div className="absolute inset-x-0 z-20 fmt-[10/165] flex w-full justify-center fg-[8/165]">
-          <p className="rounded-full bg-0 text-white text-center fpy-[1/165] fpx-[6/165] ft-[6/165]"> RWA </p>
-          <p className="rounded-full bg-0 text-white text-center fpy-[1/165] fpx-[6/165] ft-[6/165]"> Gearing </p>
+          <p aria-hidden="true" className="invisible rounded-full bg-0 text-white text-center fpy-[1/165] fpx-[6/165] ft-[6/165]"> RWA </p>
+          <p aria-hidden="true" className="invisible rounded-full bg-0 text-white text-center fpy-[1/165] fpx-[6/165] ft-[6/165]"> Gearing </p>
         </div>
 
         <div className="relative z-10 flex flex-col fmt-[200/165] fmx-[5/165]">
-          <p className="ft-[15/165] text-center font-medium">X-ARTURA</p>
-          <p className="ft-[8/165] flh-[8/165] fls-[-0.24/165] text-center">
+          <p aria-hidden="true" className="invisible ft-[15/165] text-center font-medium">X-ARTURA</p>
+          <p aria-hidden="true" className="invisible ft-[8/165] flh-[8/165] fls-[-0.24/165] text-center">
             {descLine}
           </p>
 
