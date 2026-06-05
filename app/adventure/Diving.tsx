@@ -7,32 +7,32 @@ export default function Diving() {
 
   const cardBlocks = [
     {
-      title: "Map Unlocking",
-      body: "Expand with the real diving network and unlock new underwater territories.",
+      title: "DIVE & CATCH",
+      body: "Plunge into dynamic marine zones to hunt and gather resources. Every successful catch awards you Gold Coins, serving as your baseline proof of ecosystem contribution.",
       lines: [
         { part: "body", className: "text-right fml-[750/1320] ft-[20/1320] font-medium fls-[-0.6/1320] text-[#626262] flh-[25/1320]" },
         { part: "title", className: "text-right ft-[36/1320] font-medium fmt-[12/1320]" },
       ],
     },
     {
-      title: "Ocean Governance",
-      body: "Participate in open ocean governance and earn ecosystem rewards.",
+      title: "UPGRADE & EXPAND",
+      body: "Reinvest your Gold Coins to upgrade your diving suits, specialized gear, and advanced thrusters. Maximize your hunting efficiency to venture into deadlier, high-yield abysses.",
       lines: [
         { part: "body", className: "text-left fmr-[750/1320] ft-[20/1320] font-medium fls-[-0.6/1320] text-[#626262] flh-[25/1320]" },
         { part: "title", className: "text-left ft-[36/1320] font-medium  fmt-[12/1320]" },
       ],
     },
     {
-      title: "Fishing Arena",
-      body: "Challenge the world's best hunters in thrilling fishing battles.",
+      title: "EMPIRE & AQUARIUM",
+      body: "Decorate, stock, and optimize your personal Aquarium to rapidly boost its total asset value. Utilize your prestige to found powerful Ocean Guilds, pooling player strengths to expand your faction's territory and influence.",
       lines: [
         { part: "title", className: "text-right ft-[36/1320] font-medium" },
         { part: "body", className: "text-right fml-[750/1320] fmt-[12/1320] ft-[20/1320] font-medium fls-[-0.6/1320] text-[#626262] flh-[25/1320]" },
       ],
     },
     {
-      title: "Diving Social",
-      body: "Bridge virtual and real diving communities with lasting social connections.",
+      title: "RANK & CONQUER",
+      body: "Push your individual and guild standings to the limit on the global Seasonal Leaderboards. Out-hunt and out-strategize the competition to walk away with massive, exclusive seasonal prize pools.",
       lines: [
         { part: "title", className: "text-left ft-[36/1320] font-medium " },
         { part: "body", className: "text-left fmr-[750/1320] fmt-[12/1320] ft-[20/1320] font-medium fls-[-0.6/1320] text-[#626262] flh-[25/1320]" },
@@ -81,16 +81,18 @@ export default function Diving() {
       <img src="/game/diving/diving-img-5.png" alt="" className="pointer-events-none absolute left-[-15.8%] top-[6%] z-20 w-[48%] max-w-none select-none" />
       <img src="/game/diving/diving-002-1.png" alt="" className="pointer-events-none absolute right-[-7%] top-[3.8%] z-20 w-[42%] max-w-none select-none" />
       <img src="/game/diving/diving-002-2.png" alt="" className="pointer-events-none absolute left-[55%] top-[22%] z-20 w-[11.6%] max-w-none select-none opacity-70" />
-      <img src="/game/diving/diving-object.png" alt="" className="pointer-events-none absolute bottom-[6%] left-[-0.1%] z-20 w-[30%] max-w-none select-none" />
+      <img src="/game/diving/diving-object.png" alt="" className="pointer-events-none absolute bottom-[-2%] left-[-0.1%] z-20 w-[30%] max-w-none select-none" />
       <img src="/game/diving/diving-img-4.png" alt="" className="pointer-events-none absolute bottom-[2%] right-[-6%] z-20 w-[38%] max-w-none select-none" />
 
-      <div className="absolute left-1/2 top-[43%] z-30 h-[14%] w-px -translate-x-1/2 bg-[rgba(169,169,169,0.55)]" />
-      <div className="absolute left-1/2 top-[50%] z-30 h-px w-[10%] -translate-x-1/2 bg-[rgba(169,169,169,0.55)]" />
+      <div className="absolute left-[10%] top-[32%] z-30 h-[40%] w-[80%]">
+        <div className="absolute left-1/2 top-1/2 h-[24%] w-px -translate-x-1/2 -translate-y-1/2 bg-[rgba(169,169,169,0.55)]" />
+        <div className="absolute left-1/2 top-1/2 h-px w-[16%] -translate-x-1/2 -translate-y-1/2 bg-[rgba(169,169,169,0.55)]" />
 
-      <DesktopFeatureBlock body={cardBlocks[0].body} title={cardBlocks[0].title} bodyFirst className="left-[26%] top-[34%]" />
-      <DesktopFeatureBlock body={cardBlocks[1].body} title={cardBlocks[1].title} bodyFirst className="left-[56%] top-[34%]" />
-      <DesktopFeatureBlock body={cardBlocks[2].body} title={cardBlocks[2].title} className="left-[26%] top-[55%]" />
-      <DesktopFeatureBlock body={cardBlocks[3].body} title={cardBlocks[3].title} className="left-[56%] top-[55%]" />
+        <DesktopFeatureBlock body={cardBlocks[0].body} title={cardBlocks[0].title} bodyFirst className="left-[6%] top-[6%]" />
+        <DesktopFeatureBlock body={cardBlocks[1].body} title={cardBlocks[1].title} bodyFirst className="right-[6%] top-[6%]" />
+        <DesktopFeatureBlock body={cardBlocks[2].body} title={cardBlocks[2].title} className="left-[6%] top-[58%]" />
+        <DesktopFeatureBlock body={cardBlocks[3].body} title={cardBlocks[3].title} className="right-[6%] top-[58%]" />
+      </div>
     </div>
   );
 
@@ -137,7 +139,7 @@ function MobileFeatureBlock({
     </p>
   );
   const titleNode = (
-    <p className="mt-[7px] whitespace-nowrap text-center text-[14px] font-medium leading-[15px] text-[#0c0c0c]">
+    <p className="mt-[7px] text-center text-[14px] font-medium leading-[15px] text-[#0c0c0c]">
       {title}
     </p>
   );
@@ -151,7 +153,7 @@ function MobileFeatureBlock({
         </>
       ) : (
         <>
-          <p className="whitespace-nowrap text-center text-[14px] font-medium leading-[15px] text-[#0c0c0c]">
+          <p className="text-center text-[14px] font-medium leading-[15px] text-[#0c0c0c]">
             {title}
           </p>
           <p className="mt-[8px] text-center text-[6.2px] font-medium leading-[7.3px] tracking-[-0.03em] text-[#626262]">
@@ -175,18 +177,18 @@ function DesktopFeatureBlock({
   bodyFirst?: boolean;
 }) {
   const bodyNode = (
-    <p className="text-center text-[16px] font-medium leading-[20px] tracking-[-0.03em] text-[#626262]">
+    <p className="text-center text-[20px] font-medium leading-[25px] tracking-[-0.03em] text-[#626262]">
       {body}
     </p>
   );
   const titleNode = (
-    <p className="mt-[12px] whitespace-nowrap text-center text-[30px] font-medium leading-[34px] text-[#0c0c0c]">
+    <p className="mt-[12px] whitespace-nowrap text-center text-[clamp(22px,9.5cqw,30px)] font-medium leading-[1.13] text-[#0c0c0c]">
       {title}
     </p>
   );
 
   return (
-    <div className={`absolute z-30 w-[18%] ${className}`}>
+    <div className={`absolute w-[38%] @container ${className}`}>
       {bodyFirst ? (
         <>
           {bodyNode}
@@ -194,10 +196,10 @@ function DesktopFeatureBlock({
         </>
       ) : (
         <>
-          <p className="whitespace-nowrap text-center text-[30px] font-medium leading-[34px] text-[#0c0c0c]">
+          <p className="whitespace-nowrap text-center text-[clamp(22px,9.5cqw,30px)] font-medium leading-[1.13] text-[#0c0c0c]">
             {title}
           </p>
-          <p className="mt-[12px] text-center text-[16px] font-medium leading-[20px] tracking-[-0.03em] text-[#626262]">
+          <p className="mt-[12px] text-center text-[20px] font-medium leading-[25px] tracking-[-0.03em] text-[#626262]">
             {body}
           </p>
         </>
