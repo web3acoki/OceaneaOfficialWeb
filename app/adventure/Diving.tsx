@@ -100,7 +100,7 @@ export default function Diving() {
       : "relative mx-auto mt-[125px] w-[760px]"}>
       <p className={isMobileMode
         ? "mx-auto w-[260px] min-w-0 text-center text-[22px] font-medium leading-[27px]"
-        : "mx-auto w-full min-w-0 text-center text-[64px] font-semibold leading-[72px] text-[#0C0C0C]"}>Beyond diving.</p>
+        : "mx-auto w-full min-w-0 text-center text-[64px] font-semibold leading-[72px] text-[#0C0C0C]"}>Beyond Diving</p>
       <p className={isMobileMode
         ? "mx-auto mt-[10px] w-[260px] min-w-0 text-center text-[9px] font-normal leading-[11px] text-[#626262]"
         : "mx-auto mt-[20px] w-[560px] min-w-0 text-center text-[22px] font-normal leading-[28px] text-[#626262]"}>
