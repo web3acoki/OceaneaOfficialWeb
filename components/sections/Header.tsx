@@ -167,7 +167,6 @@ export default function Header() {
                       </svg>
                   </span>
                 ))}
-                <p className="cursor-pointer text-[20px] font-normal leading-[normal] text-[#0c0c0c] hover:opacity-75">Join Oceanea</p>
               </div>
             </div>
             <Button
