@@ -91,7 +91,10 @@ export default function Welcome() {
         <div className="relative flex flex-col items-center text-center text-white">
           <p className="fmt-[100/340] fmx-[10/340] ft-[22/340] font-medium flh-[24/340] fls-[-0.66/340]">{titleText}</p>
           <p className="fmt-[23/340] w-260/340 font-light ft-[14/340] flh-[13/340] fls-[-0.42/340]">{subtitleText}</p>
-          <Button text="Join Oceanea" className="fmt-[49/340] w-95/340 aspect-95/20" />
+          <div className="fmt-[49/340] flex items-center fg-[10/340]">
+            <Button text="Ocean Pass" className="w-95/340 aspect-95/20" />
+            <Button text="Join Oceanea" className="w-95/340 aspect-95/20" />
+          </div>
         </div>
       ) : (
         <div className="absolute left-[86px] top-[301px] flex w-[969px] flex-col items-center gap-[33px] rounded-[50px] text-center text-white">
@@ -102,11 +105,18 @@ export default function Welcome() {
             </div>
             <p className="w-[495px] text-[20px] font-medium leading-[26px] tracking-[-0.6px]">{subtitleText}</p>
           </div>
-          <Button
-            text="Join Oceanea"
-            className="h-[50px] w-[195px]"
-            textClassName="text-[20px] font-bold leading-[normal]"
-          />
+          <div className="flex items-center gap-[16px]">
+            <Button
+              text="Ocean Pass"
+              className="h-[50px] w-[195px]"
+              textClassName="text-[20px] font-bold leading-[normal]"
+            />
+            <Button
+              text="Join Oceanea"
+              className="h-[50px] w-[195px]"
+              textClassName="text-[20px] font-bold leading-[normal]"
+            />
+          </div>
         </div>
       )}
       <style>{diversKeyframes}</style>

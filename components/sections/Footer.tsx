@@ -21,6 +21,13 @@ const linkColumns = [
   { links: [], fml: "fml-[1160/1260]", fmt: "fmt-[108/340]", desktopLeft: 952 },
 ];
 
+const socialLinks = [
+  { href: "https://t.me/oceanea2", icon: "/Telegram.svg", label: "Telegram" },
+  { href: "https://x.com/Oceanea_global", icon: "/X.svg", label: "X" },
+  { href: "https://medium.com/@oceaneanetwork", icon: "/Medium.svg", label: "Medium" },
+];
+const contactEmail = "official@oceanea.io";
+
 type FooterProps = {
   desktopTopMarginClass?: string;
 };
@@ -41,9 +48,25 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
   if (isMobileMode) {
     return <>
       <div className="relative -translate-x-1/2 left-1/2 fmt-[37/340] aspect-340/200 fr-[20/340] bg-black shadow-[0px_6px_10px_10px_rgba(0,0,0,0.05)] overflow-hidden">
-        <div className="absolute fmt-[18/340] right-0 w-87/340 flex fg-[50/340]">
-          <img src="/Telegram.svg" alt="" className=" w-19/87"/>
-          <img src="/X.svg" alt="" className="w-19/87" />
+        <div className="absolute right-[20px] top-[18px] flex flex-col items-end gap-[6px]">
+          <div className="flex items-center gap-[10px]">
+            {socialLinks.map(({ href, icon, label }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                target="_blank"
+                rel="noreferrer"
+                className="flex size-[19px] items-center justify-center"
+              >
+                <img src={icon} alt="" className="w-full" />
+              </a>
+            ))}
+          </div>
+          <div className="flex max-w-[140px] items-center justify-end gap-[4px] text-right">
+            <img src="/Email.svg" alt="" className="size-[12px] shrink-0" />
+            <span className="break-all text-[8px] leading-[10px] text-[#d9d9d9]/60">{contactEmail}</span>
+          </div>
         </div> 
 
         <p className="absolute fml-[26/340] fmt-[175/340] ft-[8/340] text-[#a9a9a9]">Copyright © 2026 Oceanea</p>
@@ -106,13 +129,25 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
         </div>
       </div>
 
-      <div className="absolute left-[58px] top-[80px] flex items-center gap-[16px]">
-        <div className="flex size-[48px] items-center justify-center">
-          <img src="/Telegram.svg" alt="" className="size-[36px]"/>
+      <div className="absolute left-[58px] top-[80px] flex flex-col items-start gap-[10px]">
+        <div className="flex items-center gap-[16px]">
+          {socialLinks.map(({ href, icon, label }) => (
+            <a
+              key={label}
+              href={href}
+              aria-label={label}
+              target="_blank"
+              rel="noreferrer"
+              className="flex size-[48px] items-center justify-center"
+            >
+              <img src={icon} alt="" className="size-[36px]"/>
+            </a>
+          ))}
         </div>
-        <div className="flex size-[48px] items-center justify-center opacity-60">
-          <img src="/X.svg" alt="" className="size-[36px]"/>
-        </div> 
+        <div className="flex max-w-[280px] items-center gap-[10px]">
+          <img src="/Email.svg" alt="" className="size-[24px] shrink-0"/>
+          <span className="break-all text-[18px] font-normal leading-[22px] text-[#d9d9d9]/60">{contactEmail}</span>
+        </div>
       </div>
 
       
