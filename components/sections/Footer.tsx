@@ -16,7 +16,7 @@ const socialLinks = [
   { href: "https://t.me/oceanea2", icon: "/Telegram.svg", label: "Telegram" },
   { href: "https://x.com/Oceanea_global", icon: "/X.svg", label: "X" },
   { href: "https://medium.com/@oceaneanetwork", icon: "/Medium.svg", label: "Medium" },
-  { href: `mailto:${contactEmail}`, icon: "/Email.svg", label: "Email" },
+  { href: `mailto:${contactEmail}`, icon: "/Email.svg?v=2", label: "Email" },
 ];
 
 type FooterProps = {
