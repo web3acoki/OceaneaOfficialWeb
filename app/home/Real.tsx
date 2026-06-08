@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Button from "@/components/common/Button";
+import LoadedImage from "@/components/common/LoadedImage";
 import { DebugBg, useDebugMode } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode";
 
@@ -214,12 +215,13 @@ export default function Real() {
           );
         })()
       )}
-      <img
+      <LoadedImage
         src={j.src}
         alt=""
         loading="lazy"
         decoding="async"
-        className={`absolute top-0 left-0 block h-auto max-w-none ${j.sizeClass} scale-75`}
+        frameClassName={`absolute top-0 left-0 block ${j.sizeClass} scale-75`}
+        className="h-auto w-full max-w-none"
         onLoad={(e) => {
           const img = e.currentTarget;
           const nw = img.naturalWidth;
@@ -251,7 +253,7 @@ export default function Real() {
         : "relative z-10 mt-[24px] w-[920px] text-center text-[16px] font-normal leading-[22px] tracking-[-0.48px] text-[#7D7D7D] whitespace-pre-line"}>{bodyText}</p>
       <Button text="Start Your Journey" className={isMobileMode
         ? "relative z-10 fmt-[140/340] w-180/340 aspect-180/30"
-        : "relative z-10 mt-[390px] h-[50px] w-[280px]"} textClassName={isMobileMode ? undefined : "text-[20px] font-bold leading-[normal]"}/>
+        : "relative z-10 mt-[390px] h-[50px] w-[280px]"} textClassName={isMobileMode ? undefined : "text-[20px] font-bold leading-[normal]"} onClick={() => window.dispatchEvent(new Event("oceanea:auth-action"))} />
       <style>{`
         @keyframes jelly-swim {
           0% { offset-distance: 0%; opacity: 0; }

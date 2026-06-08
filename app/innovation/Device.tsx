@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import LoadedImage from "@/components/common/LoadedImage";
 import { DebugBg } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode";
 
@@ -49,10 +50,11 @@ export default function Device() {
   return (
     <DebugBg className="relative w-full aspect-1320/1476 fmt-[73/1320]">
       {/* 1170:1120 chevron decoration — SVG with gaussian blur, frame (832, 1042), 256×265 */}
-      <img
+      <LoadedImage
         src="/innovation/device-symbol.svg"
         alt=""
-        className="absolute z-10 select-none pointer-events-none w-256/1320 aspect-256/265 fml-[532/1320] fmt-[0/1320]"
+        frameClassName="absolute z-10 select-none pointer-events-none w-256/1320 aspect-256/265 fml-[532/1320] fmt-[0/1320]"
+        className="size-full"
       />
 
       {/* 1170:1129 subtitle — 60px Geologica Medium TITLE-case, centered */}
@@ -73,25 +75,29 @@ export default function Device() {
         className="absolute z-0 fml-[70/1320] fmt-[274/1320] w-1180/1320 aspect-1180/1202 @container-[size]"
         aria-label="X-Artura performance specifications"
       >
-        <img
+        <LoadedImage
           src="/innovation/device-ring-rings.svg"
           alt=""
-          className="absolute left-[calc(193/1180*100%)] top-[calc(277/1202*100%)] z-0 w-[calc(794/1180*100%)] select-none pointer-events-none"
+          frameClassName="absolute left-[calc(193/1180*100%)] top-[calc(277/1202*100%)] z-0 w-[calc(794/1180*100%)] select-none pointer-events-none"
+          className="size-full"
         />
-        <img
+        <LoadedImage
           src="/innovation/device-ring-leadlines.svg"
           alt=""
-          className="absolute left-[calc(101/1180*100%)] top-[calc(303/1202*100%)] z-10 w-[calc(929/1180*100%)] select-none pointer-events-none"
+          frameClassName="absolute left-[calc(101/1180*100%)] top-[calc(303/1202*100%)] z-10 w-[calc(929/1180*100%)] select-none pointer-events-none"
+          className="size-full"
         />
-        <img
+        <LoadedImage
           src="/innovation/device-content.png"
           alt=""
-          className="absolute left-[calc(214/1180*100%)] top-[calc(80/1202*100%)] z-20 w-[calc(753/1180*100%)] select-none pointer-events-none"
+          frameClassName="absolute left-[calc(214/1180*100%)] top-[calc(80/1202*100%)] z-20 w-[calc(753/1180*100%)] select-none pointer-events-none"
+          className="size-full"
         />
-        <img
+        <LoadedImage
           src="/innovation/device-ring-curve.svg"
           alt=""
-          className="absolute left-[calc(625/1180*100%)] top-[calc(118/1202*100%)] z-30 w-[calc(44/1180*100%)] select-none pointer-events-none"
+          frameClassName="absolute left-[calc(625/1180*100%)] top-[calc(118/1202*100%)] z-30 w-[calc(44/1180*100%)] select-none pointer-events-none"
+          className="size-full"
         />
         <SpecMetric
           value={45}

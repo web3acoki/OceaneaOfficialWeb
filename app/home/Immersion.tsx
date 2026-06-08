@@ -1,4 +1,5 @@
-﻿import { DebugBg } from "@/components/features/DebugMode";
+﻿import LoadedImage from "@/components/common/LoadedImage";
+import { DebugBg } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode";
 
 export default function Immersion() {
@@ -68,11 +69,12 @@ export default function Immersion() {
           <div key={card.title} className={isMobileMode
             ? "group relative aspect-165/267 w-full overflow-hidden fr-[15/340]"
             : "group relative h-[662px] w-[266px] overflow-hidden rounded-[50px]"}>
-            <img
+            <LoadedImage
               src={card.src}
               alt=""
               loading="lazy"
               decoding="async"
+              frameClassName="absolute inset-0"
               className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-130"
             />
             <div className={isMobileMode

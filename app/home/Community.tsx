@@ -1,4 +1,5 @@
-﻿import { DebugBg } from "@/components/features/DebugMode";
+﻿import LoadedImage from "@/components/common/LoadedImage";
+import { DebugBg } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode"; 
 export default function Community() {
   const isMobileMode = useMobileMode();
@@ -30,11 +31,12 @@ export default function Community() {
       <div className={isMobileMode
         ? "relative w-full fmt-[25/340] aspect-340/360 overflow-hidden fr-[25/340]"
         : "relative w-full fmt-[40/1320] aspect-1320/600 overflow-hidden fr-[50/1920]"}>
-        <img
+        <LoadedImage
           src="/community-back.png"
           alt=""
           loading="lazy"
           decoding="async"
+          frameClassName="absolute inset-0"
           className={isMobileMode
             ? "absolute h-[120%] w-auto min-w-full left-[-80%] max-w-none top-[-5%]"
             : "absolute top-[-10%]"}

@@ -1,3 +1,4 @@
+import LoadedImage from "@/components/common/LoadedImage";
 import { DebugBg } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode";
 import AdventureButton, { adventureCtaClassName, adventureCtaTextClassName } from "./AdventureButton";
@@ -18,7 +19,7 @@ Real-World Diving`
     <DebugBg className={isMobileMode
       ? "relative -translate-x-1/2 left-1/2 fmt-[48/340] aspect-340/480 overflow-hidden fr-[15/340]"
       : "relative -translate-x-1/2 left-1/2 fmt-[125/1320] aspect-1140/800 w-[min(calc(100vw-80px),1140px)] fr-[50/1320] overflow-hidden"}>
-      <img src="/game/welcome-back.jpg" alt="" className="absolute left-0 top-0 h-full w-full object-cover"/>
+      <LoadedImage src="/game/welcome-back.jpg" alt="" frameClassName="absolute inset-0" className="size-full object-cover" />
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white">
         <p className={isMobileMode
           ? "w-[calc(260/340*100%)] min-w-0 whitespace-pre-line text-center ft-[19/340] font-medium flh-[23/340]"

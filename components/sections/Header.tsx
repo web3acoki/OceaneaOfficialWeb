@@ -12,8 +12,10 @@ import { buildBackendLoginPayload, loginWithBackend } from "../../services/login
 import { privyUserRef } from "../../services/http";
 import { getUserInfo } from "../../services/userinfo";
 
-const mobileJoinLabel = "Join Oceanea";
-const mobileTopItems = [...navTopLabels, mobileJoinLabel];
+const headerNavItems = navTopLabels.flatMap((label, i) =>
+  label === "Earn" || label === "Build" ? [] : [{ label, links: navLinkColumns[i] }],
+);
+const mobileTopItems = headerNavItems.map((item) => item.label);
 
 export default function Header() {
   const router = useRouter();
@@ -33,6 +35,12 @@ export default function Header() {
       ? `${walletAddr.slice(0, 4)}...${walletAddr.slice(-4)}`
       : "Log in";
   const onButtonClick = () => (authenticated && user ? setOpen(true) : login());
+
+  useEffect(() => {
+    const handler = () => onButtonClick();
+    window.addEventListener("oceanea:auth-action", handler);
+    return () => window.removeEventListener("oceanea:auth-action", handler);
+  }, [authenticated, user, login]);
   const onLogoClick = () => {
     if (pathname === "/home" || pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -45,10 +53,10 @@ export default function Header() {
     setMobileExpandedIndex(null);
   };
   const mobileExpanded = mobileExpandedIndex !== null;
-  const mobileExpandedLabel = mobileExpanded ? navTopLabels[mobileExpandedIndex] : null;
-  const mobileExpandedItems = mobileExpanded ? navLinkColumns[mobileExpandedIndex] : [];
-  const desktopDropdownItems = navDropdownIndex !== null ? navLinkColumns[navDropdownIndex] : [];
-  const desktopDropdownLabel = navDropdownIndex !== null ? navTopLabels[navDropdownIndex] : null;
+  const mobileExpandedLabel = mobileExpanded ? headerNavItems[mobileExpandedIndex]?.label : null;
+  const mobileExpandedItems = mobileExpanded ? headerNavItems[mobileExpandedIndex]?.links ?? [] : [];
+  const desktopDropdownItems = navDropdownIndex !== null ? headerNavItems[navDropdownIndex]?.links ?? [] : [];
+  const desktopDropdownLabel = navDropdownIndex !== null ? headerNavItems[navDropdownIndex]?.label : null;
 
   useEffect(() => {
     if (!authenticated || !user) {
@@ -142,7 +150,7 @@ export default function Header() {
             </button>
             <div className="ml-[149px] w-[545px] shrink-0">
               <div className="flex items-center justify-center gap-[28px] whitespace-nowrap">
-                {navTopLabels.map((label, i) => (
+                {headerNavItems.map(({ label }, i) => (
                   <span key={label} className="inline-flex items-center gap-[10px] align-middle">
                       <button
                         type="button"
@@ -171,7 +179,7 @@ export default function Header() {
             </div>
             <Button
               text={buttonText}
-              className="ml-auto h-[45px] w-[107px]"
+              className="ml-auto h-[45px] w-[130px]"
               onClick={onButtonClick}
             />
             </div>
@@ -281,7 +289,7 @@ export default function Header() {
                       type="button"
                       className="cursor-pointer text-left capitalize hover:opacity-75"
                       onClick={() => {
-                        const navIndex = navTopLabels.findIndex((item) => item === label);
+                        const navIndex = headerNavItems.findIndex((item) => item.label === label);
                         if (navIndex >= 0) {
                           setMobileExpandedIndex(navIndex);
                         }
@@ -344,7 +352,7 @@ export default function Header() {
                         type="button"
                         className="cursor-pointer text-left capitalize hover:text-[#0c0c0c]"
                         onClick={() => {
-                          const navIndex = navTopLabels.findIndex((item) => item === label);
+                          const navIndex = headerNavItems.findIndex((item) => item.label === label);
                           if (navIndex >= 0) {
                             setMobileExpandedIndex(navIndex);
                           }
@@ -363,7 +371,7 @@ export default function Header() {
                   closeMobileNav();
                   onButtonClick();
                 }}
-                className="pointer-events-auto absolute h-[20px] min-w-[61px] cursor-pointer rounded-[50px] bg-[#0c0c0c] px-[14px] text-[11px] font-bold leading-[20px] text-white hover:bg-[#4c4c4c]"
+                className="pointer-events-auto absolute h-[20px] min-w-[80px] cursor-pointer rounded-[50px] bg-[#0c0c0c] px-[16px] text-[11px] font-bold leading-[20px] text-white hover:bg-[#4c4c4c]"
                 style={{ left: "calc(30 / 402 * 100cqw)", bottom: 28 }}
               >
                 {buttonText === "Log in" ? "Log In" : buttonText}
