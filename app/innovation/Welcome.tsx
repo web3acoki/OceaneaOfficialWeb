@@ -1,3 +1,4 @@
+import LoadedImage from "@/components/common/LoadedImage";
 import { DebugBg } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode";
 
@@ -9,13 +10,13 @@ export default function Welcome() {
           ? "relative -translate-x-1/2 left-1/2 fmt-[48/340] aspect-1140/843 w-full overflow-hidden fr-[15/340]"
           : "relative -translate-x-1/2 left-1/2 fmt-[125/1320] aspect-1140/843 w-[min(calc(100vw-80px),1140px)] overflow-hidden fr-[50/1140] @container-[size]"
       }>
-      <img
+      <LoadedImage
         src="/innovation/welcome-back.png"
         alt="Sea turtle and divers in open water"
-        className={isMobileMode
-          ? "absolute max-w-none object-cover w-1419/1140 h-946/843 fml-[-266/1140] fmt-[-16/1140]"
-          : "absolute max-w-none object-cover w-1538/1140 h-1025/843 fml-[-216/1140] fmt-[-16/1140]"
-        }
+        frameClassName={isMobileMode
+          ? "absolute max-w-none w-1419/1140 h-946/843 fml-[-266/1140] fmt-[-16/1140]"
+          : "absolute max-w-none w-1538/1140 h-1025/843 fml-[-216/1140] fmt-[-16/1140]"}
+        className="size-full max-w-none object-cover"
       />
       <p className={isMobileMode
         ? "absolute fmt-[173/1320] fml-[600/1320] w-632/1320 text-right ft-[64/1320] font-medium flh-[70/1320] fls-[-1.92/1320] text-[#F5FDFF]"

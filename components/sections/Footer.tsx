@@ -5,20 +5,10 @@ import { usePathname, useRouter } from "next/navigation";
 import { navLinkColumns, navLinkHref, navTopLabels } from "../nav/siteNav";
 import { useMobileMode } from "../features/MobileMode";
 
-const topNavItems = [
-  { label: navTopLabels[0], fml: "fml-[570/1260]", fmt: "fmt-[20/340]", desktopLeft: 344 },
-  { label: navTopLabels[1], fml: "fml-[740/1260]", fmt: "fmt-[42/340]", desktopLeft: 514 },
-  { label: navTopLabels[2], fml: "fml-[910/1260]", fmt: "fmt-[64/340]", desktopLeft: 667 },
-  { label: navTopLabels[3], fml: "fml-[1080/1260]", fmt: "fmt-[86/340]", desktopLeft: 807 },
-  { label: "Join Oceanea", fml: "fml-[1160/1260]", fmt: "fmt-[108/340]", desktopLeft: 952 },
-];
-
-const linkColumns = [
-  { links: [...navLinkColumns[0]], fml: "fml-[570/1260]", fmt: "fmt-[20/340]", desktopLeft: 344 },
-  { links: [...navLinkColumns[1]], fml: "fml-[740/1260]", fmt: "fmt-[42/340]", desktopLeft: 514 },
-  { links: [...navLinkColumns[2]], fml: "fml-[910/1260]", fmt: "fmt-[64/340]", desktopLeft: 667 },
-  { links: [...navLinkColumns[3]], fml: "fml-[1080/1260]", fmt: "fmt-[86/340]", desktopLeft: 807 },
-  { links: [], fml: "fml-[1160/1260]", fmt: "fmt-[108/340]", desktopLeft: 952 },
+/** Earn / Build 暂时隐藏；不含 Join Oceanea */
+const footerNavItems = [
+  { label: navTopLabels[0], links: [...navLinkColumns[0]], fmt: "fmt-[20/340]", desktopLeft: 514 },
+  { label: navTopLabels[3], links: [...navLinkColumns[3]], fmt: "fmt-[86/340]", desktopLeft: 664 },
 ];
 
 const socialLinks = [
@@ -78,13 +68,13 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
         </div>
 
         <div className="fml-[26/340] text-white">
-          {topNavItems.map(({ label, fmt }) => (
+          {footerNavItems.map(({ label, fmt }) => (
             <p key={label} className={["absolute ft-[12/340] font-bold ", fmt].join(" ")}>{label}</p>
           ))}
         </div>
 
         <div className="fml-[104/340] text-[rgba(255,255,255,0.6)]">
-          {linkColumns.map(({ links, fmt }) => (
+          {footerNavItems.map(({ links, fmt }) => (
             <div key={fmt} className={["absolute flex fg-[13/340]", fmt].join(" ")}>
               {links.map((t) => (
                 <p key={t} className="fmt-[5/340] ft-[8/340] flex-1 min-w-18 whitespace-nowrap ">
@@ -123,7 +113,7 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
           <img src="/logo.svg" className="h-[16px] w-[124px]" alt="Oceanea" />
         </button>
         <div className="absolute inset-x-0 top-[31px] text-[20px] font-semibold capitalize leading-[normal] text-white">
-          {topNavItems.map(({ label, desktopLeft }) => (
+          {footerNavItems.map(({ label, desktopLeft }) => (
             <p key={label} className="absolute whitespace-nowrap" style={{ left: desktopLeft }}>{label}</p>
           ))}
         </div>
@@ -152,7 +142,7 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
 
       
       <div className="absolute inset-x-0 top-[88px] text-[16px] font-normal capitalize leading-[normal] text-[#7d7d7d]">
-        {linkColumns.map(({ links, desktopLeft }, i) => (
+        {footerNavItems.map(({ links, desktopLeft }, i) => (
           <div key={i} className="absolute w-[136px]" style={{ left: desktopLeft }}>
              {links.map((label) => (
                <p key={label} className="mb-[6px] whitespace-nowrap">

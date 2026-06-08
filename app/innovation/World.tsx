@@ -1,4 +1,5 @@
 import Button from "@/components/common/Button";
+import LoadedImage from "@/components/common/LoadedImage";
 import { DebugBg } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode";
 
@@ -30,19 +31,21 @@ export default function World() {
       {/* 1170:1117 dark teal card 1140×759 */}
       <div className="absolute left-1/2 fmt-[250/1320] w-1140/1320 aspect-1140/759 -translate-x-1/2 fr-[50/1140] overflow-hidden bg-[#032D40] @container-[size]">
         {/* 1170:1119 inner world map image 1128×659 */}
-        <img
+        <LoadedImage
           src="/innovation/world-card-bg.png"
           alt="Map of the world showing dive sites"
-          className="absolute select-none pointer-events-none w-1128/1140 aspect-1128/659 fml-[6/1140] fmt-[45/1140] fr-[50/1140] object-cover"
+          frameClassName="absolute select-none pointer-events-none w-1128/1140 aspect-1128/659 fml-[6/1140] fmt-[45/1140] fr-[50/1140]"
+          className="size-full object-cover"
         />
       </div>
 
       {/* 1170:1196 floating diver mask (836×443) at section-local (242, 787) — overlaps card bottom + sticks out */}
       <div className="absolute fml-[242/1320] fmt-[787/1320] w-836/1320 aspect-836/443 overflow-hidden fr-[40/1320]">
-        <img
+        <LoadedImage
           src="/innovation/world-diver.png"
           alt="Diver underwater with bubbles"
-          className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+          frameClassName="absolute inset-0"
+          className="size-full object-cover select-none pointer-events-none"
         />
       </div>
 

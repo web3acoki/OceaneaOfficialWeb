@@ -16,7 +16,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body className="font-sans antialiased overflow-x-clip overscroll-x-none">
-        <PrivyProvider appId="cmjksvwjy05n3l40c0s99jnse" config={{ loginMethods: ["email", "telegram", "wallet"] }}>
+        <PrivyProvider appId="cmq522aqh00cp0elco71pc6yo" config={{ loginMethods: ["email", "telegram", "wallet"] }}>
           {children}
         </PrivyProvider>
       </body>

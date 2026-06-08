@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import LoadedImage from './LoadedImage';
 import { useEffect, useRef, useState, type RefObject } from 'react';
 
 function HarpoonRope({ ropeWidth, ropeRef }: {
@@ -23,7 +23,8 @@ function HarpoonRope({ ropeWidth, ropeRef }: {
         opacity: 0,
       }}
     >
-      <Image
+      <LoadedImage
+        frameClassName="relative block size-full"
         src="/XDiver/HarpoonRope.png"
         alt="Harpoon Rope"
         width={100}
@@ -61,7 +62,8 @@ function HarpoonHead({ headWidth, headHeight, headRef }: {
         opacity: 0,
       }}
     >
-      <Image
+      <LoadedImage
+        frameClassName="relative block size-full"
         src="/XDiver/HarpoonHead.png"
         alt="Harpoon Head"
         width={100}
@@ -178,8 +180,8 @@ export default function PlaySimulate() {
     swordfish: {
       name: 'Swordfish',
       weight: '80kg',
-      value: '4',
-      valueType: 'diamond',
+      value: '1600',
+      valueType: 'gold',
       description: 'An extremely rare fish that radiates a rainbow-colored glow from its body.',
     },
     moonfish: {
@@ -472,18 +474,17 @@ export default function PlaySimulate() {
         }}
       >
         {/* frame-flying-fish.svg 选中框 */}
-        <img
+        <LoadedImage
           src="/XDiver/frame-flying-fish.svg"
           alt="Frame Flying Fish"
+          frameClassName="absolute inset-0 block size-full"
+          className="size-full"
           style={{
             width: '100%',
             height: '100%',
-            objectFit: 'fill', // 填充整个容器，不保持宽高比
+            objectFit: 'fill',
             display: 'block',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            zIndex: 1, // 背景层
+            zIndex: 1,
           }}
         />
         {/* 鱼类名称 - 显示在左上角 */}
@@ -562,12 +563,12 @@ export default function PlaySimulate() {
             minHeight: dialogMinHeight,
           }}
         >
-          <img
+          <LoadedImage
             src="/XDiver/frameDialog.svg"
             alt="Frame Dialog"
+            frameClassName="absolute inset-0 block size-full"
+            className="size-full"
             style={{
-              position: 'absolute',
-              inset: 0,
               width: '100%',
               height: '100%',
               objectFit: 'fill',
@@ -607,7 +608,8 @@ export default function PlaySimulate() {
               pointerEvents: 'none',
             }}
           >
-            <Image
+            <LoadedImage
+        frameClassName="relative block size-full"
               src={data.valueType === 'diamond' ? '/XDiver/Diamond.png' : '/XDiver/Gold.png'}
               alt={data.valueType === 'diamond' ? 'Diamond' : 'Gold'}
               width={28}
@@ -689,7 +691,8 @@ export default function PlaySimulate() {
               setHoveredFish((current) => (current === 'clownfish' ? null : current))
             }
           >
-            <Image
+            <LoadedImage
+        frameClassName="relative block size-full"
               src="/XDiver/Clownfish.png"
               alt="Clownfish"
               width={1831}
@@ -740,7 +743,8 @@ export default function PlaySimulate() {
               setHoveredFish((current) => (current === 'angler' ? null : current))
             }
           >
-            <Image
+            <LoadedImage
+        frameClassName="relative block size-full"
               src="/XDiver/Angler.png"
               alt="Angler"
               width={1866}
@@ -791,7 +795,8 @@ export default function PlaySimulate() {
               setHoveredFish((current) => (current === 'swordfish' ? null : current))
             }
           >
-            <Image
+            <LoadedImage
+        frameClassName="relative block size-full"
               src="/XDiver/Swordfish.png"
               alt="Swordfish"
               width={2473}
@@ -842,7 +847,8 @@ export default function PlaySimulate() {
               setHoveredFish((current) => (current === 'moonfish' ? null : current))
             }
           >
-            <Image
+            <LoadedImage
+        frameClassName="relative block size-full"
               src="/XDiver/Moonfish.png"
               alt="Moonfish"
               width={1249}
@@ -893,7 +899,8 @@ export default function PlaySimulate() {
               setHoveredFish((current) => (current === 'whaleshark' ? null : current))
             }
           >
-            <Image
+            <LoadedImage
+        frameClassName="relative block size-full"
               src="/XDiver/Whaleshark.png"
               alt="Whaleshark"
               width={2717}
@@ -973,7 +980,8 @@ export default function PlaySimulate() {
               transformOrigin: 'center center',
             }}
           >
-            <Image
+            <LoadedImage
+        frameClassName="relative block size-full"
               src="/XDiver/Flyingfish.png"
               alt="Flyingfish"
               width={2390}
@@ -1011,7 +1019,8 @@ export default function PlaySimulate() {
               transformOrigin: 'center center',
             }}
           >
-            <Image
+            <LoadedImage
+        frameClassName="relative block size-full"
               src="/XDiver/Ribbonfish.png"
               alt="Ribbonfish"
               width={2523}
@@ -1049,7 +1058,8 @@ export default function PlaySimulate() {
               transformOrigin: 'center center',
             }}
           >
-            <Image
+            <LoadedImage
+        frameClassName="relative block size-full"
               src="/XDiver/Tuna.png"
               alt="Tuna"
               width={2025}
@@ -1087,7 +1097,8 @@ export default function PlaySimulate() {
               transformOrigin: 'center center',
             }}
           >
-            <Image
+            <LoadedImage
+        frameClassName="relative block size-full"
               src="/XDiver/Octopus.png"
               alt="Octopus"
               width={2369}
@@ -1125,7 +1136,8 @@ export default function PlaySimulate() {
               transformOrigin: 'center center',
             }}
           >
-            <Image
+            <LoadedImage
+        frameClassName="relative block size-full"
               src="/XDiver/Sardine.png"
               alt="Sardine"
               width={2369}
@@ -1163,7 +1175,8 @@ export default function PlaySimulate() {
               transformOrigin: 'center center',
             }}
           >
-            <Image
+            <LoadedImage
+        frameClassName="relative block size-full"
               src="/XDiver/Ray.png"
               alt="Ray"
               width={1820}

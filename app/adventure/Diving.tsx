@@ -1,4 +1,5 @@
 import Button from "@/components/common/Button";
+import LoadedImage from "@/components/common/LoadedImage";
 import { DebugBg } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode";
 
@@ -52,11 +53,11 @@ export default function Diving() {
       }}
       />
 
-      <img src="/game/diving/diving-img-5.png" alt="" className="pointer-events-none absolute left-[-54px] top-[30px] z-20 w-[176px] max-w-none select-none" />
-      <img src="/game/diving/diving-002-1.png" alt="" className="pointer-events-none absolute right-[-50px] top-[24px] z-20 w-[166px] max-w-none select-none" />
-      <img src="/game/diving/diving-002-2.png" alt="" className="pointer-events-none absolute left-[244px] top-[86px] z-20 w-[58px] max-w-none select-none opacity-70" />
-      <img src="/game/diving/diving-object.png" alt="" className="pointer-events-none absolute bottom-[28px] left-[-2px] z-20 w-[128px] max-w-none select-none" />
-      <img src="/game/diving/diving-img-4.png" alt="" className="pointer-events-none absolute bottom-[-6px] right-[-92px] z-20 w-[202px] max-w-none select-none" />
+      <LoadedImage src="/game/diving/diving-img-5.png" alt="" frameClassName="pointer-events-none absolute left-[-54px] top-[30px] z-20 w-[176px] max-w-none select-none" className="size-full" />
+      <LoadedImage src="/game/diving/diving-002-1.png" alt="" frameClassName="pointer-events-none absolute right-[-50px] top-[24px] z-20 w-[166px] max-w-none select-none" className="size-full" />
+      <LoadedImage src="/game/diving/diving-002-2.png" alt="" frameClassName="pointer-events-none absolute left-[244px] top-[86px] z-20 w-[58px] max-w-none select-none opacity-70" className="size-full" />
+      <LoadedImage src="/game/diving/diving-object.png" alt="" frameClassName="pointer-events-none absolute bottom-[28px] left-[-2px] z-20 w-[128px] max-w-none select-none" className="size-full" />
+      <LoadedImage src="/game/diving/diving-img-4.png" alt="" frameClassName="pointer-events-none absolute bottom-[-6px] right-[-92px] z-20 w-[202px] max-w-none select-none" className="size-full" />
 
       <div className="absolute left-1/2 top-[224px] z-30 h-[76px] w-px -translate-x-1/2 bg-[rgba(169,169,169,0.55)]" />
       <div className="absolute left-1/2 top-[262px] z-30 h-px w-[68px] -translate-x-1/2 bg-[rgba(169,169,169,0.55)]" />
@@ -78,11 +79,11 @@ export default function Diving() {
         }}
       />
 
-      <img src="/game/diving/diving-img-5.png" alt="" className="pointer-events-none absolute left-[-15.8%] top-[6%] z-20 w-[48%] max-w-none select-none" />
-      <img src="/game/diving/diving-002-1.png" alt="" className="pointer-events-none absolute right-[-7%] top-[3.8%] z-20 w-[42%] max-w-none select-none" />
-      <img src="/game/diving/diving-002-2.png" alt="" className="pointer-events-none absolute left-[55%] top-[22%] z-20 w-[11.6%] max-w-none select-none opacity-70" />
-      <img src="/game/diving/diving-object.png" alt="" className="pointer-events-none absolute bottom-[-2%] left-[-0.1%] z-20 w-[30%] max-w-none select-none" />
-      <img src="/game/diving/diving-img-4.png" alt="" className="pointer-events-none absolute bottom-[2%] right-[-6%] z-20 w-[38%] max-w-none select-none" />
+      <LoadedImage src="/game/diving/diving-img-5.png" alt="" frameClassName="pointer-events-none absolute left-[-15.8%] top-[6%] z-20 w-[48%] max-w-none select-none" className="size-full" />
+      <LoadedImage src="/game/diving/diving-002-1.png" alt="" frameClassName="pointer-events-none absolute right-[-7%] top-[3.8%] z-20 w-[42%] max-w-none select-none" className="size-full" />
+      <LoadedImage src="/game/diving/diving-002-2.png" alt="" frameClassName="pointer-events-none absolute left-[55%] top-[22%] z-20 w-[11.6%] max-w-none select-none opacity-70" className="size-full" />
+      <LoadedImage src="/game/diving/diving-object.png" alt="" frameClassName="pointer-events-none absolute bottom-[-2%] left-[-0.1%] z-20 w-[30%] max-w-none select-none" className="size-full" />
+      <LoadedImage src="/game/diving/diving-img-4.png" alt="" frameClassName="pointer-events-none absolute bottom-[2%] right-[-6%] z-20 w-[38%] max-w-none select-none" className="size-full" />
 
       <div className="absolute left-[10%] top-[32%] z-30 h-[40%] w-[80%]">
         <div className="absolute left-1/2 top-1/2 h-[24%] w-px -translate-x-1/2 -translate-y-1/2 bg-[rgba(169,169,169,0.55)]" />

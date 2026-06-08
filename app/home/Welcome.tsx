@@ -1,4 +1,5 @@
 ﻿import Button from "@/components/common/Button";
+import LoadedImage from "@/components/common/LoadedImage";
 import { useDebugMode } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode";
 
@@ -57,15 +58,16 @@ export default function Welcome() {
           )}
         </filter>
       </svg>
-      <img
+      <LoadedImage
         src="/welcome-back.png"
         alt=""
         fetchPriority="high"
         decoding="async"
-        className={isMobileMode
-          ? "absolute h-[156.6%] left-[-9.84%] top-[-33.15%] w-[127.19%] max-w-none"
-          : "absolute top-[-79.38%] left-[-8.09%] w-[116.17%] max-w-none"}
-        style={ { filter: "url(#welcome-water-ripple)" }}
+        frameClassName={isMobileMode
+          ? "absolute h-[156.6%] left-[-9.84%] top-[-33.15%] w-[127.19%]"
+          : "absolute top-[-79.38%] left-[-8.09%] w-[116.17%]"}
+        className="size-full max-w-none"
+        style={{ filter: "url(#welcome-water-ripple)" }}
       />
     </>
   );
@@ -77,12 +79,13 @@ export default function Welcome() {
       {waterRippleBg}
       <div className="absolute inset-0">
         {divers.map((d) => (
-          <img
+          <LoadedImage
             key={d.src}
             src={d.src}
             alt=""
             decoding="async"
-            className={`${d.imgClass}`}
+            frameClassName={d.imgClass}
+            className="size-full max-w-none"
             style={{ animation: `divers-float 5000ms ease-in-out ${d.delayMs}ms infinite` }}
           />
         ))}
@@ -91,7 +94,7 @@ export default function Welcome() {
         <div className="relative flex flex-col items-center text-center text-white">
           <p className="fmt-[100/340] fmx-[10/340] ft-[22/340] font-medium flh-[24/340] fls-[-0.66/340]">{titleText}</p>
           <p className="fmt-[23/340] w-260/340 font-light ft-[14/340] flh-[13/340] fls-[-0.42/340]">{subtitleText}</p>
-          <Button text="Join Oceanea" className="fmt-[49/340] w-95/340 aspect-95/20" />
+          <Button text="Join Oceanea" className="fmt-[49/340] w-95/340 aspect-95/20" onClick={() => window.dispatchEvent(new Event("oceanea:auth-action"))} />
         </div>
       ) : (
         <div className="absolute left-[86px] top-[301px] flex w-[969px] flex-col items-center gap-[33px] rounded-[50px] text-center text-white">
@@ -106,6 +109,7 @@ export default function Welcome() {
             text="Join Oceanea"
             className="h-[50px] w-[195px]"
             textClassName="text-[20px] font-bold leading-[normal]"
+            onClick={() => window.dispatchEvent(new Event("oceanea:auth-action"))}
           />
         </div>
       )}

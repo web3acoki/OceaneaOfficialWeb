@@ -1,3 +1,4 @@
+import LoadedImage from "@/components/common/LoadedImage";
 import NewsCardsStrip from "@/components/common/NewsCardsStrip";
 import Button from "@/components/common/Button";
 import { DebugBg } from "@/components/features/DebugMode";
@@ -23,7 +24,7 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
     return (
       <div className="aspect-329/587 w-[calc(328.647/1364.167*100%)] @container-[size]">
         <div className="relative size-full overflow-hidden shadow-[0px_4px_8.5px_2px_rgba(0,0,0,0.05)] fr-[50/329]">
-          <img src={card.src} alt="" loading="lazy" decoding="async" className={card.imageClassName} />
+          <LoadedImage src={card.src} alt="" loading="lazy" decoding="async" frameClassName="absolute inset-0" className={card.imageClassName} />
           <div className="absolute inset-x-0 bottom-0 h-[54.56%] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.68)_66%,rgba(0,0,0,0.92)_100%)]" />
 
           <div className="absolute left-[7.3%] top-[66.66%] h-[28.3%] w-[86.4%] text-center text-white">
@@ -68,7 +69,7 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
   return (
     <div className="aspect-418/740 @container-[size]">
       <div className="relative aspect-418/720 overflow-hidden shadow-[0px_3px_7.5px_rgba(0,0,0,0.10)] fr-[15/165] ">
-        <img src={card.src} alt="" loading="lazy" decoding="async" className={card.imageClassName} />
+        <LoadedImage src={card.src} alt="" loading="lazy" decoding="async" frameClassName="absolute inset-0" className={card.imageClassName} />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,transparent_45.442%,rgba(255,255,255,0.5)_58%,rgba(255,255,255,0.88)_78%,#ffffff_100%)]" />
 
         <div className="absolute inset-x-0 z-20 fmt-[10/165] flex w-full justify-center fg-[8/165]">
