@@ -8,15 +8,16 @@ import { useMobileMode } from "../features/MobileMode";
 /** Earn / Build 暂时隐藏；不含 Join Oceanea */
 const footerNavItems = [
   { label: navTopLabels[0], links: [...navLinkColumns[0]], fmt: "fmt-[20/340]", desktopLeft: 514 },
-  { label: navTopLabels[3], links: [...navLinkColumns[3]], fmt: "fmt-[86/340]", desktopLeft: 664 },
+  { label: navTopLabels[3], links: [...navLinkColumns[3]], fmt: "fmt-[50/340]", desktopLeft: 664 },
 ];
 
+const contactEmail = "official@oceanea.io";
 const socialLinks = [
   { href: "https://t.me/oceanea2", icon: "/Telegram.svg", label: "Telegram" },
   { href: "https://x.com/Oceanea_global", icon: "/X.svg", label: "X" },
   { href: "https://medium.com/@oceaneanetwork", icon: "/Medium.svg", label: "Medium" },
+  { href: `mailto:${contactEmail}`, icon: "/Email.svg", label: "Email" },
 ];
-const contactEmail = "official@oceanea.io";
 
 type FooterProps = {
   desktopTopMarginClass?: string;
@@ -45,18 +46,14 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
                 key={label}
                 href={href}
                 aria-label={label}
-                target="_blank"
-                rel="noreferrer"
+                {...(href.startsWith("mailto:") ? {} : { target: "_blank", rel: "noreferrer" })}
                 className="flex size-[19px] items-center justify-center"
               >
-                <img src={icon} alt="" className="w-full" />
+                <img src={icon} alt="" className="size-full object-contain" />
               </a>
             ))}
           </div>
-          <div className="flex max-w-[140px] items-center justify-end gap-[4px] text-right">
-            <img src="/Email.svg" alt="" className="size-[12px] shrink-0" />
-            <span className="break-all text-[8px] leading-[10px] text-[#d9d9d9]/60">{contactEmail}</span>
-          </div>
+          <span className="max-w-[140px] break-all text-right text-[8px] leading-[10px] text-[#d9d9d9]/60">{contactEmail}</span>
         </div> 
 
         <p className="absolute fml-[26/340] fmt-[175/340] ft-[8/340] text-[#a9a9a9]">Copyright © 2026 Oceanea</p>
@@ -126,18 +123,14 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
               key={label}
               href={href}
               aria-label={label}
-              target="_blank"
-              rel="noreferrer"
+              {...(href.startsWith("mailto:") ? {} : { target: "_blank", rel: "noreferrer" })}
               className="flex size-[48px] items-center justify-center"
             >
-              <img src={icon} alt="" className="size-[36px]"/>
+              <img src={icon} alt="" className="size-[36px] object-contain" />
             </a>
           ))}
         </div>
-        <div className="flex max-w-[280px] items-center gap-[10px]">
-          <img src="/Email.svg" alt="" className="size-[24px] shrink-0"/>
-          <span className="break-all text-[18px] font-normal leading-[22px] text-[#d9d9d9]/60">{contactEmail}</span>
-        </div>
+        <span className="max-w-[280px] break-all text-[18px] font-normal leading-[22px] text-[#d9d9d9]/60">{contactEmail}</span>
       </div>
 
       
