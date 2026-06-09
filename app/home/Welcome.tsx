@@ -117,8 +117,8 @@ export default function Welcome() {
         </p>
         <Button
           text="Join Oceanea"
-          className="absolute left-[calc(99/362*100%)] top-[calc(286/631*100%)] h-[28px] w-[calc(163/362*100%)]"
-          textClassName="text-[15px] leading-none"
+          className="absolute left-1/2 top-[calc(286/631*100%)] aspect-180/30 w-[calc(180/340*100%)] -translate-x-1/2"
+          textClassName="text-[20px] font-bold leading-[normal]"
           onClick={() => window.dispatchEvent(new Event("oceanea:auth-action"))}
         />
         <img
