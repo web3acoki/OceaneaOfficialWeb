@@ -1,4 +1,5 @@
-﻿import Button from "@/components/common/Button";
+﻿import type { CSSProperties } from "react";
+import Button from "@/components/common/Button";
 import LoadedImage from "@/components/common/LoadedImage";
 import { useDebugMode } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode";
@@ -7,6 +8,14 @@ import { useMobileMode } from "@/components/features/MobileMode";
 export default function Welcome() {
   const showDebug = useDebugMode();
   const isMobileMode = useMobileMode();
+
+  const mobileDivers = [
+    { src: "/figma/mobile-home/diver-top-left.png", className: "left-[calc(107/362*100%)] top-[calc(56/631*100%)] w-[calc(45/362*100%)]", imgClassName: "", delayMs: 0 },
+    { src: "/figma/mobile-home/diver-top-right.png", className: "left-[calc(280/362*100%)] top-[calc(159/631*100%)] w-[calc(63/362*100%)]", imgClassName: "", delayMs: 3000 },
+    { src: "/figma/mobile-home/diver-mid-left-new.png", className: "left-[calc(19/362*100%)] top-[calc(305/631*100%)] w-[calc(96/362*100%)]", imgClassName: "rotate-[160.46deg]", delayMs: 1000 },
+    { src: "/figma/mobile-home/diver-mid-right.png", className: "left-[calc(246/362*100%)] top-[calc(290/631*100%)] w-[calc(72/362*100%)]", imgClassName: "", delayMs: 4000 },
+    { src: "/figma/mobile-home/diver-bottom-left-final.png", className: "left-[calc(170/362*100%)] top-[calc(441/631*100%)] w-[calc(69/362*100%)]", imgClassName: "", delayMs: 2000 },
+  ] as const;
 
   const divers = [
     { src: "/welcome-diver-1.png", imgClass: isMobileMode
@@ -32,7 +41,7 @@ export default function Welcome() {
   const diversKeyframes = `
     @keyframes divers-float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(calc(-20 / 1320 * 100vw)); }
+      50% { transform: translateY(calc(-1 * var(--diver-float-distance, calc(20 / 1320 * 100vw)))); }
     }
   `;
   
@@ -71,6 +80,56 @@ export default function Welcome() {
       />
     </>
   );
+
+  if (isMobileMode) {
+    return (
+      <div className="relative left-1/2 fmt-[50/362] aspect-[362/631] w-full -translate-x-1/2 overflow-hidden rounded-[15px] text-white">
+        <img
+          src="/figma/mobile-home/hero-bg.png"
+          alt=""
+          fetchPriority="high"
+          decoding="async"
+          className="absolute left-[-5.41%] top-[-2.27%] h-[144.83%] w-[110.94%] max-w-none"
+        />
+        {mobileDivers.map((diver) => (
+          <div
+            key={diver.src}
+            className={`pointer-events-none absolute select-none ${diver.className}`}
+            style={{
+              "--diver-float-distance": "12px",
+              animation: `divers-float 4600ms ease-in-out ${diver.delayMs}ms infinite`,
+            } as CSSProperties}
+          >
+            <img
+              src={diver.src}
+              alt=""
+              decoding="async"
+              className={`block w-full max-w-none ${diver.imgClassName}`}
+            />
+          </div>
+        ))}
+        <div className="absolute left-[calc(29/362*100%)] top-[calc(139/631*100%)] w-[calc(304/362*100%)] text-center text-[clamp(20px,6.08cqw,22px)] font-medium leading-[1.14] tracking-[-0.03em]">
+          <p>Experience, Explore, and Own</p>
+          <p>the Ocean</p>
+        </div>
+        <p className="absolute left-[calc(49/362*100%)] top-[calc(196/631*100%)] w-[calc(256/362*100%)] text-center text-[clamp(11px,3.32cqw,12px)] font-normal leading-[1.08] tracking-[-0.03em]">
+          {subtitleText}
+        </p>
+        <Button
+          text="Join Oceanea"
+          className="absolute left-[calc(99/362*100%)] top-[calc(286/631*100%)] h-[28px] w-[calc(163/362*100%)]"
+          textClassName="text-[15px] leading-none"
+          onClick={() => window.dispatchEvent(new Event("oceanea:auth-action"))}
+        />
+        <img
+          src="/figma/mobile-home/logo-mark.svg"
+          alt=""
+          className="absolute left-[calc(114/362*100%)] top-[calc(588/631*100%)] h-[calc(18/631*100%)] w-[calc(130/362*100%)] max-w-none"
+        />
+        <style>{diversKeyframes}</style>
+      </div>
+    );
+  }
 
   return <>
     <div className={isMobileMode
