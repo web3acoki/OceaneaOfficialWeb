@@ -65,13 +65,13 @@ immersive ocean gameplay, what once was vision is now becoming reality`;
     </DebugBg>
 
     <DebugBg className={isMobileMode
-      ? "relative -translate-x-1/2 left-1/2 fmt-[20/340] aspect-340/400 flex flex-col items-center fg-[20/340]"
+      ? "relative -translate-x-1/2 left-1/2 fmt-[20/340] flex w-full flex-col items-center fg-[20/340]"
       : "relative left-1/2 mt-[20px] flex h-[760px] w-[1140px] -translate-x-1/2 flex-row justify-center gap-[40px]"}>
 
-      {innovationParts.map((part) => (
+      {innovationParts.map((part, index) => (
         <div key={part.key} className={isMobileMode ? "flex w-full min-w-0 shrink-0 flex-col items-center" : "flex flex-1 flex-col"}>
           <div className={isMobileMode
-            ? "flex flex-row items-center justify-center fg-[10/340]"
+            ? `flex flex-row items-center justify-center fg-[10/340] ${index > 0 ? "fmt-[22/340]" : ""}`
             : "flex flex-row justify-center gap-[34px] pt-[10px]"}>
             <img
               src={part.iconSrc}
@@ -87,14 +87,14 @@ immersive ocean gameplay, what once was vision is now becoming reality`;
               : "py-[8px] text-[24px] font-bold whitespace-nowrap"}>{part.pillLabel}</p>
           </div>
           <div className={isMobileMode
-            ? `relative fmt-[20/340] aspect-340/340 w-full min-w-0 ${part.key === "artura" ? "overflow-visible" : "overflow-hidden"} fr-[25/340] shadow-[0px_4px_10.3px_3px_rgba(0,0,0,0.1)] bg-[linear-gradient(180deg,rgba(245,253,255,0.46)_2.772%,#f5fdff_37.181%,#d4f1f8_71.59%)]`
+            ? `relative fmt-[20/340] aspect-[340/315] w-full min-w-0 ${part.key === "artura" ? "overflow-visible" : "overflow-hidden"} fr-[25/340] shadow-[0px_4px_10.3px_3px_rgba(0,0,0,0.1)] bg-[linear-gradient(180deg,rgba(245,253,255,0.46)_2.772%,#f5fdff_37.181%,#d4f1f8_71.59%)]`
             : "relative mt-[75px] h-[635px] w-[550px] overflow-visible rounded-[42px] bg-[linear-gradient(180deg,rgba(245,253,255,0.46)_2.772%,#f5fdff_37.181%,#d4f1f8_71.59%)]"}>
             <img src={part.backSrc} className={part.backImgClassName} alt="" loading="lazy" decoding="async" />
             <p className={isMobileMode
-              ? "absolute inset-x-[calc(35/340*100%)] z-10 fmt-[240/340] ft-[12/340] fls-[-0.36/340] text-center flh-[12/340]"
+              ? "absolute inset-x-[calc(35/340*100%)] z-10 fmt-[225/340] ft-[12/340] fls-[-0.36/340] text-center flh-[12/340]"
               : "relative z-10 mx-auto mt-[440px] w-[392px] text-center text-[20px] leading-[26px] tracking-[-0.6px]"}>{part.description}</p>
             <Button text={part.buttonText} className={isMobileMode
-              ? "absolute left-1/2 -translate-x-1/2 fmt-[286/340] w-180/340 aspect-180/30"
+              ? "absolute left-1/2 -translate-x-1/2 fmt-[272/340] w-180/340 aspect-180/30"
               : "absolute bottom-[20px] left-1/2 h-[50px] w-[457px] -translate-x-1/2"} textClassName="text-[20px] font-bold leading-[normal]" onClick={part.onButtonClick} />
           </div>
         </div>

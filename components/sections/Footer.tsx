@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { navLinkColumns, navLinkHref, navTopLabels } from "../nav/siteNav";
@@ -16,7 +17,7 @@ const socialLinks = [
   { href: "https://t.me/oceanea2", icon: "/Telegram.svg", label: "Telegram" },
   { href: "https://x.com/Oceanea_global", icon: "/X.svg", label: "X" },
   { href: "https://medium.com/@oceaneanetwork", icon: "/Medium.svg", label: "Medium" },
-  { href: `mailto:${contactEmail}`, icon: "/Email.svg", label: "Email" },
+  { href: "", icon: "/Email.svg", label: "Email" },
 ];
 
 type FooterProps = {
@@ -27,6 +28,25 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
   const isMobileMode = useMobileMode();
   const router = useRouter();
   const pathname = usePathname();
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const copyContactEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(contactEmail);
+    } catch {
+      const textarea = document.createElement("textarea");
+      textarea.value = contactEmail;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    }
+    setEmailCopied(true);
+    window.setTimeout(() => setEmailCopied(false), 1600);
+  };
 
   const goHome = () => {
     if (pathname === "/home" || pathname === "/") {
@@ -42,18 +62,30 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
         <div className="absolute right-[20px] top-[18px] flex flex-col items-end gap-[6px]">
           <div className="flex items-center gap-[10px]">
             {socialLinks.map(({ href, icon, label }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                {...(href.startsWith("mailto:") ? {} : { target: "_blank", rel: "noreferrer" })}
-                className="flex size-[19px] items-center justify-center"
-              >
-                <img src={icon} alt="" className="size-full object-contain" />
-              </a>
+              label === "Email" ? (
+                <button
+                  key={label}
+                  type="button"
+                  aria-label={`Copy ${contactEmail}`}
+                  onClick={copyContactEmail}
+                  className="flex size-[19px] cursor-pointer items-center justify-center"
+                >
+                  <img src={icon} alt="" className="size-full object-contain" />
+                </button>
+              ) : (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex size-[19px] items-center justify-center"
+                >
+                  <img src={icon} alt="" className="size-full object-contain" />
+                </a>
+              )
             ))}
           </div>
-          <span className="max-w-[140px] break-all text-right text-[8px] leading-[10px] text-[#d9d9d9]/60">{contactEmail}</span>
         </div> 
 
         <p className="absolute fml-[26/340] fmt-[175/340] ft-[8/340] text-[#a9a9a9]">Copyright © 2026 Oceanea</p>
@@ -119,18 +151,33 @@ export default function Footer({ desktopTopMarginClass = "fmt-[200/1320]" }: Foo
       <div className="absolute left-[58px] top-[80px] flex flex-col items-start gap-[10px]">
         <div className="flex items-center gap-[16px]">
           {socialLinks.map(({ href, icon, label }) => (
-            <a
-              key={label}
-              href={href}
-              aria-label={label}
-              {...(href.startsWith("mailto:") ? {} : { target: "_blank", rel: "noreferrer" })}
-              className="flex size-[48px] items-center justify-center"
-            >
-              <img src={icon} alt="" className="size-[36px] object-contain" />
-            </a>
+            label === "Email" ? (
+              <button
+                key={label}
+                type="button"
+                aria-label={`Copy ${contactEmail}`}
+                onClick={copyContactEmail}
+                className="group relative flex size-[48px] cursor-pointer items-center justify-center"
+              >
+                <img src={icon} alt="" className="size-[36px] object-contain" />
+                <span className="pointer-events-none absolute left-[56px] top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-[#181818] px-[14px] py-[8px] text-[18px] font-normal leading-[22px] text-[#d9d9d9]/60 opacity-0 shadow-[0px_8px_20px_rgba(0,0,0,0.28)] transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
+                  {emailCopied ? "Copied" : contactEmail}
+                </span>
+              </button>
+            ) : (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                target="_blank"
+                rel="noreferrer"
+                className="flex size-[48px] items-center justify-center"
+              >
+                <img src={icon} alt="" className="size-[36px] object-contain" />
+              </a>
+            )
           ))}
         </div>
-        <span className="max-w-[280px] break-all text-[18px] font-normal leading-[22px] text-[#d9d9d9]/60">{contactEmail}</span>
       </div>
 
       

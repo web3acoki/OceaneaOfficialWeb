@@ -83,7 +83,7 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
             {descLine}
           </p>
 
-          <div className="fmt-[8/165] fmx-[5/165] flex flex-row flex-wrap items-center justify-center">
+          <div className="fmt-[2/165] fmx-[5/165] flex flex-row flex-wrap items-center justify-center">
             <Button text="READ MORE" className="mx-auto w-120/165 aspect-120/32" />
           </div>
         </div>
