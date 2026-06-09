@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import Button from "@/components/common/Button";
-import LoadedImage from "@/components/common/LoadedImage";
 import { DebugBg } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode";
 
@@ -45,8 +44,8 @@ immersive ocean gameplay, what once was vision is now becoming reality`;
       pillLabel: "X-DIVER",
       backSrc: "/adventure-back.png",
       backImgClassName: isMobileMode 
-      ? "absolute fmt-[10/340] fml-[-41/650]" 
-      : "absolute left-[-35px] top-[34px]",
+      ? "absolute left-0 top-[calc(24/340*100%)] w-full max-w-none" 
+      : "absolute left-[-35px] top-[34px] w-[684px] max-w-none",
       description: `An evolving ocean game, bringing exploration, play, and progression into an emerging digital experience`,
       buttonText: "Discover X-DIVER",
       onButtonClick: onDiscoverXDiverClick,
@@ -90,7 +89,7 @@ immersive ocean gameplay, what once was vision is now becoming reality`;
           <div className={isMobileMode
             ? "relative fmt-[20/340] aspect-340/340 fr-[25/340] shadow-[0px_4px_10.3px_3px_rgba(0,0,0,0.1)] bg-[linear-gradient(180deg,rgba(245,253,255,0.46)_2.772%,#f5fdff_37.181%,#d4f1f8_71.59%)]"
             : "relative mt-[75px] h-[635px] w-[550px] overflow-visible rounded-[42px] bg-[linear-gradient(180deg,rgba(245,253,255,0.46)_2.772%,#f5fdff_37.181%,#d4f1f8_71.59%)]"}>
-            <LoadedImage src={part.backSrc} className={part.backImgClassName} alt="" loading="lazy" decoding="async" frameClassName="absolute inset-0" />
+            <img src={part.backSrc} className={part.backImgClassName} alt="" loading="lazy" decoding="async" />
             <p className={isMobileMode
               ? "relative z-10 ft-[12/340] fmt-[240/340] fmx-[35/340] fls-[-0.36/340] text-center flh-[12/340]"
               : "relative z-10 mx-auto mt-[440px] w-[392px] text-center text-[20px] leading-[26px] tracking-[-0.6px]"}>{part.description}</p>
