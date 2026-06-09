@@ -21,7 +21,7 @@ export default function World() {
     <DebugBg className="relative w-full aspect-1320/1392 fmt-[196/1320]">
       {/* 1170:1193 title — 60px Geologica Medium #0C0C0C, centered */}
       <p className="absolute left-0 right-0 fmt-[0/1320] text-center font-medium ft-[60/1320] flh-[70/1320] fls-[-1.8/1320] text-[#0C0C0C] whitespace-pre-line">
-        {`XDiving is coming to the world’s\nbest dive sites.`}
+        {`X-ARTURA is coming to the world’s\nbest dive sites.`}
       </p>
       {/* 1170:1194 subtitle — 24px Geologica Regular #7D7D7D */}
       <p className="absolute left-0 right-0 fmt-[183/1320] text-center font-normal ft-[24/1320] text-[#7D7D7D]">
@@ -57,6 +57,8 @@ export default function World() {
       {/* 1170:1125 Join Now button (179×50) at section-local (571, 1274) */}
       <Button
         text="Join Now"
+        href="https://docs.google.com/forms/d/e/1FAIpQLScqZiqODTqvlIEn6hvL3zZvEK_JdYkCDRqHd0Bxfj2lYjp2mA/viewform?usp=dialog"
+        target="_blank"
         className="absolute fml-[571/1320] fmt-[1274/1320] w-179/1320 aspect-179/50"
       />
 
