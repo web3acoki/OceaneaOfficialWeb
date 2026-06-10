@@ -12,6 +12,18 @@ export default function RootLayout({
   return <>
     <html lang="en" className="overflow-x-clip overscroll-x-none">
       <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWTDR597P8" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-TWTDR597P8');
+            `,
+          }}
+        />
         <title>Oceanea - Deep Blue. Beyond Diving.</title>
         <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
