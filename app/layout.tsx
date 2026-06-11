@@ -2,7 +2,10 @@
 
 import "./globals.css";
 
+import Script from "next/script";
 import { PrivyProvider } from "@privy-io/react-auth";
+
+const GA_MEASUREMENT_ID = "G-E5N9RJWB15";
 
 export default function RootLayout({
   children,
@@ -19,6 +22,19 @@ export default function RootLayout({
         <PrivyProvider appId="cmq522aqh00cp0elco71pc6yo" config={{ loginMethods: ["email", "telegram", "wallet"] }}>
           {children}
         </PrivyProvider>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
       </body>
     </html>
   </>;
