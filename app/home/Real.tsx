@@ -105,7 +105,7 @@ export default function Real() {
       } as JellyPath,
     },
   ] as const;
-  const bodyText = "Your Ocean Pass is your on-chain identity in Oceanea — a single passport that connects every dive, game session, VR expedition, and underwater park visit into one evolving digital life.";
+  const bodyText = "The Ocean Pass is your unified identity and gateway to the Oceanea experience network. It carries your achievements, rewards, and exclusive privileges, enabling you to explore, grow, and contribute across real and virtual ocean experiences. Begin your journey today and shape your own ocean life.";
 
   useEffect(() => {
     const el = containerRef.current;
@@ -247,7 +247,7 @@ export default function Real() {
 
       <p className={isMobileMode
         ? "relative z-10 ft-[32/340] font-medium fls-[-0.96/340] text-center w-240/340 flh-[35/340]"
-        : "relative z-10 text-center text-[60px] font-medium leading-[70px] tracking-[-1.8px]"}>Our Ocean life starts with one Pass</p>
+        : "relative z-10 text-center text-[60px] font-medium leading-[70px] tracking-[-1.8px]"}>Start Your Ocean Life with Ocean Pass</p>
       <p className={isMobileMode
         ? "relative z-10 fmt-[24/340] ft-[14/340] fls-[-0.42/340] text-center text-[#7D7D7D] flh-[15/340]"
         : "relative z-10 mt-[24px] w-[920px] text-center text-[16px] font-normal leading-[22px] tracking-[-0.48px] text-[#7D7D7D] whitespace-pre-line"}>{bodyText}</p>

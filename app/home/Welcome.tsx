@@ -35,8 +35,8 @@ export default function Welcome() {
       : "absolute w-230/1320 fmt-[642/1320] fml-[1026/1320]", delayMs: 2000 },
   ] as const;
 
-  const titleText = "Experience, Explore, and Own the Ocean";
-  const subtitleText = `Oceanea is a decentralized ocean ecosystem, redefining underwater experiences, revealing uncharted depths, and empowering everyone to cocreate and share in the ocean together.`;
+  const titleText = "EXPERIENCE, EXPLORE, AND OWN THE OCEAN";
+  const subtitleText = `A global ocean experience network connecting digital and real-world encounters, opening a new way for people to experience the ocean and begin their ocean life.`;
 
   const diversKeyframes = `
     @keyframes divers-float {
@@ -109,8 +109,7 @@ export default function Welcome() {
           </div>
         ))}
         <div className="absolute left-[calc(29/362*100%)] top-[calc(139/631*100%)] w-[calc(304/362*100%)] text-center text-[clamp(20px,6.08cqw,22px)] font-medium leading-[1.14] tracking-[-0.03em]">
-          <p>Experience, Explore, and Own</p>
-          <p>the Ocean</p>
+          <p>{titleText}</p>
         </div>
         <p className="absolute left-[calc(49/362*100%)] top-[calc(196/631*100%)] w-[calc(256/362*100%)] text-center text-[clamp(11px,3.32cqw,12px)] font-normal leading-[1.08] tracking-[-0.03em]">
           {subtitleText}
@@ -159,8 +158,7 @@ export default function Welcome() {
         <div className="absolute left-[86px] top-[301px] flex w-[969px] flex-col items-center gap-[33px] rounded-[50px] text-center text-white">
           <div className="flex w-full flex-col items-center gap-[18px]">
             <div className="w-full text-[64px] font-medium leading-[70px] tracking-[-1.92px]">
-              <p>Experience, Explore, and Own</p>
-              <p>the Ocean</p>
+              <p>{titleText}</p>
             </div>
             <p className="w-[495px] text-[20px] font-medium leading-[26px] tracking-[-0.6px]">{subtitleText}</p>
           </div>

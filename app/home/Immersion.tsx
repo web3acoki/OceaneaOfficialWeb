@@ -3,30 +3,30 @@ import { DebugBg } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode";
 
 export default function Immersion() {
-  const subtitleText = `Oceanea is transforming underwater entertainment with a four-in-one and multi-IP guided approach. One unified experience across real and virtual worlds, unlocking new ways to explore, play, and grow`;
+  const subtitleText = `Smart ocean devices, games, future immersive VR journeys, and underwater ocean parks form the four core infrastructures of the Oceanea experience network. With a unified identity, users enter the network to experience, explore, and grow within the ocean ecosystem.`;
 
   const isMobileMode = useMobileMode();
 
   const immersionCards = [
     {
       src: "/immersion-explore.png",
-      title: "Oceanea Explore",
-      desc: "Experience the ocean in real waters with smart devices",
+      title: "Oceanea Devices",
+      desc: "Experience the ocean firsthand with smart devices",
     },
     {
       src: "/immersion-play.png",
-      title: "Oceanea Play",
-      desc: "Engage through games with shared progression",
+      title: "Oceanea Games",
+      desc: "Play games with shared progression and growth",
     },
     {
       src: "/immersion-vr.png",
       title: "Oceanea VR",
-      desc: "Immerse in virtual ocean worlds beyond physical limits",
+      desc: "Immerse yourself in virtual ocean worlds beyond physical limits",
     },
     {
       src: "/immersion-parks.png",
       title: "Oceanea Parks",
-      desc: "Enter real underwater parks and enjoy ocean adventures",
+      desc: "Explore real underwater parks and enjoy ocean adventures",
     },
   ];
 
@@ -48,7 +48,7 @@ export default function Immersion() {
         />
         <p className={isMobileMode
           ? "absolute ft-[32/340] fls-[-0.96/340] flh-[35/340] text-center"
-          : "absolute text-center text-[60px] font-medium leading-[70px] tracking-[-1.8px]"}>Enter The Oceanverse</p>
+          : "absolute text-center text-[60px] font-medium leading-[70px] tracking-[-1.8px]"}>Four Ways to Enter the Ocean World</p>
         <img
           src="/immersion-right.svg"
           alt=""

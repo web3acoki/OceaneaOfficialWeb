@@ -3,7 +3,7 @@ import { DebugBg } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode"; 
 export default function Community() {
   const isMobileMode = useMobileMode();
-  const bodyText = `Oceanea brings together players, partners, communities, and creators to build the ecosystem together. Every dive, game, exploration, and contribution unlocks rewards, expands immersive experiences, and drives humanity further into the unknown ocean frontier.`;
+  const bodyText = `Everyone can join a living ocean network, taking on roles as Pioneer, Explorer, Creator, or Operator. Together, we explore rich ocean experiences, contribute value, and help the network grow, while evolving within a shared ecosystem connecting people, technology, and the wonders of the ocean.`;
 
   return <>
     <DebugBg className={isMobileMode

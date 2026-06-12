@@ -8,8 +8,7 @@ export default function Frotier() {
   const isMobileMode = useMobileMode();
   const frontierVideoRef = useRef<HTMLVideoElement | null>(null);
 
-  /** Figma node 3-177 — 副标题文案以稿为准，此处为占位 */
-  const subtitleText = `Oceanea is building the world's most immersive ocean entertainment ecosystem — redefining how billions experience the ocean and opening humanity's next great frontier for exploration, innovation, and discovery.`;
+  const subtitleText = `Oceanea is leading billions of ocean enthusiasts worldwide into a new era of ocean experiences, enabling everyone to approach, experience, and explore the ocean in more diverse, accessible, and evolving ways.`;
 
   const renderDolphins = () => (
     <div
@@ -101,7 +100,7 @@ export default function Frotier() {
       />
       <p className={isMobileMode
         ? "relative z-10 text-center fmt-[6/340] font-medium ft-[32/340] fls-[-0.96/340] flh-[35/340]"
-        : "relative z-10 mt-[50px] text-center text-[60px] font-medium leading-[70px] tracking-[-1.8px]"}>Shape the Ocean&apos;s Future</p>
+        : "relative z-10 mt-[50px] text-center text-[60px] font-medium leading-[70px] tracking-[-1.8px]"}>Shape the Future of Ocean Experiences</p>
       <p className={isMobileMode
         ? "relative z-10 mx-auto fmt-[24/340] ft-[14/340] fls-[-0.42/340] text-center text-[#7D7D7D] flh-[15/340] fmx-[20/340]"
         : "relative z-10 mx-auto mt-[24px] w-[920px] text-center text-[24px] font-normal leading-[30px] tracking-[-0.72px] text-[#7D7D7D] whitespace-pre-line"}>{subtitleText}</p>

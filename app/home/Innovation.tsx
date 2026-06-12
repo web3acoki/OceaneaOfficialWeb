@@ -22,8 +22,7 @@ export default function Innovation() {
   const onDiscoverXArturaClick = () => router.push("/x-artura");
   const onDiscoverXDiverClick = () => router.push("/x-diver");
 
-  const bodyLine1 = `Oceanea is already coming to life in the real world. From next-generation underwater mobility to
-immersive ocean gameplay, what once was vision is now becoming reality`;
+  const bodyLine1 = `Oceanea is already coming to life in the real world. From next-generation underwater mobility to immersive ocean gameplay, what once was vision is now becoming reality.`;
 
   const innovationParts: InnovationPart[] = [
     {
@@ -34,7 +33,7 @@ immersive ocean gameplay, what once was vision is now becoming reality`;
       backImgClassName: isMobileMode 
       ? "absolute left-1/2 -translate-x-1/2 fmt-[-75/340] w-275/340" 
       : "absolute left-1/2 -translate-x-1/2 top-[-135px] w-[516px]",
-      description: `The world's first exoskeleton-based underwater propulsion device, redefining human movement below the surface`,
+      description: `The world’s first exoskeleton-based underwater propulsion device, redefining human movement below the surface`,
       buttonText: "Discover X-ARTURA",
       onButtonClick: onDiscoverXArturaClick,
     },
