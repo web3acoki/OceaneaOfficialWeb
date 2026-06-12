@@ -16,6 +16,7 @@ const headerNavItems = navTopLabels.flatMap((label, i) =>
   label === "Earn" || label === "Build" ? [] : [{ label, links: navLinkColumns[i] }],
 );
 const mobileTopItems = headerNavItems.map((item) => item.label);
+const isExternalHref = (href: string) => /^https?:\/\//.test(href);
 
 export default function Header() {
   const router = useRouter();
@@ -193,6 +194,7 @@ export default function Header() {
               <div className="flex flex-col gap-[4px]">
                 {desktopDropdownItems.map((item) => {
                   const href = navLinkHref[item];
+                  const opensInNewTab = href ? isExternalHref(href) : false;
                   const rowCls =
                     "flex h-[40px] w-full items-center justify-between rounded-[16px] px-[32px] text-left text-[18px] font-normal leading-[normal] no-underline outline-none transition-[background-color,box-shadow] duration-150 ease-out";
                   const content = <>
@@ -204,6 +206,8 @@ export default function Header() {
                       key={item}
                       role="menuitem"
                       href={href}
+                      target={opensInNewTab ? "_blank" : undefined}
+                      rel={opensInNewTab ? "noopener noreferrer" : undefined}
                       className={`${rowCls} cursor-pointer text-[#0c0c0c] hover:bg-[#f1f1f1] hover:shadow-[inset_0_0_0_1px_rgba(12,12,12,0.04)] focus-visible:bg-[#f1f1f1] focus-visible:shadow-[inset_0_0_0_1px_rgba(12,12,12,0.04)]`}
                       onClick={() => setNavDropdownIndex(null)}
                     >
@@ -315,6 +319,7 @@ export default function Header() {
                     <div className="flex w-[162px] flex-col items-start gap-[12px]">
                       {mobileExpandedItems.map((label) => {
                         const href = navLinkHref[label];
+                        const opensInNewTab = href ? isExternalHref(href) : false;
                         const itemClassName = "flex min-h-[18px] items-start text-left text-[15px] leading-[normal]";
                         const content = (
                           <>
@@ -328,6 +333,8 @@ export default function Header() {
                           <Link
                             key={label}
                             href={href}
+                            target={opensInNewTab ? "_blank" : undefined}
+                            rel={opensInNewTab ? "noopener noreferrer" : undefined}
                             className={`${itemClassName} cursor-pointer text-[#0c0c0c] hover:opacity-75`}
                             onClick={closeMobileNav}
                           >
