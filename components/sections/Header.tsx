@@ -209,7 +209,13 @@ export default function Header() {
                       target={opensInNewTab ? "_blank" : undefined}
                       rel={opensInNewTab ? "noopener noreferrer" : undefined}
                       className={`${rowCls} cursor-pointer text-[#0c0c0c] hover:bg-[#f1f1f1] hover:shadow-[inset_0_0_0_1px_rgba(12,12,12,0.04)] focus-visible:bg-[#f1f1f1] focus-visible:shadow-[inset_0_0_0_1px_rgba(12,12,12,0.04)]`}
-                      onClick={() => setNavDropdownIndex(null)}
+                      onClick={(event) => {
+                        if (opensInNewTab) {
+                          event.preventDefault();
+                          window.open(href, "_blank", "noopener,noreferrer");
+                        }
+                        setNavDropdownIndex(null);
+                      }}
                     >
                       {content}
                     </Link>
@@ -336,7 +342,13 @@ export default function Header() {
                             target={opensInNewTab ? "_blank" : undefined}
                             rel={opensInNewTab ? "noopener noreferrer" : undefined}
                             className={`${itemClassName} cursor-pointer text-[#0c0c0c] hover:opacity-75`}
-                            onClick={closeMobileNav}
+                            onClick={(event) => {
+                              if (opensInNewTab) {
+                                event.preventDefault();
+                                window.open(href, "_blank", "noopener,noreferrer");
+                              }
+                              closeMobileNav();
+                            }}
                           >
                             {content}
                           </Link>
