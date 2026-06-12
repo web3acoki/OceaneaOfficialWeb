@@ -108,22 +108,23 @@ export default function Welcome() {
             />
           </div>
         ))}
-        <div className="absolute left-[calc(29/362*100%)] top-[calc(139/631*100%)] w-[calc(304/362*100%)] text-center text-[clamp(20px,6.08cqw,22px)] font-medium leading-[1.14] tracking-[-0.03em]">
-          <p>{titleText}</p>
+        <div className="absolute left-1/2 top-[calc(153/631*100%)] w-[calc(336/362*100%)] -translate-x-1/2 text-center text-[28.737px] font-medium leading-[calc(27.632/28.737)] tracking-[-0.03em]">
+          <p>Experience, Explore</p>
+          <p>and Own the Ocean</p>
         </div>
-        <p className="absolute left-[calc(49/362*100%)] top-[calc(196/631*100%)] w-[calc(256/362*100%)] text-center text-[clamp(11px,3.32cqw,12px)] font-normal leading-[1.08] tracking-[-0.03em]">
-          {subtitleText}
+        <p className="absolute left-1/2 top-[calc(220/631*100%)] w-[calc(214/362*100%)] -translate-x-1/2 text-center text-[10.031px] font-normal leading-[1.5] tracking-[-0.03em]">
+          Oceanea is a decentralized ocean ecosystem, redefining underwater experiences, revealing uncharted depths, and empowering everyone to cocreate and share in the ocean together.
         </p>
         <Button
           text="Join Oceanea"
-          className="absolute left-1/2 top-[calc(286/631*100%)] -translate-x-1/2 w-180/340 aspect-180/30"
-          textClassName="text-[20px] font-bold leading-[normal]"
+          className="absolute left-1/2 top-[calc(360/631*100%)] -translate-x-1/2 h-[34px] w-[163px]"
+          textClassName="!text-[15px] font-bold leading-[normal]"
           onClick={() => window.dispatchEvent(new Event("oceanea:auth-action"))}
         />
         <img
           src="/figma/mobile-home/logo-mark.svg"
           alt=""
-          className="absolute left-[calc(114/362*100%)] top-[calc(588/631*100%)] h-[calc(18/631*100%)] w-[calc(130/362*100%)] max-w-none"
+          className="hidden"
         />
         <style>{diversKeyframes}</style>
       </div>

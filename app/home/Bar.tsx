@@ -8,7 +8,7 @@ export default function Bar() {
     { src: isMobileMode ? "/figma/mobile-home/frontier.svg" : "/frontier.svg", label: "Frontier", mobileIconClass: "h-[clamp(19px,5.8cqw,21px)] w-[clamp(20px,6.08cqw,22px)]" },
     { src: isMobileMode ? "/figma/mobile-home/immersion.svg" : "/immersion.svg", label: "Immersion", mobileIconClass: "h-[clamp(20px,6.08cqw,22px)] w-[clamp(22px,6.63cqw,24px)]" },
     { src: isMobileMode ? "/figma/mobile-home/innovation.svg" : "/innovation.svg", label: "Innovation", mobileIconClass: "h-[clamp(20px,6.08cqw,22px)] w-[clamp(19px,5.8cqw,21px)]" },
-    { src: isMobileMode ? "/figma/mobile-home/adventure.svg" : "/adventure.svg", label: "Adventure", mobileIconClass: "size-[clamp(20px,6.08cqw,22px)]" },
+    { src: isMobileMode ? "/figma/mobile-home/adventure.png" : "/adventure.svg", label: "Adventure", mobileIconClass: "size-[clamp(20px,6.08cqw,22px)]" },
     { src: isMobileMode ? "/figma/mobile-home/community.svg" : "/community.svg", label: "Community", mobileIconClass: "size-[clamp(19px,5.8cqw,21px)]" },
   ];
   return <>
