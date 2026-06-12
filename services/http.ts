@@ -1,6 +1,6 @@
 import type { User } from "@privy-io/react-auth";
 
-export const API_BASE_URL = "https://api-test.xdiving.io/api/";
+export const API_BASE_URL = "https://api.oceanea.io/api/";
 export const ACCESS_TOKEN_KEY = "xdiving_backend_access_token";
 export const REFRESH_TOKEN_KEY = "xdiving_backend_refresh_token";
 
