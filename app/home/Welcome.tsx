@@ -109,11 +109,10 @@ export default function Welcome() {
           </div>
         ))}
         <div className="absolute left-1/2 top-[calc(153/631*100%)] w-[calc(336/362*100%)] -translate-x-1/2 text-center text-[28.737px] font-medium leading-[calc(27.632/28.737)] tracking-[-0.03em]">
-          <p>Experience, Explore</p>
-          <p>and Own the Ocean</p>
+          <p>{titleText}</p>
         </div>
         <p className="absolute left-1/2 top-[calc(220/631*100%)] w-[calc(214/362*100%)] -translate-x-1/2 text-center text-[10.031px] font-normal leading-[1.5] tracking-[-0.03em]">
-          Oceanea is a decentralized ocean ecosystem, redefining underwater experiences, revealing uncharted depths, and empowering everyone to cocreate and share in the ocean together.
+          {subtitleText}
         </p>
         <Button
           text="Join Oceanea"
