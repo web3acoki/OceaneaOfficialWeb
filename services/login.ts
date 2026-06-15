@@ -25,7 +25,7 @@ interface BackendLoginResponse {
 export function buildBackendLoginPayload(user: User): BackendLoginPayload {
   const payload: BackendLoginPayload = {};
   payload.privyId = user.id;
-  const walletAddress = user.wallet.address;
+  const walletAddress = user.wallet?.address ?? "";
   payload.id = walletAddress;
   payload.walletAddress = walletAddress;
   if (user.telegram) {
