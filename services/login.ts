@@ -32,7 +32,7 @@ export function buildBackendLoginPayload(user: User): BackendLoginPayload {
     const firstName=user.telegram.firstName ?? "";
     payload.id = user.telegram.telegramUserId ;
     payload.displayName = firstName.length > 16 ? firstName.slice(0, 13) + '***' : firstName;
-    payload.photoUrl = user.telegram.photoUrl ;
+    payload.photoUrl = user.telegram.photoUrl ?? undefined;
   } else if (user.email) {
     const emailName=user.email.address ?? "";
     payload.email = emailName;
