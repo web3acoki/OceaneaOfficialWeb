@@ -29,12 +29,12 @@ export function buildBackendLoginPayload(user: User): BackendLoginPayload {
   payload.id = walletAddress;
   payload.walletAddress = walletAddress;
   if (user.telegram) {
-    const firstName=user.telegram.firstName;
+    const firstName=user.telegram.firstName ?? "";
     payload.id = user.telegram.telegramUserId ;
     payload.displayName = firstName.length > 16 ? firstName.slice(0, 13) + '***' : firstName;
     payload.photoUrl = user.telegram.photoUrl ;
   } else if (user.email) {
-    const emailName=user.email.address;
+    const emailName=user.email.address ?? "";
     payload.email = emailName;
     payload.displayName = emailName.length > 12 ? emailName.slice(0, 9) + '***' : emailName;
   } else if (user.wallet?.walletClientType) {
