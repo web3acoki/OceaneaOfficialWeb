@@ -102,9 +102,11 @@ export default function Welcome() {
             <p key={line}>{line}</p>
           ))}
         </div>
-        <p className="absolute left-1/2 top-[calc(514/631*100%)] w-[calc(316/362*100%)] -translate-x-1/2 text-center text-[12px] font-light leading-[15.05px] tracking-[-0.03em]">
-          {mobileSubtitleText}
-        </p>
+        <div className="absolute left-1/2 top-[calc(512/631*100%)] flex h-[calc(48/631*100%)] w-[calc(316/362*100%)] -translate-x-1/2 items-start justify-center overflow-hidden">
+          <p className="text-center text-[clamp(10.5px,3.31vw,12px)] font-light leading-[1.22] tracking-[-0.03em]">
+            {mobileSubtitleText}
+          </p>
+        </div>
         <Button
           text="Join Oceanea"
           className="absolute left-[calc(100/362*100%)] top-[calc(573/631*100%)] h-[31px] w-[163px] px-4 py-2"

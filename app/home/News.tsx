@@ -120,13 +120,13 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
         <LoadedImage src={card.mobileSrc} alt="" loading="lazy" decoding="async" frameClassName="absolute inset-0" className="size-full object-cover" />
         <div className="absolute inset-x-0 bottom-0 h-[calc(179/282.75*100%)] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.68)_66%,rgba(0,0,0,0.92)_100%)]" />
 
-        <div className={`absolute top-[calc(193/282.75*100%)] z-10 flex flex-col items-center text-center text-white ${isLaunchCard ? "left-[calc(2/175*100%)] w-[calc(171/175*100%)]" : "left-[calc(14/175*100%)] w-[calc(147/175*100%)]"}`}>
+        <div className={`absolute top-[calc(193/282.75*100%)] z-10 h-[calc(78/282.75*100%)] text-center text-white ${isLaunchCard ? "left-[calc(2/175*100%)] w-[calc(171/175*100%)]" : "left-[calc(14/175*100%)] w-[calc(147/175*100%)]"}`}>
           <p className={`w-full font-medium leading-none ${isLaunchCard ? "ft-[12/165]" : "ft-[14/165]"}`}>{card.title}</p>
           <p className="mt-[calc(6/165*100cqw)] w-full ft-[8/165] font-light flh-[8/165] fls-[-0.24/165]">
             {card.desc}
           </p>
 
-          <div className="mt-[calc(8/165*100cqw)] flex w-full items-center justify-between">
+          <div className="absolute inset-x-0 bottom-0 flex w-full items-center justify-between">
             <div className="flex items-center fg-[4/165]">
               {card.tags.map((tag) => (
                 <p key={tag} className="flex h-[calc(10/165*100cqw)] items-center justify-center rounded-full border border-white px-[calc(4/165*100cqw)] ft-[6/165] flh-[8/165] fls-[-0.15/165]">
