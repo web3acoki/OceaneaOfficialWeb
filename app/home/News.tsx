@@ -1,18 +1,53 @@
 import LoadedImage from "@/components/common/LoadedImage";
 import NewsCardsStrip from "@/components/common/NewsCardsStrip";
-import Button from "@/components/common/Button";
 import { DebugBg } from "@/components/features/DebugMode";
 import { useMobileMode } from "@/components/features/MobileMode";
 
-const newsCards = [
-  { src: "/news-card-1.jpg", imageClassName: "absolute h-[104.61%] left-[-25.9%] max-w-none top-[-2.27%] w-[280%]" },
-  { src: "/news-card-2.jpg", imageClassName: "absolute h-[126.07%] left-[-100%] max-w-none top-[-26.01%] w-[300%]" },
-  { src: "/news-card-3.jpg", imageClassName: "absolute h-[100%] left-[-68.98%] max-w-none top-[0%] w-[238%]" },
-  { src: "/news-card-4.jpg", imageClassName: "absolute h-[114.96%] left-[-93.71%] max-w-none top-[-7.48%] w-[307.71%]" },
-];
+const launchArticleHref =
+  "https://medium.com/@oceaneanetwork/oceanea-officially-launches-redefining-how-humanity-connects-with-the-ocean-ddbd83b0ef1c";
 
-const descLine =
-  "The world's first exoskeleton-based underwater propulsion device, redefining human movement below the surface";
+const newsCards = [
+  {
+    src: "/news-card-1.jpg",
+    mobileSrc: "/figma/mobile-home/news-card-1-bg.png",
+    desktopSrc: "/figma/desktop-home/news-card-1-bg-902f7d.png",
+    title: "Oceanea Officially Launches",
+    desc: "It is the beginning of a new way for humanity to connect with the ocean. Oceanea is the world's first decentralized ocean experience network...",
+    tags: ["Overview", "Vision"],
+    href: launchArticleHref,
+    imageClassName: "absolute h-[104.61%] left-[-25.9%] max-w-none top-[-2.27%] w-[280%]",
+  },
+  {
+    src: "/news-card-2.jpg",
+    mobileSrc: "/figma/mobile-home/news-card-2-bg.png",
+    desktopSrc: "/figma/desktop-home/news-card-2-bg.png",
+    title: "X-ARTURA",
+    desc: "The world's first exoskeleton-based underwater propulsion device, redefining human movement below the surface",
+    tags: ["Gearing", "RWA"],
+    href: launchArticleHref,
+    imageClassName: "absolute h-[126.07%] left-[-100%] max-w-none top-[-26.01%] w-[300%]",
+  },
+  {
+    src: "/news-card-3.jpg",
+    mobileSrc: "/figma/mobile-home/news-card-3-bg.png",
+    desktopSrc: "/figma/desktop-home/news-card-3-bg-123552.png",
+    title: "X-ARTURA",
+    desc: "The world's first exoskeleton-based underwater propulsion device, redefining human movement below the surface",
+    tags: ["Gearing", "RWA"],
+    href: launchArticleHref,
+    imageClassName: "absolute h-[100%] left-[-68.98%] max-w-none top-[0%] w-[238%]",
+  },
+  {
+    src: "/news-card-4.jpg",
+    mobileSrc: "/figma/mobile-home/news-card-4-bg.png",
+    desktopSrc: "/figma/desktop-home/news-card-4-bg-3466ec.png",
+    title: "X-ARTURA",
+    desc: "The world's first exoskeleton-based underwater propulsion device, redefining human movement below the surface",
+    tags: ["Gearing", "RWA"],
+    href: launchArticleHref,
+    imageClassName: "absolute h-[114.96%] left-[-93.71%] max-w-none top-[-7.48%] w-[307.71%]",
+  },
+];
 
 type NewsCardProps = {
   card: (typeof newsCards)[number];
@@ -20,47 +55,60 @@ type NewsCardProps = {
 };
 
 function NewsCard({ card, isMobileMode }: NewsCardProps) {
+  const isLaunchCard = card.tags[0] === "Overview";
+  const readMore = card.href ? (
+    <a
+      href={card.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex h-[calc(10/165*100cqw)] w-[calc(52/165*100cqw)] items-center justify-center rounded-full bg-white ft-[6/165] font-bold leading-none tracking-[0.0813em] text-[#0c0c0c] transition-transform duration-200 hover:scale-105"
+    >
+      READ MORE
+    </a>
+  ) : (
+    <button className="flex h-[calc(10/165*100cqw)] w-[calc(52/165*100cqw)] items-center justify-center rounded-full bg-white ft-[6/165] font-bold leading-none tracking-[0.0813em] text-[#0c0c0c] transition-transform duration-200 hover:scale-105">
+      READ MORE
+    </button>
+  );
+
   if (!isMobileMode) {
     return (
-      <div className="aspect-329/587 w-[calc(328.647/1364.167*100%)] @container-[size]">
-        <div className="relative size-full overflow-hidden shadow-[0px_4px_8.5px_2px_rgba(0,0,0,0.05)] fr-[50/329]">
-          <LoadedImage src={card.src} alt="" loading="lazy" decoding="async" frameClassName="absolute inset-0" className={card.imageClassName} />
-          <div className="absolute inset-x-0 bottom-0 h-[54.56%] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.68)_66%,rgba(0,0,0,0.92)_100%)]" />
+      <div className="aspect-[418/746] w-[calc(418/1787*100%)] @container-[size]">
+        <div className="relative size-full overflow-hidden shadow-[0px_4px_8.5px_2px_rgba(0,0,0,0.05)] fr-[50/418]">
+          <LoadedImage src={card.desktopSrc} alt="" loading="lazy" decoding="async" frameClassName="absolute inset-0" className="size-full object-cover" />
+          <div className="absolute inset-x-0 bottom-0 h-[calc(407/746*100%)] bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,#fff_77%)]" />
 
-          <div className="absolute left-[7.3%] top-[66.66%] h-[28.3%] w-[86.4%] text-center text-white">
-            <p aria-hidden="true" className="invisible absolute left-[27.8%] top-0 w-[43.3%] ft-[24/329] font-medium leading-none">X-ARTURA</p>
-            <p aria-hidden="true" className="invisible absolute left-0 top-[22.9%] w-full ft-[16/329] flh-[20/329] fls-[-0.48/329] capitalize">
-              The World&apos;s First Exoskeleton-Based Underwater Propulsion Device, Redefining Human Movement Below The Surface
+          <div className="absolute left-[calc(22/418*100%)] top-[calc(484/746*100%)] z-10 h-[calc(234/746*100%)] w-[calc(381/418*100%)] text-center text-[#0c0c0c]">
+            <p className={`w-full font-medium leading-none ${isLaunchCard ? "ft-[30/418]" : "ft-[36/418]"}`}>{card.title}</p>
+            <p className="mt-[calc(18/418*100cqw)] w-full ft-[20/418] font-normal flh-[25/418] fls-[-0.6/418] text-[#626262]">
+              {card.desc}
             </p>
 
-            <div className="absolute inset-x-0 top-[82%] flex items-center justify-center">
-              <p aria-hidden="true" className="hidden h-[calc(22/329*100cqw)] w-[calc(60/329*100cqw)] items-center justify-center rounded-full border border-white ft-[12/329] flh-[20/329] fls-[-0.15/329]">
-                Gearing
-              </p>
-              <p aria-hidden="true" className="hidden h-[calc(22/329*100cqw)] w-[calc(43/329*100cqw)] items-center justify-center rounded-full border border-white ft-[12/329] flh-[20/329] fls-[-0.15/329]">
-                RWA
-              </p>
-              <button className="flex h-[calc(40/329*100cqw)] w-[calc(178/329*100cqw)] items-center justify-center rounded-full bg-white ft-[18/329] font-bold text-[#0c0c0c] transition-transform duration-200 hover:scale-105">
-                <span>READ MORE</span>
-                <span className="ml-[calc(12/329*100cqw)] flex size-[calc(28/329*100cqw)] shrink-0 items-center justify-center rounded-full bg-[#0c0c0c]">
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 18 18"
-                    className="size-[calc(17/329*100cqw)]"
-                    fill="none"
-                  >
-                    <path
-                      d="M7 5L11 9L7 13"
-                      stroke="white"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </button>
+            <div className="absolute inset-x-0 bottom-0 flex w-full items-center justify-between">
+              <div className="flex items-center fg-[6/418]">
+                {card.tags.map((tag) => (
+                  <p key={tag} className="flex h-[calc(28/418*100cqw)] items-center justify-center rounded-full border border-[#0c0c0c] px-[calc(14/418*100cqw)] ft-[12/418] flh-[20/418] fls-[-0.15/418]">
+                    {tag}
+                  </p>
+                ))}
+              </div>
+              <a
+                href={card.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-[calc(28/418*100cqw)] w-[calc(155/418*100cqw)] items-center justify-center rounded-full bg-[#0c0c0c] ft-[16/418] font-bold flh-[24/418] tracking-[0.0305em] text-white transition-transform duration-200 hover:scale-105"
+              >
+                READ MORE
+              </a>
             </div>
           </div>
+          <a
+            href={card.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={card.title}
+            className="absolute inset-0 z-20"
+          />
         </div>
       </div>
     );
@@ -68,25 +116,36 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
 
   return (
     <div className="aspect-418/740 @container-[size]">
-      <div className="relative aspect-418/720 overflow-hidden shadow-[0px_3px_7.5px_rgba(0,0,0,0.10)] fr-[15/165] ">
-        <LoadedImage src={card.src} alt="" loading="lazy" decoding="async" frameClassName="absolute inset-0" className={card.imageClassName} />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,transparent_45.442%,rgba(255,255,255,0.5)_58%,rgba(255,255,255,0.88)_78%,#ffffff_100%)]" />
+      <div className="relative aspect-418/720 overflow-hidden shadow-[0px_3px_7.5px_rgba(0,0,0,0.10)] fr-[15/165]">
+        <LoadedImage src={card.mobileSrc} alt="" loading="lazy" decoding="async" frameClassName="absolute inset-0" className="size-full object-cover" />
+        <div className="absolute inset-x-0 bottom-0 h-[calc(179/282.75*100%)] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.68)_66%,rgba(0,0,0,0.92)_100%)]" />
 
-        <div className="absolute inset-x-0 z-20 fmt-[10/165] flex w-full justify-center fg-[8/165]">
-          <p aria-hidden="true" className="invisible rounded-full bg-0 text-white text-center fpy-[1/165] fpx-[6/165] ft-[6/165]"> RWA </p>
-          <p aria-hidden="true" className="invisible rounded-full bg-0 text-white text-center fpy-[1/165] fpx-[6/165] ft-[6/165]"> Gearing </p>
-        </div>
-
-        <div className="relative z-10 flex flex-col fmt-[200/165] fmx-[5/165]">
-          <p aria-hidden="true" className="invisible ft-[15/165] text-center font-medium">X-ARTURA</p>
-          <p aria-hidden="true" className="invisible ft-[8/165] flh-[8/165] fls-[-0.24/165] text-center">
-            {descLine}
+        <div className={`absolute top-[calc(193/282.75*100%)] z-10 flex flex-col items-center text-center text-white ${isLaunchCard ? "left-[calc(2/175*100%)] w-[calc(171/175*100%)]" : "left-[calc(14/175*100%)] w-[calc(147/175*100%)]"}`}>
+          <p className={`w-full font-medium leading-none ${isLaunchCard ? "ft-[12/165]" : "ft-[14/165]"}`}>{card.title}</p>
+          <p className="mt-[calc(6/165*100cqw)] w-full ft-[8/165] font-light flh-[8/165] fls-[-0.24/165]">
+            {card.desc}
           </p>
 
-          <div className="fmt-[2/165] fmx-[5/165] flex flex-row flex-wrap items-center justify-center">
-            <Button text="READ MORE" className="mx-auto w-120/165 aspect-120/32" />
+          <div className="mt-[calc(8/165*100cqw)] flex w-full items-center justify-between">
+            <div className="flex items-center fg-[4/165]">
+              {card.tags.map((tag) => (
+                <p key={tag} className="flex h-[calc(10/165*100cqw)] items-center justify-center rounded-full border border-white px-[calc(4/165*100cqw)] ft-[6/165] flh-[8/165] fls-[-0.15/165]">
+                  {tag}
+                </p>
+              ))}
+            </div>
+            {readMore}
           </div>
         </div>
+        {card.href ? (
+          <a
+            href={card.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={card.title}
+            className="absolute inset-0 z-20"
+          />
+        ) : null}
       </div>
     </div>
   );

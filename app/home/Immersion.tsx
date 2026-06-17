@@ -36,7 +36,7 @@ export default function Immersion() {
       : "relative left-1/2 mt-[220px] h-[920px] w-[1140px] -translate-x-1/2"}>
       <div className={isMobileMode
         ? "relative w-300/340 fmx-[20/340] aspect-300/100 flex flex-col items-center justify-center"
-        : "relative mx-auto flex h-[120px] w-[900px] flex-col items-center justify-center"}>
+        : "relative mx-auto flex h-[120px] w-full max-w-[1080px] flex-col items-center justify-center @container-[size]"}>
         <img
           src="/immersion-left.svg"
           alt=""
@@ -44,11 +44,11 @@ export default function Immersion() {
           decoding="async"
           className={isMobileMode
             ? "pointer-events-none absolute left-0 top-0 z-0 w-22/300"
-            : "absolute left-[60px] top-0 w-[36px]"}
+            : "pointer-events-none absolute left-[clamp(0px,5.56cqw,60px)] top-0 w-[36px]"}
         />
         <p className={isMobileMode
           ? "relative z-10 w-[calc(240/300*100%)] ft-[32/340] fls-[-0.96/340] flh-[35/340] text-center"
-          : "absolute text-center text-[60px] font-medium leading-[70px] tracking-[-1.8px]"}>Four Ways to Enter the Ocean World</p>
+          : "relative z-10 w-[calc(100%_-_144px)] text-center font-medium tracking-[-0.03em] [font-size:clamp(42px,5.56cqw,60px)] [line-height:clamp(50px,6.48cqw,70px)]"}>Four Ways to Enter the Ocean World</p>
         <img
           src="/immersion-right.svg"
           alt=""
@@ -56,7 +56,7 @@ export default function Immersion() {
           decoding="async"
           className={isMobileMode
             ? "pointer-events-none absolute bottom-0 right-0 z-0 w-22/300"
-            : "absolute bottom-0 right-[60px] w-[36px]"}
+            : "pointer-events-none absolute bottom-0 right-[clamp(0px,5.56cqw,60px)] w-[36px]"}
         />
       </div>
       <p className={isMobileMode

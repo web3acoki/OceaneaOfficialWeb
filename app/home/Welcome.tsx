@@ -9,34 +9,25 @@ export default function Welcome() {
   const showDebug = useDebugMode();
   const isMobileMode = useMobileMode();
 
+  const mobileTitleLines = ["Experience", "Explore", "Own the Ocean"] as const;
+  const mobileSubtitleText =
+    "Oceanea is a global ocean experience network connecting digital and real-world encounters, opening a new way for people to experience the ocean and begin their ocean life.";
+
+  const desktopDivers = [
+    { src: "/figma/desktop-home/diver-1-371abd.png", className: "left-[calc(62/1320*100%)] top-[calc(353/843*100%)] w-[calc(169/1320*100%)]", imgClassName: "", delayMs: 2000 },
+    { src: "/figma/desktop-home/diver-2-6e73a3.png", className: "left-[calc(561/1320*100%)] top-[calc(13/843*100%)] w-[calc(125/1320*100%)]", imgClassName: "", delayMs: 3000 },
+    { src: "/figma/desktop-home/diver-3-2d7a53.png", className: "left-[calc(831/1320*100%)] top-[calc(86/843*100%)] w-[calc(196/1320*100%)]", imgClassName: "", delayMs: 0 },
+    { src: "/figma/desktop-home/diver-4-275893.png", className: "left-[calc(973/1320*100%)] top-[calc(381/843*100%)] w-[calc(198/1320*100%)]", imgClassName: "", delayMs: 4000 },
+    { src: "/figma/desktop-home/diver-5-6f5332.png", className: "left-[calc(1032/1320*100%)] top-[calc(666/843*100%)] w-[calc(230/1320*100%)]", imgClassName: "rotate-180", delayMs: 1000 },
+  ] as const;
+
   const mobileDivers = [
-    { src: "/figma/mobile-home/diver-top-left.png", className: "left-[calc(107/362*100%)] top-[calc(56/631*100%)] w-[calc(45/362*100%)]", imgClassName: "", delayMs: 0 },
-    { src: "/figma/mobile-home/diver-top-right.png", className: "left-[calc(280/362*100%)] top-[calc(159/631*100%)] w-[calc(63/362*100%)]", imgClassName: "", delayMs: 3000 },
-    { src: "/figma/mobile-home/diver-mid-left-new.png", className: "left-[calc(19/362*100%)] top-[calc(305/631*100%)] w-[calc(96/362*100%)]", imgClassName: "rotate-[160.46deg]", delayMs: 1000 },
-    { src: "/figma/mobile-home/diver-mid-right.png", className: "left-[calc(246/362*100%)] top-[calc(290/631*100%)] w-[calc(72/362*100%)]", imgClassName: "", delayMs: 4000 },
-    { src: "/figma/mobile-home/diver-bottom-left-final.png", className: "left-[calc(170/362*100%)] top-[calc(441/631*100%)] w-[calc(69/362*100%)]", imgClassName: "", delayMs: 2000 },
+    { src: "/figma/mobile-home/diver-top-left-6e73a3.png", className: "left-[calc(107/362*100%)] top-[calc(56/631*100%)] w-[calc(45/362*100%)]", imgClassName: "", delayMs: 0 },
+    { src: "/figma/mobile-home/diver-top-right-2d7a53.png", className: "left-[calc(280/362*100%)] top-[calc(159/631*100%)] w-[calc(63/362*100%)]", imgClassName: "", delayMs: 3000 },
+    { src: "/figma/mobile-home/diver-mid-left-new-6f5332.png", className: "left-[calc(39/362*100%)] top-[calc(335/631*100%)] w-[calc(95.51/362*100%)]", imgClassName: "rotate-180", delayMs: 1000 },
+    { src: "/figma/mobile-home/diver-mid-right-275893.png", className: "left-[calc(246/362*100%)] top-[calc(290/631*100%)] w-[calc(72/362*100%)]", imgClassName: "", delayMs: 4000 },
+    { src: "/figma/mobile-home/diver-bottom-left-final-371abd.png", className: "left-[calc(170/362*100%)] top-[calc(410/631*100%)] w-[calc(69/362*100%)]", imgClassName: "", delayMs: 2000 },
   ] as const;
-
-  const divers = [
-    { src: "/welcome-diver-1.png", imgClass: isMobileMode
-      ? "absolute w-46/340 fmt-[233/340] fml-[28/340]"
-      : "absolute w-169/1320 fmt-[334/1320] fml-[62/1320]", delayMs: 0 },
-    { src: "/welcome-diver-2.png", imgClass: isMobileMode
-      ? "absolute w-33/340 fmt-[42/340] fml-[117/340]"
-      : "absolute w-125/1320 fmt-[28/1320] fml-[554/1320]", delayMs: 3000 },
-    { src: "/welcome-diver-5.png", imgClass: isMobileMode
-      ? "absolute w-52/340 fmt-[133/340] fml-[199/340]"
-      : "absolute w-196/1320 fmt-[133/1320] fml-[829/1320]", delayMs: 1000 },
-    { src: "/welcome-diver-4.png", imgClass: isMobileMode
-      ? "absolute w-54/340 fmt-[214/340] fml-[238/340]"
-      : "absolute w-196/1320 fmt-[400/1320] fml-[969/1320]", delayMs: 4000 },
-    { src: "/welcome-diver-3.png", imgClass: isMobileMode
-      ? "absolute w-63/340 fmt-[289/340] fml-[265/340]"
-      : "absolute w-230/1320 fmt-[642/1320] fml-[1026/1320]", delayMs: 2000 },
-  ] as const;
-
-  const titleText = "EXPERIENCE, EXPLORE, AND OWN THE OCEAN";
-  const subtitleText = `A global ocean experience network connecting digital and real-world encounters, opening a new way for people to experience the ocean and begin their ocean life.`;
 
   const diversKeyframes = `
     @keyframes divers-float {
@@ -68,14 +59,12 @@ export default function Welcome() {
         </filter>
       </svg>
       <LoadedImage
-        src="/welcome-back.png"
+        src="/figma/desktop-home/welcome-back.png"
         alt=""
         fetchPriority="high"
         decoding="async"
-        frameClassName={isMobileMode
-          ? "absolute h-[156.6%] left-[-9.84%] top-[-33.15%] w-[127.19%]"
-          : "absolute top-[-79.38%] left-[-8.09%] w-[116.17%]"}
-        className="size-full max-w-none"
+        frameClassName="absolute inset-0"
+        className="size-full object-cover"
         style={{ filter: "url(#welcome-water-ripple)" }}
       />
     </>
@@ -85,11 +74,11 @@ export default function Welcome() {
     return (
       <div className="relative left-1/2 fmt-[50/362] aspect-[362/631] w-full -translate-x-1/2 overflow-hidden rounded-[15px] text-white">
         <img
-          src="/figma/mobile-home/hero-bg.png"
+          src="/figma/mobile-home/hero-bg-3798b0.png"
           alt=""
           fetchPriority="high"
           decoding="async"
-          className="absolute left-[-5.41%] top-[-2.27%] h-[144.83%] w-[110.94%] max-w-none"
+          className="absolute inset-0 size-full rounded-[15px] object-cover"
         />
         {mobileDivers.map((diver) => (
           <div
@@ -108,15 +97,17 @@ export default function Welcome() {
             />
           </div>
         ))}
-        <div className="absolute left-1/2 top-[calc(153/631*100%)] w-[calc(336/362*100%)] -translate-x-1/2 text-center text-[28.737px] font-medium leading-[calc(27.632/28.737)] tracking-[-0.03em]">
-          <p>{titleText}</p>
+        <div className="absolute left-[calc(29/362*100%)] top-[calc(153/631*100%)] w-[calc(336/362*100%)] text-left text-[32px] font-medium uppercase leading-[42px] tracking-[-0.03em]">
+          {mobileTitleLines.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
         </div>
-        <p className="absolute left-1/2 top-[calc(220/631*100%)] w-[calc(214/362*100%)] -translate-x-1/2 text-center text-[10.031px] font-normal leading-[1.5] tracking-[-0.03em]">
-          {subtitleText}
+        <p className="absolute left-1/2 top-[calc(514/631*100%)] w-[calc(316/362*100%)] -translate-x-1/2 text-center text-[12px] font-light leading-[15.05px] tracking-[-0.03em]">
+          {mobileSubtitleText}
         </p>
         <Button
           text="Join Oceanea"
-          className="absolute left-1/2 top-[calc(360/631*100%)] -translate-x-1/2 h-[34px] w-[163px]"
+          className="absolute left-[calc(100/362*100%)] top-[calc(573/631*100%)] h-[31px] w-[163px] px-4 py-2"
           textClassName="!text-[15px] font-bold leading-[normal]"
           onClick={() => window.dispatchEvent(new Event("oceanea:auth-action"))}
         />
@@ -130,47 +121,41 @@ export default function Welcome() {
     );
   }
 
-  return <>
-    <div className={isMobileMode
-      ? "relative -translate-x-1/2 left-1/2 fmt-[48/340] aspect-340/340 fr-[15/340] overflow-hidden"
-      : "relative left-1/2 mt-[111px] h-[860px] w-[min(calc(100vw-80px),1140px)] -translate-x-1/2 overflow-hidden rounded-[50px]"}>
+  return (
+    <div className="relative left-1/2 mt-[111px] aspect-[1320/843] w-[min(calc(100vw-80px),1320px)] -translate-x-1/2 overflow-hidden rounded-[50px] text-white @container-[size]">
       {waterRippleBg}
-      <div className="absolute inset-0">
-        {divers.map((d) => (
-          <LoadedImage
-            key={d.src}
-            src={d.src}
+      {desktopDivers.map((diver) => (
+        <div
+          key={diver.src}
+          className={`pointer-events-none absolute select-none ${diver.className}`}
+          style={{
+            "--diver-float-distance": "calc(20 / 1320 * 100cqw)",
+            animation: `divers-float 5000ms ease-in-out ${diver.delayMs}ms infinite`,
+          } as CSSProperties}
+        >
+          <img
+            src={diver.src}
             alt=""
             decoding="async"
-            frameClassName={d.imgClass}
-            className="size-full max-w-none"
-            style={{ animation: `divers-float 5000ms ease-in-out ${d.delayMs}ms infinite` }}
+            className={`block w-full max-w-none ${diver.imgClassName}`}
           />
+        </div>
+      ))}
+      <div className="absolute left-[calc(239/1320*100%)] top-[calc(245/843*100%)] w-[calc(586/1320*100%)] text-left font-medium tracking-[-0.03em] [font-size:calc(82/1320*100cqw)] [line-height:calc(85/1320*100cqw)]">
+        {mobileTitleLines.map((line) => (
+          <p key={line}>{line}</p>
         ))}
       </div>
-      {isMobileMode ? (
-        <div className="relative flex flex-col items-center text-center text-white">
-          <p className="fmt-[100/340] fmx-[10/340] ft-[22/340] font-medium flh-[24/340] fls-[-0.66/340]">{titleText}</p>
-          <p className="fmt-[23/340] w-260/340 font-light ft-[14/340] flh-[13/340] fls-[-0.42/340]">{subtitleText}</p>
-          <Button text="Join Oceanea" className="fmt-[49/340] w-95/340 aspect-95/20" onClick={() => window.dispatchEvent(new Event("oceanea:auth-action"))} />
-        </div>
-      ) : (
-        <div className="absolute left-[86px] top-[301px] flex w-[969px] flex-col items-center gap-[33px] rounded-[50px] text-center text-white">
-          <div className="flex w-full flex-col items-center gap-[18px]">
-            <div className="w-full text-[64px] font-medium leading-[70px] tracking-[-1.92px]">
-              <p>{titleText}</p>
-            </div>
-            <p className="w-[495px] text-[20px] font-medium leading-[26px] tracking-[-0.6px]">{subtitleText}</p>
-          </div>
-          <Button
-            text="Join Oceanea"
-            className="h-[50px] w-[195px]"
-            textClassName="text-[20px] font-bold leading-[normal]"
-            onClick={() => window.dispatchEvent(new Event("oceanea:auth-action"))}
-          />
-        </div>
-      )}
+      <p className="absolute left-[calc(208/1320*100%)] top-[calc(552/843*100%)] w-[calc(905/1320*100%)] text-center font-normal tracking-[-0.03em] [font-size:calc(32/1320*100cqw)] [line-height:calc(35/1320*100cqw)]">
+        {mobileSubtitleText}
+      </p>
+      <Button
+        text="Join Oceanea"
+        className="absolute left-[calc(468/1320*100%)] top-[calc(710/843*100%)] h-[calc(60/843*100%)] w-[calc(385/1320*100%)]"
+        textClassName="!text-[clamp(20px,calc(36/1320*100cqw),36px)] font-bold leading-[normal]"
+        onClick={() => window.dispatchEvent(new Event("oceanea:auth-action"))}
+      />
       <style>{diversKeyframes}</style>
     </div>
-  </>;
+  );
 }

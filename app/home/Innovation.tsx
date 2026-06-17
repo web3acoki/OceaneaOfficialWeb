@@ -82,7 +82,7 @@ export default function Innovation() {
                 "w-[47px]"}
             />
             <p className={isMobileMode
-              ? "ft-[15/340] font-bold"
+              ? "ft-[18/340] font-bold"
               : "py-[8px] text-[24px] font-bold whitespace-nowrap"}>{part.pillLabel}</p>
           </div>
           <div className={isMobileMode
