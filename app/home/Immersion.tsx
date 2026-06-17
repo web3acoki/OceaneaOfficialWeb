@@ -44,7 +44,7 @@ export default function Immersion() {
           decoding="async"
           className={isMobileMode
             ? "pointer-events-none absolute left-0 top-0 z-0 w-22/300"
-            : "pointer-events-none absolute left-[clamp(0px,5.56cqw,60px)] top-0 w-[36px]"}
+            : "pointer-events-none absolute left-[clamp(0px,5.56cqw,60px)] top-[-10px] w-[36px]"}
         />
         <p className={isMobileMode
           ? "relative z-10 w-[calc(240/300*100%)] ft-[32/340] fls-[-0.96/340] flh-[35/340] text-center"
