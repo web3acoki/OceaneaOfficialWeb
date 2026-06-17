@@ -93,7 +93,7 @@ export default function Frotier() {
         alt=""
         loading="lazy"
         decoding="async"
-        style={{ filter: "brightness(0) opacity(0.14)" }}
+        style={{ filter: "brightness(0) opacity(0.06)" }}
         className={isMobileMode
           ? "absolute z-10 -translate-x-1/2 left-1/2 w-88/340 "
           : "absolute z-10 -translate-x-1/2 left-1/2 w-[225px]"}

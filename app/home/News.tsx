@@ -120,8 +120,8 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
         <LoadedImage src={card.mobileSrc} alt="" loading="lazy" decoding="async" frameClassName="absolute inset-0" className="size-full object-cover" />
         <div className="absolute inset-x-0 bottom-0 h-[calc(179/282.75*100%)] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.68)_66%,rgba(0,0,0,0.92)_100%)]" />
 
-        <div className={`absolute top-[calc(193/282.75*100%)] z-10 h-[calc(78/282.75*100%)] text-center text-white ${isLaunchCard ? "left-[calc(2/175*100%)] w-[calc(171/175*100%)]" : "left-[calc(14/175*100%)] w-[calc(147/175*100%)]"}`}>
-          <p className={`w-full font-medium leading-none ${isLaunchCard ? "ft-[12/165]" : "ft-[14/165]"}`}>{card.title}</p>
+        <div className="absolute left-[calc(14/175*100%)] top-[calc(193/282.75*100%)] z-10 h-[calc(78/282.75*100%)] w-[calc(147/175*100%)] text-center text-white">
+          <p className={`w-full font-medium leading-none ${isLaunchCard ? "whitespace-nowrap ft-[10/165]" : "ft-[14/165]"}`}>{card.title}</p>
           <p className="mt-[calc(6/165*100cqw)] w-full ft-[8/165] font-light flh-[8/165] fls-[-0.24/165]">
             {card.desc}
           </p>
@@ -176,8 +176,6 @@ export default function News() {
           <NewsCardsStrip enableDrag className="relative flex w-full flex-row flex-nowrap justify-center overflow-x-auto gap-[calc(16/1364.167*100%)]">
             {cards}
           </NewsCardsStrip>
-          <div className="pointer-events-none absolute left-0 top-[calc(-20/587*100%)] z-20 h-[calc(623/587*100%)] w-[calc(331/1364.167*100%)] bg-[linear-gradient(270deg,rgba(255,255,255,0)_9.7973%,rgba(255,255,255,0.5)_38.26%,#fff_86.318%)]" />
-          <div className="pointer-events-none absolute right-0 top-[calc(-20/587*100%)] z-20 h-[calc(623/587*100%)] w-[calc(323/1364.167*100%)] bg-[linear-gradient(90deg,rgba(255,255,255,0)_0.24851%,rgba(255,255,255,0.5)_36.981%,#fff_73.713%)]" />
         </div>
       )}
     </DebugBg>

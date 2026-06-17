@@ -102,14 +102,14 @@ export default function Welcome() {
             <p key={line}>{line}</p>
           ))}
         </div>
-        <div className="absolute left-1/2 top-[calc(512/631*100%)] flex h-[calc(48/631*100%)] w-[calc(316/362*100%)] -translate-x-1/2 items-start justify-center overflow-hidden">
-          <p className="text-center text-[clamp(10.5px,3.31vw,12px)] font-light leading-[1.22] tracking-[-0.03em]">
+        <div className="absolute left-1/2 top-[calc(507/631*100%)] flex w-[calc(316/362*100%)] -translate-x-1/2 items-start justify-center">
+          <p className="text-center text-[clamp(10px,3.05vw,11.2px)] font-light leading-[1.18] tracking-[-0.03em]">
             {mobileSubtitleText}
           </p>
         </div>
         <Button
           text="Join Oceanea"
-          className="absolute left-[calc(100/362*100%)] top-[calc(573/631*100%)] h-[31px] w-[163px] px-4 py-2"
+          className="absolute left-[calc(100/362*100%)] top-[calc(582/631*100%)] h-[31px] w-[163px] px-4 py-2"
           textClassName="!text-[15px] font-bold leading-[normal]"
           onClick={() => window.dispatchEvent(new Event("oceanea:auth-action"))}
         />
