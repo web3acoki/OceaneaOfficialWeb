@@ -54,63 +54,67 @@ type NewsCardProps = {
 function NewsCard({ card, isMobileMode }: NewsCardProps) {
   const isLaunchCard = card.tags[0] === "Overview";
 
-  const readMoreClassName = (enlarged: boolean) =>
-    enlarged
+  const readMoreClassName = (enlarged: boolean, platform: "mobile" | "desktop" = "mobile") => {
+    if (platform === "desktop") {
+      return enlarged
+        ? "flex h-[calc(42/418*100cqw)] w-[calc(234/418*100cqw)] cursor-default items-center justify-center rounded-full bg-white ft-[20/418] font-bold flh-[24/418] tracking-[0.0305em] text-[#0c0c0c]"
+        : "flex h-[calc(28/418*100cqw)] w-[calc(155/418*100cqw)] items-center justify-center rounded-full bg-[#0c0c0c] ft-[16/418] font-bold flh-[24/418] tracking-[0.0305em] text-white transition-transform duration-200 hover:scale-105";
+    }
+
+    return enlarged
       ? "relative z-30 flex h-[calc(14/165*100cqw)] w-[calc(78/165*100cqw)] items-center justify-center rounded-full bg-white ft-[7.5/165] font-bold leading-none tracking-[0.0813em] text-[#0c0c0c] transition-transform duration-200 hover:scale-105"
       : "flex h-[calc(10/165*100cqw)] w-[calc(52/165*100cqw)] items-center justify-center rounded-full bg-white ft-[6/165] font-bold leading-none tracking-[0.0813em] text-[#0c0c0c] transition-transform duration-200 hover:scale-105";
+  };
 
-  const readMore = (enlarged = false) =>
+  const readMore = (enlarged = false, platform: "mobile" | "desktop" = "mobile") =>
     card.href ? (
       <a
         href={card.href}
         target="_blank"
         rel="noopener noreferrer"
-        className={readMoreClassName(enlarged)}
+        className={readMoreClassName(enlarged, platform)}
       >
         READ MORE
       </a>
     ) : (
-      <button className={readMoreClassName(enlarged)}>READ MORE</button>
+      <button type="button" className={readMoreClassName(enlarged, platform)}>READ MORE</button>
     );
 
   if (!isMobileMode) {
     return (
-      <div className="aspect-[418/746] w-[calc(418/1787*100%)] @container-[size]">
-        <div className="relative size-full overflow-hidden shadow-[0px_4px_8.5px_2px_rgba(0,0,0,0.05)] fr-[50/418]">
+      <div className={`aspect-[418/746] w-[calc(418/1787*100%)] @container-[size]${isLaunchCard ? "" : " cursor-default"}`}>
+        <div className={`relative size-full overflow-hidden shadow-[0px_4px_8.5px_2px_rgba(0,0,0,0.05)] fr-[50/418]${isLaunchCard ? "" : " cursor-default"}`}>
           <LoadedImage src={card.desktopSrc} alt="" loading="lazy" decoding="async" frameClassName="absolute inset-0" className="size-full object-cover" />
-          <div className="absolute inset-x-0 bottom-0 h-[calc(407/746*100%)] bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,#fff_77%)]" />
+          {isLaunchCard ? (
+            <div className="absolute inset-x-0 bottom-0 h-[calc(407/746*100%)] bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,#fff_77%)]" />
+          ) : (
+            <div className="absolute inset-x-0 bottom-0 h-[calc(179/746*100%)] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.68)_66%,rgba(0,0,0,0.92)_100%)]" />
+          )}
 
-          <div className="absolute left-[calc(22/418*100%)] top-[calc(484/746*100%)] z-10 h-[calc(234/746*100%)] w-[calc(381/418*100%)] text-center text-[#0c0c0c]">
-            <p className={`w-full font-medium leading-none ${isLaunchCard ? "ft-[30/418]" : "ft-[36/418]"}`}>{card.title}</p>
-            <p className="mt-[calc(18/418*100cqw)] w-full ft-[20/418] font-normal flh-[25/418] fls-[-0.6/418] text-[#626262]">
-              {card.desc}
-            </p>
+          {isLaunchCard ? (
+            <div className="absolute left-[calc(22/418*100%)] top-[calc(484/746*100%)] z-10 h-[calc(234/746*100%)] w-[calc(381/418*100%)] text-center text-[#0c0c0c]">
+              <p className="w-full font-medium leading-none ft-[30/418]">{card.title}</p>
+              <p className="mt-[calc(18/418*100cqw)] w-full ft-[20/418] font-normal flh-[25/418] fls-[-0.6/418] text-[#626262]">
+                {card.desc}
+              </p>
 
-            <div className="absolute inset-x-0 bottom-0 flex w-full items-center justify-between">
-              <div className="flex items-center fg-[6/418]">
-                {card.tags.map((tag) => (
-                  <p key={tag} className="flex h-[calc(28/418*100cqw)] items-center justify-center rounded-full border border-[#0c0c0c] px-[calc(14/418*100cqw)] ft-[12/418] flh-[20/418] fls-[-0.15/418]">
-                    {tag}
-                  </p>
-                ))}
+              <div className="absolute inset-x-0 bottom-0 flex w-full items-center justify-between">
+                <div className="flex items-center fg-[6/418]">
+                  {card.tags.map((tag) => (
+                    <p key={tag} className="flex h-[calc(28/418*100cqw)] items-center justify-center rounded-full border border-[#0c0c0c] px-[calc(14/418*100cqw)] ft-[12/418] flh-[20/418] fls-[-0.15/418]">
+                      {tag}
+                    </p>
+                  ))}
+                </div>
+                {readMore(false, "desktop")}
               </div>
-              {card.href ? (
-                <a
-                  href={card.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-[calc(28/418*100cqw)] w-[calc(155/418*100cqw)] items-center justify-center rounded-full bg-[#0c0c0c] ft-[16/418] font-bold flh-[24/418] tracking-[0.0305em] text-white transition-transform duration-200 hover:scale-105"
-                >
-                  READ MORE
-                </a>
-              ) : (
-                <button className="flex h-[calc(28/418*100cqw)] w-[calc(155/418*100cqw)] items-center justify-center rounded-full bg-[#0c0c0c] ft-[16/418] font-bold flh-[24/418] tracking-[0.0305em] text-white">
-                  READ MORE
-                </button>
-              )}
             </div>
-          </div>
-          {card.href ? (
+          ) : (
+            <div className="absolute inset-x-0 bottom-[calc(40/746*100%)] z-10 flex w-full items-center justify-center">
+              {readMore(true, "desktop")}
+            </div>
+          )}
+          {card.href && isLaunchCard ? (
             <a
               href={card.href}
               target="_blank"
