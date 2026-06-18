@@ -24,7 +24,6 @@ const newsCards = [
     title: "X-ARTURA",
     desc: "The world's first exoskeleton-based underwater propulsion device, redefining human movement below the surface",
     tags: ["Gearing", "RWA"],
-    href: launchArticleHref,
     imageClassName: "absolute h-[126.07%] left-[-100%] max-w-none top-[-26.01%] w-[300%]",
   },
   {
@@ -34,7 +33,6 @@ const newsCards = [
     title: "X-ARTURA",
     desc: "The world's first exoskeleton-based underwater propulsion device, redefining human movement below the surface",
     tags: ["Gearing", "RWA"],
-    href: launchArticleHref,
     imageClassName: "absolute h-[100%] left-[-68.98%] max-w-none top-[0%] w-[238%]",
   },
   {
@@ -44,7 +42,6 @@ const newsCards = [
     title: "X-ARTURA",
     desc: "The world's first exoskeleton-based underwater propulsion device, redefining human movement below the surface",
     tags: ["Gearing", "RWA"],
-    href: launchArticleHref,
     imageClassName: "absolute h-[114.96%] left-[-93.71%] max-w-none top-[-7.48%] w-[307.71%]",
   },
 ];
@@ -56,20 +53,25 @@ type NewsCardProps = {
 
 function NewsCard({ card, isMobileMode }: NewsCardProps) {
   const isLaunchCard = card.tags[0] === "Overview";
-  const readMore = card.href ? (
-    <a
-      href={card.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex h-[calc(10/165*100cqw)] w-[calc(52/165*100cqw)] items-center justify-center rounded-full bg-white ft-[6/165] font-bold leading-none tracking-[0.0813em] text-[#0c0c0c] transition-transform duration-200 hover:scale-105"
-    >
-      READ MORE
-    </a>
-  ) : (
-    <button className="flex h-[calc(10/165*100cqw)] w-[calc(52/165*100cqw)] items-center justify-center rounded-full bg-white ft-[6/165] font-bold leading-none tracking-[0.0813em] text-[#0c0c0c] transition-transform duration-200 hover:scale-105">
-      READ MORE
-    </button>
-  );
+
+  const readMoreClassName = (enlarged: boolean) =>
+    enlarged
+      ? "relative z-30 flex h-[calc(14/165*100cqw)] w-[calc(78/165*100cqw)] items-center justify-center rounded-full bg-white ft-[7.5/165] font-bold leading-none tracking-[0.0813em] text-[#0c0c0c] transition-transform duration-200 hover:scale-105"
+      : "flex h-[calc(10/165*100cqw)] w-[calc(52/165*100cqw)] items-center justify-center rounded-full bg-white ft-[6/165] font-bold leading-none tracking-[0.0813em] text-[#0c0c0c] transition-transform duration-200 hover:scale-105";
+
+  const readMore = (enlarged = false) =>
+    card.href ? (
+      <a
+        href={card.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={readMoreClassName(enlarged)}
+      >
+        READ MORE
+      </a>
+    ) : (
+      <button className={readMoreClassName(enlarged)}>READ MORE</button>
+    );
 
   if (!isMobileMode) {
     return (
@@ -92,23 +94,31 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
                   </p>
                 ))}
               </div>
-              <a
-                href={card.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-[calc(28/418*100cqw)] w-[calc(155/418*100cqw)] items-center justify-center rounded-full bg-[#0c0c0c] ft-[16/418] font-bold flh-[24/418] tracking-[0.0305em] text-white transition-transform duration-200 hover:scale-105"
-              >
-                READ MORE
-              </a>
+              {card.href ? (
+                <a
+                  href={card.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-[calc(28/418*100cqw)] w-[calc(155/418*100cqw)] items-center justify-center rounded-full bg-[#0c0c0c] ft-[16/418] font-bold flh-[24/418] tracking-[0.0305em] text-white transition-transform duration-200 hover:scale-105"
+                >
+                  READ MORE
+                </a>
+              ) : (
+                <button className="flex h-[calc(28/418*100cqw)] w-[calc(155/418*100cqw)] items-center justify-center rounded-full bg-[#0c0c0c] ft-[16/418] font-bold flh-[24/418] tracking-[0.0305em] text-white">
+                  READ MORE
+                </button>
+              )}
             </div>
           </div>
-          <a
-            href={card.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={card.title}
-            className="absolute inset-0 z-20"
-          />
+          {card.href ? (
+            <a
+              href={card.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={card.title}
+              className="absolute inset-0 z-20"
+            />
+          ) : null}
         </div>
       </div>
     );
@@ -120,24 +130,30 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
         <LoadedImage src={card.mobileSrc} alt="" loading="lazy" decoding="async" frameClassName="absolute inset-0" className="size-full object-cover" />
         <div className="absolute inset-x-0 bottom-0 h-[calc(179/282.75*100%)] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.68)_66%,rgba(0,0,0,0.92)_100%)]" />
 
-        <div className="absolute left-[calc(14/175*100%)] top-[calc(193/282.75*100%)] z-10 h-[calc(78/282.75*100%)] w-[calc(147/175*100%)] text-center text-white">
-          <p className={`w-full font-medium leading-none ${isLaunchCard ? "whitespace-nowrap ft-[10/165]" : "ft-[14/165]"}`}>{card.title}</p>
-          <p className="mt-[calc(6/165*100cqw)] w-full ft-[8/165] font-light flh-[8/165] fls-[-0.24/165]">
-            {card.desc}
-          </p>
+        {isLaunchCard ? (
+          <div className="absolute left-[calc(14/175*100%)] top-[calc(193/282.75*100%)] z-10 h-[calc(78/282.75*100%)] w-[calc(147/175*100%)] text-center text-white">
+            <p className="w-full font-medium leading-none whitespace-nowrap ft-[10/165]">{card.title}</p>
+            <p className="mt-[calc(6/165*100cqw)] w-full ft-[8/165] font-light flh-[8/165] fls-[-0.24/165]">
+              {card.desc}
+            </p>
 
-          <div className="absolute inset-x-0 bottom-0 flex w-full items-center justify-between">
-            <div className="flex items-center fg-[4/165]">
-              {card.tags.map((tag) => (
-                <p key={tag} className="flex h-[calc(10/165*100cqw)] items-center justify-center rounded-full border border-white px-[calc(4/165*100cqw)] ft-[6/165] flh-[8/165] fls-[-0.15/165]">
-                  {tag}
-                </p>
-              ))}
+            <div className="absolute inset-x-0 bottom-0 flex w-full items-center justify-between">
+              <div className="flex items-center fg-[4/165]">
+                {card.tags.map((tag) => (
+                  <p key={tag} className="flex h-[calc(10/165*100cqw)] items-center justify-center rounded-full border border-white px-[calc(4/165*100cqw)] ft-[6/165] flh-[8/165] fls-[-0.15/165]">
+                    {tag}
+                  </p>
+                ))}
+              </div>
+              {readMore()}
             </div>
-            {readMore}
           </div>
-        </div>
-        {card.href ? (
+        ) : (
+          <div className="absolute inset-x-0 bottom-[calc(24/282.75*100%)] z-10 flex w-full items-center justify-center">
+            {readMore(true)}
+          </div>
+        )}
+        {card.href && isLaunchCard ? (
           <a
             href={card.href}
             target="_blank"
