@@ -82,8 +82,10 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
 
   if (!isMobileMode) {
     return (
-      <div className={`aspect-[418/746] w-[calc(418/1787*100%)] @container-[size]${isLaunchCard ? "" : " cursor-default"}`}>
-        <div className={`relative size-full overflow-hidden shadow-[0px_4px_8.5px_2px_rgba(0,0,0,0.05)] fr-[50/418]${isLaunchCard ? "" : " cursor-default"}`}>
+      <div
+        className={`aspect-[418/746] w-[calc(418/1787*100%)] @container-[size] overflow-hidden rounded-[50px]${isLaunchCard ? "" : " cursor-default"}`}
+      >
+        <div className={`relative size-full overflow-hidden rounded-[50px] shadow-[0px_4px_8.5px_2px_rgba(0,0,0,0.05)]${isLaunchCard ? "" : " cursor-default"}`}>
           <LoadedImage src={card.desktopSrc} alt="" loading="lazy" decoding="async" frameClassName="absolute inset-0" className="size-full object-cover" />
           {isLaunchCard ? (
             <div className="absolute inset-x-0 bottom-0 h-[calc(407/746*100%)] bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,#fff_77%)]" />
@@ -129,7 +131,7 @@ function NewsCard({ card, isMobileMode }: NewsCardProps) {
   }
 
   return (
-    <div className="aspect-418/740 @container-[size]">
+    <div className="aspect-418/740 @container-[size] overflow-hidden fr-[15/165]">
       <div className="relative aspect-418/720 overflow-hidden shadow-[0px_3px_7.5px_rgba(0,0,0,0.10)] fr-[15/165]">
         <LoadedImage src={card.mobileSrc} alt="" loading="lazy" decoding="async" frameClassName="absolute inset-0" className="size-full object-cover" />
         <div className="absolute inset-x-0 bottom-0 h-[calc(179/282.75*100%)] bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.68)_66%,rgba(0,0,0,0.92)_100%)]" />
