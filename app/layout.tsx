@@ -19,7 +19,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body className="font-sans antialiased overflow-x-clip overscroll-x-none">
-        <PrivyProvider appId="cmq522aqh00cp0elco71pc6yo" clientId="client-WY6aFeyKd82HYmFTDGaVct5McWfkgzCgwMSAj5wuYyMXN" config={{ loginMethods: ["email", "telegram", "wallet"] }}>                   {children}
+        <PrivyProvider appId="cmqovhoal00cd0cl8h18gxq07" clientId="client-WY6aTL873eD4VAX9QCx1nXMZRMC8FegQs2UnRTLguNVXD" config={{ loginMethods: ["email", "telegram", "wallet"] }}>                   {children}
         </PrivyProvider>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
